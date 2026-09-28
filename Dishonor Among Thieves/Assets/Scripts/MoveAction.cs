@@ -16,8 +16,13 @@ public class MoveAction : MonoBehaviour
     [SerializeField]
     TurnManager turnManager;
     [SerializeField]
+    PlayerScript playerScript;
     int myPlayerNumber;
-
+    
+    private void OnEnable()
+    {
+        myPlayerNumber = playerScript.playerNumber;
+    }
 
     private void Update()
     {
