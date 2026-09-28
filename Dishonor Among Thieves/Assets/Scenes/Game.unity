@@ -3068,7 +3068,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3071fa6869c730744a1634b5fe759330, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerScript
-  myPlayerNumber: 4
+  playerNumber: 4
 --- !u!1 &584769163
 GameObject:
   m_ObjectHideFlags: 0
@@ -3793,7 +3793,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3071fa6869c730744a1634b5fe759330, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerScript
-  myPlayerNumber: 2
+  playerNumber: 2
 --- !u!1 &793341805
 GameObject:
   m_ObjectHideFlags: 0
@@ -7998,7 +7998,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3071fa6869c730744a1634b5fe759330, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerScript
-  myPlayerNumber: 1
+  playerNumber: 1
 --- !u!1 &1946249633
 GameObject:
   m_ObjectHideFlags: 0
@@ -8135,7 +8135,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3071fa6869c730744a1634b5fe759330, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerScript
-  myPlayerNumber: 3
+  playerNumber: 3
 --- !u!1 &2050651371
 GameObject:
   m_ObjectHideFlags: 0
