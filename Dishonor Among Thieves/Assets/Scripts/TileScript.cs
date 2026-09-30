@@ -1,9 +1,13 @@
 using UnityEngine;
 
-public class BossScript : MonoBehaviour
+public class TileScript : MonoBehaviour
 {
     [SerializeField]
-    int hp = 20;
+    int row;
+    [SerializeField]
+    int column;
+    [SerializeField]
+    bool isBossSquare;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
