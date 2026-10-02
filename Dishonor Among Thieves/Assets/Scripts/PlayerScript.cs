@@ -15,6 +15,10 @@ public class PlayerScript : MonoBehaviour
     [SerializeField]
     internal bool isCurrent;
 
+    //attack variables
+    private bool isAttacking;
+    private bool hasAttacked;
+
     void Start(){
         //assign currentSquare
         // for(int i = 0; i < tileSet.tiles.Length; i++){
@@ -27,6 +31,35 @@ public class PlayerScript : MonoBehaviour
     }
 
     //Attack Function
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (isAttacking && Mouse.current.leftButton.isPressed)
+        {
+            AttackSelected();
+        }
+    }
+
+    public void AttackSelected()
+    {
+        Ray ray = Camera.main.ScreenPointToRay(new Vector2(Mouse.current.position.x.ReadValue(), Mouse.current.position.y.ReadValue()));
+        RaycastHit hit;
+
+
+        if (Physics.Raycast(ray, out hit, 100f))
+        {
+            // mouse clicked on a square to attack a player
+            if (hit.collider.CompareTag("Player"))
+            {
+                hit.collider.gameObject.GetComponent<PlayerScript>().health--;
+
+                isAttacking = false;
+                hasAttacked = true;
+            }
+        }
+
+}
 
     // make boss square array in tilemanager
     public void OnClick()
@@ -45,10 +78,7 @@ public class PlayerScript : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-    }
+    
 
     private bool CheckAdjacent(TileScript tile){
         Debug.Log($"Tile row: {tile.GetComponent<TileScript>().row} \nTile column: {tile.GetComponent<TileScript>().column}");

@@ -402,6 +402,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player2
       objectReference: {fileID: 0}
+    - target: {fileID: 8502371513547438016, guid: 8a192377d7e0d114d8560172fca2ef0b, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 9107469187327484633, guid: 8a192377d7e0d114d8560172fca2ef0b, type: 3}
       propertyPath: turnManager
       value: 
@@ -2655,6 +2659,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8502371513547438016, guid: 8a192377d7e0d114d8560172fca2ef0b, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 9107469187327484633, guid: 8a192377d7e0d114d8560172fca2ef0b, type: 3}
       propertyPath: turnManager
       value: 
@@ -3612,6 +3620,10 @@ PrefabInstance:
     - target: {fileID: 8502371513547438016, guid: 8a192377d7e0d114d8560172fca2ef0b, type: 3}
       propertyPath: m_Name
       value: Player3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8502371513547438016, guid: 8a192377d7e0d114d8560172fca2ef0b, type: 3}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 9107469187327484633, guid: 8a192377d7e0d114d8560172fca2ef0b, type: 3}
       propertyPath: turnManager
@@ -6970,6 +6982,10 @@ PrefabInstance:
     - target: {fileID: 8502371513547438016, guid: 8a192377d7e0d114d8560172fca2ef0b, type: 3}
       propertyPath: m_Name
       value: Player4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8502371513547438016, guid: 8a192377d7e0d114d8560172fca2ef0b, type: 3}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 9107469187327484633, guid: 8a192377d7e0d114d8560172fca2ef0b, type: 3}
       propertyPath: turnManager
