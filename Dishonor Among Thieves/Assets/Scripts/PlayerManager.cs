@@ -7,7 +7,7 @@ public class PlayerManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-       playerCount = players.Length; 
+        playerCount = players.Length;
     }
 
     // Update is called once per frame

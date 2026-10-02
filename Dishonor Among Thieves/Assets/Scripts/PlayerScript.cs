@@ -22,19 +22,23 @@ public class PlayerScript : MonoBehaviour
         //         currentSquare = tiles[i];
         //     }
         // }
+
+
     }
 
     //Attack Function
+
+    // make boss square array in tilemanager
     public void OnClick()
     {
         if(isCurrent){
             Debug.Log("Click!");
             for(int i = 0; i < tileSet.tiles.Length; i++){
                 if(tileSet.tiles[i].GetComponent<TileScript>().isBossSquare){
-                if(CheckAdjacent(tileSet.tiles[i].GetComponent<TileScript>())){     
-                        //Debug.Log($"Boss Hit at {boss.hp} health");
-                        boss.hp -= 1;
-                        //Debug.Log($"Boss is now at {boss.hp} health");
+                    if(CheckAdjacent(tileSet.tiles[i].GetComponent<TileScript>())){     
+                            //Debug.Log($"Boss Hit at {boss.hp} health");
+                            boss.hp -= 1;
+                            //Debug.Log($"Boss is now at {boss.hp} health");
                     }
                 }
             }

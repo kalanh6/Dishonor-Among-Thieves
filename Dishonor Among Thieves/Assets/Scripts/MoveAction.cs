@@ -69,6 +69,9 @@ public class MoveAction : MonoBehaviour
                 nextPosition.z = -1;
                 transform.position = nextPosition;
 
+                // put the player in the right array index
+
+
                 isTargeting = false;
                 hasMoved = true;
             }
