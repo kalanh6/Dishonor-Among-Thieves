@@ -3,11 +3,11 @@ using UnityEngine;
 public class TileScript : MonoBehaviour
 {
     [SerializeField]
-    int row;
+    internal int row;
     [SerializeField]
-    int column;
+    internal int column;
     [SerializeField]
-    bool isBossSquare;
+    internal bool isBossSquare;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {

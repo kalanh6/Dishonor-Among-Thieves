@@ -1,13 +1,13 @@
 using UnityEngine;
 
-public class BossScript : MonoBehaviour
+public class TileManager : MonoBehaviour
 {
     [SerializeField]
-    internal int hp = 20;
+    internal GameObject[] tiles;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    void OnEnable()
     {
-        
+        tiles = GameObject.FindGameObjectsWithTag("boardSquare");
     }
 
     // Update is called once per frame

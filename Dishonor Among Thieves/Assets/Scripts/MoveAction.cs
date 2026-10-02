@@ -38,14 +38,18 @@ public class MoveAction : MonoBehaviour
     // Selected() function for moving the player
     public void OnClick()
     {
-        if (turnManager.playerTurn == myPlayerNumber && hasMoved == false)
-        {
+        if(playerScript.isCurrent){
+            playerScript.isCurrent = false;
             isTargeting = true;
         }
+        // if (turnManager.playerTurn == myPlayerNumber && hasMoved == false)
+        // {
+        //     isTargeting = true;
+        // }
 
         if (turnManager.playerTurn != myPlayerNumber)
         {
-            hasMoved = false;
+             hasMoved = false;
         }
     }
 
