@@ -67,6 +67,7 @@ public class MoveAction : MonoBehaviour
             {
                 nextPosition = hit.collider.gameObject.transform.position;
                 nextPosition.z = -1;
+                playerScript.currentSquare = hit.collider.gameObject;
                 transform.position = nextPosition;
 
                 // put the player in the right array index
