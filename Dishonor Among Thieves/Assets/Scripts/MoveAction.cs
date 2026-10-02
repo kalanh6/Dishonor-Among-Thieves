@@ -38,8 +38,8 @@ public class MoveAction : MonoBehaviour
     // Selected() function for moving the player
     public void OnClick()
     {
-        if(playerScript.isCurrent){
-            playerScript.isCurrent = false;
+        if(playerScript.isCurrent && !hasMoved){
+            hasMoved = true;
             isTargeting = true;
         }
         // if (turnManager.playerTurn == myPlayerNumber && hasMoved == false)
@@ -47,7 +47,7 @@ public class MoveAction : MonoBehaviour
         //     isTargeting = true;
         // }
 
-        if (turnManager.playerTurn != myPlayerNumber)
+        if (turnManager.playerIndex + 1 != myPlayerNumber)
         {
              hasMoved = false;
         }
@@ -65,16 +65,18 @@ public class MoveAction : MonoBehaviour
             // mouse clicked on a square to move the player to
             if (hit.collider.CompareTag("boardSquare"))
             {
-                nextPosition = hit.collider.gameObject.transform.position;
-                nextPosition.z = -1;
-                playerScript.currentSquare = hit.collider.gameObject;
-                transform.position = nextPosition;
+                if(!hit.collider.GetComponent<TileScript>().isBossSquare){
+                    nextPosition = hit.collider.gameObject.transform.position;
+                    nextPosition.z = -1;
+                    playerScript.currentSquare = hit.collider.gameObject;
+                    transform.position = nextPosition;
 
-                // put the player in the right array index
+                    // put the player in the right array index
 
 
-                isTargeting = false;
-                hasMoved = true;
+                    isTargeting = false;
+                    hasMoved = true;
+                }
             }
         }
     }

@@ -22,8 +22,6 @@ public class PlayerScript : MonoBehaviour
         //         currentSquare = tiles[i];
         //     }
         // }
-
-
     }
 
     //Attack Function
@@ -36,9 +34,9 @@ public class PlayerScript : MonoBehaviour
             for(int i = 0; i < tileSet.tiles.Length; i++){
                 if(tileSet.tiles[i].GetComponent<TileScript>().isBossSquare){
                     if(CheckAdjacent(tileSet.tiles[i].GetComponent<TileScript>())){     
-                            //Debug.Log($"Boss Hit at {boss.hp} health");
+                            Debug.Log($"Boss Hit at {boss.hp} health");
                             boss.hp -= 1;
-                            //Debug.Log($"Boss is now at {boss.hp} health");
+                            Debug.Log($"Boss is now at {boss.hp} health");
                     }
                 }
             }
@@ -51,12 +49,15 @@ public class PlayerScript : MonoBehaviour
     }
 
     private bool CheckAdjacent(TileScript tile){
-        Debug.Log($"Tile row: {tile.GetComponent<TileScript>().row} \nTile column: {tile.GetComponent<TileScript>().column}");
         if(Mathf.Abs(currentSquare.GetComponent<TileScript>().row - tile.row) <= 1){
             if(Mathf.Abs(currentSquare.GetComponent<TileScript>().column - tile.column) <= 1){
                 return true;
             }
         }
         return false;
+    }
+
+    private bool CheckRowsAndColumns(TileScript tile){
+        return true;
     }
 }
