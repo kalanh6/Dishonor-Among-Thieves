@@ -537,7 +537,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -135, y: -315}
+  m_AnchoredPosition: {x: -165.43073, y: -365.42804}
   m_SizeDelta: {x: 270, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &63371320
@@ -1291,6 +1291,7 @@ MonoBehaviour:
   - {fileID: 745119981}
   - {fileID: 19518729}
   - {fileID: 569271241}
+  currentPlayerScript: {fileID: 0}
 --- !u!114 &237345563
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1374,17 +1375,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2628678549041809833, guid: a6ebb03834130174f8660e7df2249418, type: 3}
   m_PrefabInstance: {fileID: 237404552}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &303562516 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 9107469187327484633, guid: 8a192377d7e0d114d8560172fca2ef0b, type: 3}
-  m_PrefabInstance: {fileID: 310733411222211568}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 569271241}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da534f6645e1a1645b8a838cedb108b8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
 --- !u!1 &345791623
 GameObject:
   m_ObjectHideFlags: 0
@@ -1460,17 +1450,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 345791623}
   m_CullTransparentMesh: 1
---- !u!114 &373919707 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 9107469187327484633, guid: 8a192377d7e0d114d8560172fca2ef0b, type: 3}
-  m_PrefabInstance: {fileID: 46977238}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 745119981}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da534f6645e1a1645b8a838cedb108b8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
 --- !u!1001 &389907003
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1909,10 +1888,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerScript
   playerNumber: 4
+  row: 0
+  column: 0
   currentSquare: {fileID: 1184215732}
   tileSet: {fileID: 237345563}
   boss: {fileID: 1209712267}
   isCurrent: 0
+  isAttacking: 0
+  hasAttacked: 0
+  isTargeting: 0
+  hasMoved: 0
+  turnManager: {fileID: 237345560}
+  playerManager: {fileID: 237345562}
 --- !u!1001 &579048039
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2394,10 +2381,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerScript
   playerNumber: 2
+  row: 0
+  column: 0
   currentSquare: {fileID: 1869750422}
   tileSet: {fileID: 237345563}
   boss: {fileID: 1209712267}
   isCurrent: 0
+  isAttacking: 0
+  hasAttacked: 0
+  isTargeting: 0
+  hasMoved: 0
+  turnManager: {fileID: 237345560}
+  playerManager: {fileID: 237345562}
 --- !u!1001 &782001911
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3215,7 +3210,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -430, y: -315}
+  m_AnchoredPosition: {x: -460.43073, y: -365.42804}
   m_SizeDelta: {x: 270, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1023124506
@@ -3262,45 +3257,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1919399849}
-        m_TargetAssemblyTypeName: PlayerScript, Assembly-CSharp
-        m_MethodName: OnClick
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 745119984}
-        m_TargetAssemblyTypeName: PlayerScript, Assembly-CSharp
-        m_MethodName: OnClick
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1981158362}
-        m_TargetAssemblyTypeName: PlayerScript, Assembly-CSharp
-        m_MethodName: OnClick
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 569271244}
-        m_TargetAssemblyTypeName: PlayerScript, Assembly-CSharp
-        m_MethodName: OnClick
+      - m_Target: {fileID: 237345562}
+        m_TargetAssemblyTypeName: PlayerManager, Assembly-CSharp
+        m_MethodName: OnAttackClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3901,6 +3860,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BossScript
   hp: 20
   isAttacking: 0
+  idk: 0
 --- !u!1001 &1243392634
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4151,7 +4111,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 380, y: -315}
+  m_AnchoredPosition: {x: 469.28735, y: -365.42804}
   m_SizeDelta: {x: 160, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1299386341
@@ -5754,17 +5714,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7790307581767677545, guid: a6ebb03834130174f8660e7df2249418, type: 3}
   m_PrefabInstance: {fileID: 1280609206}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1919399846 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 9107469187327484633, guid: 8a192377d7e0d114d8560172fca2ef0b, type: 3}
-  m_PrefabInstance: {fileID: 819567858}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 832218390}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da534f6645e1a1645b8a838cedb108b8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
 --- !u!114 &1919399849
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5778,10 +5727,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerScript
   playerNumber: 1
+  row: 0
+  column: 0
   currentSquare: {fileID: 645901543}
   tileSet: {fileID: 237345563}
   boss: {fileID: 1209712267}
   isCurrent: 1
+  isAttacking: 0
+  hasAttacked: 0
+  isTargeting: 0
+  hasMoved: 0
+  turnManager: {fileID: 237345560}
+  playerManager: {fileID: 237345562}
 --- !u!1001 &1923189582
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5992,17 +5949,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2628678549041809833, guid: a6ebb03834130174f8660e7df2249418, type: 3}
   m_PrefabInstance: {fileID: 1938500748}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1981158359 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 9107469187327484633, guid: 8a192377d7e0d114d8560172fca2ef0b, type: 3}
-  m_PrefabInstance: {fileID: 1091839347}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 19518729}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da534f6645e1a1645b8a838cedb108b8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
 --- !u!114 &1981158362
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6016,10 +5962,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerScript
   playerNumber: 3
+  row: 0
+  column: 0
   currentSquare: {fileID: 1695234149}
   tileSet: {fileID: 237345563}
   boss: {fileID: 1209712267}
   isCurrent: 0
+  isAttacking: 0
+  hasAttacked: 0
+  isTargeting: 0
+  hasMoved: 0
+  turnManager: {fileID: 237345560}
+  playerManager: {fileID: 237345562}
 --- !u!1001 &2017196877
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6788,7 +6742,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -430, y: -207.61572}
+  m_AnchoredPosition: {x: -460.43073, y: -258.04376}
   m_SizeDelta: {x: 270, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2140914028
@@ -6835,45 +6789,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1919399846}
-        m_TargetAssemblyTypeName: MoveAction, Assembly-CSharp
-        m_MethodName: OnClick
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 373919707}
-        m_TargetAssemblyTypeName: MoveAction, Assembly-CSharp
-        m_MethodName: OnClick
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1981158359}
-        m_TargetAssemblyTypeName: MoveAction, Assembly-CSharp
-        m_MethodName: OnClick
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 303562516}
-        m_TargetAssemblyTypeName: MoveAction, Assembly-CSharp
-        m_MethodName: OnClick
+      - m_Target: {fileID: 237345562}
+        m_TargetAssemblyTypeName: PlayerManager, Assembly-CSharp
+        m_MethodName: OnMoveClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
