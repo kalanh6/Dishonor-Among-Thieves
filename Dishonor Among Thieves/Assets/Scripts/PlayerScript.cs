@@ -98,6 +98,7 @@ public class PlayerScript : MonoBehaviour
         }
     }
     #endregion
+
     // Helper functions to check for certain properties needed for attack and move
     #region Tests
     private bool CheckAdjacent(TileScript tile){
@@ -109,12 +110,11 @@ public class PlayerScript : MonoBehaviour
         return false;
     }
 
-    
-
     private bool CheckRowsAndColumns(TileScript tile){
         return true;
     }
     #endregion
+
     // All functions that Player Manager will call to start the Move action for the current Player
     #region Move
     public void MoveSelected()
