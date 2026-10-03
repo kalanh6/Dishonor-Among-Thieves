@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class BossScript : MonoBehaviour
@@ -7,7 +8,7 @@ public class BossScript : MonoBehaviour
     [SerializeField]
     internal bool isAttacking;
     [SerializeField]
-    ;
+    bool idk; // it was just a semi colon so idk what you wanted
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Update()
     {
@@ -18,6 +19,6 @@ public class BossScript : MonoBehaviour
     }
 
     private bool CheckAdjacent(GameObject[] tiles){
-
+        return true; // need to fix/was empty and would let me launch
     }
 }
