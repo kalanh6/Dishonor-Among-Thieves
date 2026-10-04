@@ -1888,13 +1888,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3071fa6869c730744a1634b5fe759330, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerScript
+  health: 10
   playerNumber: 4
-  row: 0
-  column: 0
-  currentSquare: {fileID: 1184215732}
+  row: 8
+  column: 1
   tileSet: {fileID: 237345563}
   boss: {fileID: 1209712267}
-  isCurrent: 0
   isAttacking: 0
   hasAttacked: 0
   isTargeting: 0
@@ -2174,11 +2173,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6317598410128311473, guid: 439537854e0e5d44cb9b578166f88a6c, type: 3}
   m_PrefabInstance: {fileID: 642310417}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &645901543 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7222184167629978392, guid: 439537854e0e5d44cb9b578166f88a6c, type: 3}
-  m_PrefabInstance: {fileID: 1860772023}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &713975568
 GameObject:
   m_ObjectHideFlags: 0
@@ -2381,13 +2375,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3071fa6869c730744a1634b5fe759330, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerScript
+  health: 10
   playerNumber: 2
-  row: 0
-  column: 0
-  currentSquare: {fileID: 1869750422}
+  row: 1
+  column: 8
   tileSet: {fileID: 237345563}
   boss: {fileID: 1209712267}
-  isCurrent: 0
   isAttacking: 0
   hasAttacked: 0
   isTargeting: 0
@@ -3682,11 +3675,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6317598410128311473, guid: 439537854e0e5d44cb9b578166f88a6c, type: 3}
   m_PrefabInstance: {fileID: 1135514237}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1184215732 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7790307581767677545, guid: a6ebb03834130174f8660e7df2249418, type: 3}
-  m_PrefabInstance: {fileID: 1938500748}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1185855683
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3863,7 +3851,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BossScript
   hp: 20
   isAttacking: 0
-  idk: 0
+  rows: 0400000005000000
+  columns: 0400000005000000
+  playerManager: {fileID: 237345562}
 --- !u!1001 &1243392634
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5353,11 +5343,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1675000745}
   m_CullTransparentMesh: 1
---- !u!1 &1695234149 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7222184167629978392, guid: 439537854e0e5d44cb9b578166f88a6c, type: 3}
-  m_PrefabInstance: {fileID: 1324566994}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1754704189
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5712,11 +5697,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6317598410128311473, guid: 439537854e0e5d44cb9b578166f88a6c, type: 3}
   m_PrefabInstance: {fileID: 1860772023}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1869750422 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7790307581767677545, guid: a6ebb03834130174f8660e7df2249418, type: 3}
-  m_PrefabInstance: {fileID: 1280609206}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1919399849
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5729,13 +5709,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3071fa6869c730744a1634b5fe759330, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerScript
+  health: 10
   playerNumber: 1
-  row: 0
-  column: 0
-  currentSquare: {fileID: 645901543}
+  row: 1
+  column: 1
   tileSet: {fileID: 237345563}
   boss: {fileID: 1209712267}
-  isCurrent: 1
   isAttacking: 0
   hasAttacked: 0
   isTargeting: 0
@@ -5964,13 +5943,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3071fa6869c730744a1634b5fe759330, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerScript
+  health: 10
   playerNumber: 3
-  row: 0
-  column: 0
-  currentSquare: {fileID: 1695234149}
+  row: 8
+  column: 8
   tileSet: {fileID: 237345563}
   boss: {fileID: 1209712267}
-  isCurrent: 0
   isAttacking: 0
   hasAttacked: 0
   isTargeting: 0

@@ -11,16 +11,21 @@ public class BossScript : MonoBehaviour
     internal int[] rows;
     [SerializeField]
     internal int[] columns; // it was just a semi colon so idk what you wanted
+    [SerializeField]
+    PlayerManager playerManager;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Update()
     {
         //work on
         if(isAttacking){
-            isAttacking = false;
+            for(int i = 0; i < rows.Length; i++){
+                for(int j = 0; j < columns.Length; j++){
+                    
+                    playerManager.CheckAdjacentPlayer(rows[i], columns[j], 3);
+                    isAttacking = false;
+                }
+            }
+            
         }
     }
-
-    // private bool CheckAdjacent(GameObject[] tiles){
-    //     return true; // need to fix/was empty and would let me launch
-    // }
 }
