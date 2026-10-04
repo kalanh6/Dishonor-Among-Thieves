@@ -538,7 +538,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -165.43073, y: -365.42804}
+  m_AnchoredPosition: {x: -220.25, y: -364.40103}
   m_SizeDelta: {x: 270, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &63371320
@@ -1175,7 +1175,7 @@ Transform:
   m_GameObject: {fileID: 226526991}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: 0, y: -0.5, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1888,9 +1888,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3071fa6869c730744a1634b5fe759330, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerScript
+  health: 10
   playerNumber: 4
-  row: 0
-  column: 0
+  row: 8
+  column: 1
   currentSquare: {fileID: 1184215732}
   tileSet: {fileID: 237345563}
   boss: {fileID: 1209712267}
@@ -2381,9 +2382,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3071fa6869c730744a1634b5fe759330, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerScript
+  health: 10
   playerNumber: 2
-  row: 0
-  column: 0
+  row: 1
+  column: 8
   currentSquare: {fileID: 1869750422}
   tileSet: {fileID: 237345563}
   boss: {fileID: 1209712267}
@@ -3212,7 +3214,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -460.43073, y: -365.42804}
+  m_AnchoredPosition: {x: -506.75, y: -363.40103}
   m_SizeDelta: {x: 270, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1023124506
@@ -4114,7 +4116,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 469.28735, y: -365.42804}
+  m_AnchoredPosition: {x: 469.28735, y: -377.40103}
   m_SizeDelta: {x: 160, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1299386341
@@ -5729,9 +5731,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3071fa6869c730744a1634b5fe759330, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerScript
+  health: 10
   playerNumber: 1
-  row: 0
-  column: 0
+  row: 1
+  column: 1
   currentSquare: {fileID: 645901543}
   tileSet: {fileID: 237345563}
   boss: {fileID: 1209712267}
@@ -5964,9 +5967,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3071fa6869c730744a1634b5fe759330, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerScript
+  health: 10
   playerNumber: 3
-  row: 0
-  column: 0
+  row: 8
+  column: 8
   currentSquare: {fileID: 1695234149}
   tileSet: {fileID: 237345563}
   boss: {fileID: 1209712267}
@@ -6745,7 +6749,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -460.43073, y: -258.04376}
+  m_AnchoredPosition: {x: -507.75, y: -279.90103}
   m_SizeDelta: {x: 270, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2140914028

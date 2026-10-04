@@ -136,18 +136,22 @@ public class PlayerScript : MonoBehaviour
             {
                 if (!hit.collider.GetComponent<TileScript>().isBossSquare)
                 {
-                    nextPosition = hit.collider.gameObject.transform.position;
-                    nextPosition.z = -1;
-                    //playerScript.currentSquare = hit.collider.gameObject;
-                    transform.position = nextPosition;
+                    if (playerManager.CheckMoveSquare(hit.collider.GetComponent<TileScript>().row, hit.collider.GetComponent<TileScript>().column, 0))
+                    {
+                        nextPosition = hit.collider.gameObject.transform.position;
+                        nextPosition.z = -1;
+                        //playerScript.currentSquare = hit.collider.gameObject;
+                        transform.position = nextPosition;
 
-                    // put the player in the right array index
+                        // put the player in the right array index
 
 
-                    isTargeting = false;
-                    hasMoved = true;
-                    row = hit.collider.gameObject.GetComponent<TileScript>().row;
-                    column = hit.collider.gameObject.GetComponent<TileScript>().column;
+                        isTargeting = false;
+                        hasMoved = true;
+                        row = hit.collider.gameObject.GetComponent<TileScript>().row;
+                        column = hit.collider.gameObject.GetComponent<TileScript>().column;
+                    }
+                    
                 }
             }
         }

@@ -8,9 +8,6 @@ public class PlayerManager : MonoBehaviour
     [SerializeField]
     public GameObject[] players = new GameObject[4];
 
-    // where al players are currently (used for attacking another player in PlayerScript)
-    public PlayerScript[,] playerRowColumn = new PlayerScript[9, 9];
-
     // to make it easier to pass to the next script
     public PlayerScript currentPlayerScript;
 
@@ -22,8 +19,6 @@ public class PlayerManager : MonoBehaviour
     {
         playerCount = players.Length;
         currentPlayerScript = players[currentPlayer].GetComponent<PlayerScript>();
-
-        UpdatePlayerPosition();
     }
 
     // Update is called once per frame
@@ -82,22 +77,6 @@ public class PlayerManager : MonoBehaviour
     }
     #endregion
 
-    #region Player Rows and Columns
-    private void UpdatePlayerPosition()
-    {
-        // set each player's position in the array to check for attacking later
-        for (int i = 0; i < playerCount; i++)
-        {
-            PlayerScript player = players[i].GetComponent<PlayerScript>();
-            playerRowColumn[player.row, player.column] = player;
-        }
-    }
-
-    public void UpdateCurrentPlayer(PlayerScript player)
-    {
-        playerRowColumn[player.row, player.column] = player;
-    }
-    #endregion
     public bool CheckAdjacentPlayer(int row, int column, int damage)
     {
         Debug.Log(row + " " + column);
@@ -122,5 +101,25 @@ public class PlayerManager : MonoBehaviour
         Debug.Log("returned no");
         return false;
         
+    }
+
+    public bool CheckMoveSquare(int row, int column, int damage)
+    {
+        Debug.Log(row + " " + column);
+
+        for (int i = 0; i < playerCount; i++)
+        {
+            PlayerScript player = players[i].GetComponent<PlayerScript>();
+            Debug.Log(i);
+
+            if ((player.row == row) && (player.column == column))
+            {
+                
+                return false;
+            }
+        }
+        Debug.Log("Moved");
+        return true;
+
     }
 }
