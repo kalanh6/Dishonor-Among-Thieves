@@ -14,18 +14,12 @@ public class PlayerScript : MonoBehaviour
     [SerializeField]
     public int column;
 
-
-    [SerializeField]
-    internal GameObject currentSquare;
-
     [SerializeField]
     TileManager tileSet;
 
     [SerializeField]
     BossScript boss;
 
-    [SerializeField]
-    internal bool isCurrent;
 
 
     // variables for player state of turn
@@ -67,7 +61,7 @@ public class PlayerScript : MonoBehaviour
             // mouse clicked on a square to attack a player
             if (hit.collider.CompareTag("boardSquare"))
             {                
-                if (playerManager.CheckAdjacentPlayer(row, column, 1))
+                if (playerManager.CheckAdjacentPlayer(row, column, 1) || CheckAdjacent())
                 {
                     isAttacking = false;
                     hasAttacked = true;
@@ -84,30 +78,27 @@ public class PlayerScript : MonoBehaviour
 
 }
 
-    // make boss square array in tilemanager
-    public void OnClick()
-    {
-        if(isCurrent){
-            Debug.Log("Click!");
-            for(int i = 0; i < tileSet.tiles.Length; i++){
-                if(tileSet.tiles[i].GetComponent<TileScript>().isBossSquare){
-                    if(CheckAdjacent(tileSet.tiles[i].GetComponent<TileScript>())){     
-                            Debug.Log($"Boss Hit at {boss.hp} health");
-                            boss.hp -= 1;
-                            Debug.Log($"Boss is now at {boss.hp} health");
-                    }
-                }
-            }
-        }
-    }
     #endregion
 
     // Helper functions to check for certain properties needed for attack and move
     #region Tests
-    private bool CheckAdjacent(TileScript tile){
-        if(Mathf.Abs(currentSquare.GetComponent<TileScript>().row - tile.row) <= 1){
-            if(Mathf.Abs(currentSquare.GetComponent<TileScript>().column - tile.column) <= 1){
-                return true;
+    private bool CheckAdjacent(){
+        // if(Mathf.Abs(currentSquare.GetComponent<TileScript>().row - tile.row) <= 1){
+        //     if(Mathf.Abs(currentSquare.GetComponent<TileScript>().column - tile.column) <= 1){
+        //         return true;
+        //     }
+        // }
+        Debug.Log("CheckingBossAttack");
+        for(int i = 0; i < boss.rows.Length; i++){
+            if(Mathf.Abs(row - boss.rows[i]) <= 1){
+                 for(int j = 0; j < boss.columns.Length; j++){
+                    if(Mathf.Abs(column - boss.columns[i]) <= 1){
+                        Debug.Log($"Boss Hit at {boss.hp} health");
+                            boss.hp -= 1;
+                            Debug.Log($"Boss is now at {boss.hp} health");
+                            return true;
+                    }
+                 }
             }
         }
         return false;
