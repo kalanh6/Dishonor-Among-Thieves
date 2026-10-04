@@ -13,7 +13,7 @@ public class TurnManager : MonoBehaviour
     // (player turn order is counterclockwise with how it is currently setup)
     public void OnCLickPass()
     {
-
+        
         if (playerIndex == 3){ //change to total Players instead of 4
            playerIndex = 0;
            boss.isAttacking = true;
@@ -21,7 +21,13 @@ public class TurnManager : MonoBehaviour
         else{
             playerIndex += 1;
         }
-
+        for (int i = 0; i < playerManager.playerCount; i++)
+        {
+            if (playerManager.players[i].GetComponent<PlayerScript>().health <= 0)
+            {
+                OnCLickPass();
+            }
+        }
         // give playerManager the correct current player script for the next player
         playerManager.currentPlayerScript = playerManager.players[playerIndex].GetComponent<PlayerScript>();
         playerManager.players[playerIndex].GetComponent<PlayerScript>().hasMoved = false; 

@@ -131,7 +131,7 @@ public class PlayerScript : MonoBehaviour
                     if (playerManager.CheckMoveSquare(hit.collider.GetComponent<TileScript>().row, hit.collider.GetComponent<TileScript>().column, 0))
                     {
                         nextPosition = hit.collider.gameObject.transform.position;
-                        nextPosition.z = -1;
+                        nextPosition.z = -4;
                         //playerScript.currentSquare = hit.collider.gameObject;
                         transform.position = nextPosition;
 
