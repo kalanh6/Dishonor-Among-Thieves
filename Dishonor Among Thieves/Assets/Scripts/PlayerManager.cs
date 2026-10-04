@@ -8,9 +8,6 @@ public class PlayerManager : MonoBehaviour
     [SerializeField]
     public GameObject[] players = new GameObject[4];
 
-    // where al players are currently (used for attacking another player in PlayerScript)
-    public PlayerScript[,] playerRowColumn = new PlayerScript[8, 8];
-
     // to make it easier to pass to the next script
     public PlayerScript currentPlayerScript;
 
@@ -22,8 +19,6 @@ public class PlayerManager : MonoBehaviour
     {
         playerCount = players.Length;
         currentPlayerScript = players[currentPlayer].GetComponent<PlayerScript>();
-
-        UpdatePlayerPosition();
     }
 
     // Update is called once per frame
@@ -32,7 +27,7 @@ public class PlayerManager : MonoBehaviour
         // Move Function call----------------------------------------------------------
         // all done in PlayerScript but called here for the current Player
         // the move button was pressed and now waiting for where the player will move to
-        if (currentPlayerScript.isTargeting && Mouse.current.leftButton.isPressed)
+        if (currentPlayerScript.isTargeting && Mouse.current.leftButton.wasPressedThisFrame)
         {
             currentPlayerScript.MoveSelected();
         }
@@ -40,7 +35,7 @@ public class PlayerManager : MonoBehaviour
         // Attack Function
         // all done in PlayerScript but called here for the current Player
         // the attack button was pressed and now waiting for who the player will attack
-        if (currentPlayerScript.isAttacking && Mouse.current.leftButton.isPressed)
+        if (currentPlayerScript.isAttacking && Mouse.current.leftButton.wasPressedThisFrame)
         {
             currentPlayerScript.AttackSelected();
         }
@@ -48,8 +43,6 @@ public class PlayerManager : MonoBehaviour
     #region OnClick functions for Move/Attack/Etc
     public void OnMoveClick()
     {
-        Debug.Log(currentPlayerScript.hasMoved);
-        Debug.Log(currentPlayerScript.isTargeting);
         // player hit Move button and now needs to click a square to move to
         // Moving happens in the update and MoveSelected in PlayerScript
         if (currentPlayerScript.hasMoved == false && currentPlayerScript.isTargeting == false)
@@ -82,35 +75,44 @@ public class PlayerManager : MonoBehaviour
     }
     #endregion
 
-    #region Player Rows and Columns
-    private void UpdatePlayerPosition()
-    {
-        // set each player's position in the array to check for attacking later
-        for (int i = 0; i < playerCount; i++)
-        {
-            PlayerScript player = players[i].GetComponent<PlayerScript>();
-            playerRowColumn[player.row, player.column] = player;
-        }
-    }
-
-    public void UpdateCurrentPlayer(PlayerScript player)
-    {
-        playerRowColumn[player.row, player.column] = player;
-    }
-    #endregion
     public bool CheckAdjacentPlayer(int row, int column, int damage)
     {
         for (int i = 0; i < playerCount; i++)
         {
             PlayerScript player = players[i].GetComponent<PlayerScript>();
+            Debug.Log(i);
+            if (player.row == row && player.column == column)
+            {
+                continue;
+            }
+
             if ((Mathf.Abs(player.row - row) <= 1) && (Mathf.Abs(player.column - column) <= 1))
             {
                 player.health--;
-                Debug.Log(player.health);
                 return true;
             }
         }
         return false;
         
+    }
+
+    public bool CheckMoveSquare(int row, int column, int damage)
+    {
+        Debug.Log(row + " " + column);
+
+        for (int i = 0; i < playerCount; i++)
+        {
+            PlayerScript player = players[i].GetComponent<PlayerScript>();
+            Debug.Log(i);
+
+            if ((player.row == row) && (player.column == column))
+            {
+                
+                return false;
+            }
+        }
+        Debug.Log("Moved");
+        return true;
+
     }
 }
