@@ -27,7 +27,7 @@ public class PlayerManager : MonoBehaviour
         // Move Function call----------------------------------------------------------
         // all done in PlayerScript but called here for the current Player
         // the move button was pressed and now waiting for where the player will move to
-        if (currentPlayerScript.isTargeting && Mouse.current.leftButton.isPressed)
+        if (currentPlayerScript.isTargeting && Mouse.current.leftButton.wasPressedThisFrame)
         {
             currentPlayerScript.MoveSelected();
         }
@@ -35,7 +35,7 @@ public class PlayerManager : MonoBehaviour
         // Attack Function
         // all done in PlayerScript but called here for the current Player
         // the attack button was pressed and now waiting for who the player will attack
-        if (currentPlayerScript.isAttacking && Mouse.current.leftButton.isPressed)
+        if (currentPlayerScript.isAttacking && Mouse.current.leftButton.wasPressedThisFrame)
         {
             currentPlayerScript.AttackSelected();
         }
@@ -43,8 +43,6 @@ public class PlayerManager : MonoBehaviour
     #region OnClick functions for Move/Attack/Etc
     public void OnMoveClick()
     {
-        Debug.Log(currentPlayerScript.hasMoved);
-        Debug.Log(currentPlayerScript.isTargeting);
         // player hit Move button and now needs to click a square to move to
         // Moving happens in the update and MoveSelected in PlayerScript
         if (currentPlayerScript.hasMoved == false && currentPlayerScript.isTargeting == false)
@@ -79,26 +77,21 @@ public class PlayerManager : MonoBehaviour
 
     public bool CheckAdjacentPlayer(int row, int column, int damage)
     {
-        Debug.Log(row + " " + column);
-
         for (int i = 0; i < playerCount; i++)
         {
             PlayerScript player = players[i].GetComponent<PlayerScript>();
             Debug.Log(i);
             if (player.row == row && player.column == column)
             {
-                Debug.Log("hit myself");
                 continue;
             }
 
             if ((Mathf.Abs(player.row - row) <= 1) && (Mathf.Abs(player.column - column) <= 1))
             {
                 player.health--;
-                Debug.Log(i + " " + player.health);
                 return true;
             }
         }
-        Debug.Log("returned no");
         return false;
         
     }

@@ -14,7 +14,6 @@ public class TurnManager : MonoBehaviour
     public void OnCLickPass()
     {
 
-        playerManager.players[playerIndex].GetComponent<PlayerScript>().isCurrent = false;
         if (playerIndex == 3){ //change to total Players instead of 4
            playerIndex = 0;
            boss.isAttacking = true;
@@ -22,7 +21,6 @@ public class TurnManager : MonoBehaviour
         else{
             playerIndex += 1;
         }
-        playerManager.players[playerIndex].GetComponent<PlayerScript>().isCurrent = true;
 
         // give playerManager the correct current player script for the next player
         playerManager.currentPlayerScript = playerManager.players[playerIndex].GetComponent<PlayerScript>();
