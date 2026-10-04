@@ -4,6 +4,7 @@ using UnityEngine.InputSystem;
 public class PlayerScript : MonoBehaviour
 {
     // variables for player info
+    [SerializeField]
     internal int health = 10; //make property?
     [SerializeField]
     internal int playerNumber;
@@ -44,11 +45,13 @@ public class PlayerScript : MonoBehaviour
     // is this needed???
     void Start(){
         //assign currentSquare
-        // for(int i = 0; i < tileSet.tiles.Length; i++){
-        //     if(tiles[i].position == position){
-        //         currentSquare = tiles[i];
-        //     }
-        // }
+        // for (int i = 0; i < tileSet.tiles.Length; i++)
+        //{
+        //    if (tileSet.tiles[i].position == position)
+        //    {
+        //        currentSquare = tiles[i];
+        //    }
+        //}
     }
 
     // All functions that Player Manager will call to start the attack action for the current Player

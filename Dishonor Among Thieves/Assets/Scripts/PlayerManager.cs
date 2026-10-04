@@ -9,7 +9,7 @@ public class PlayerManager : MonoBehaviour
     public GameObject[] players = new GameObject[4];
 
     // where al players are currently (used for attacking another player in PlayerScript)
-    public PlayerScript[,] playerRowColumn = new PlayerScript[8, 8];
+    public PlayerScript[,] playerRowColumn = new PlayerScript[9, 9];
 
     // to make it easier to pass to the next script
     public PlayerScript currentPlayerScript;
@@ -100,16 +100,26 @@ public class PlayerManager : MonoBehaviour
     #endregion
     public bool CheckAdjacentPlayer(int row, int column, int damage)
     {
+        Debug.Log(row + " " + column);
+
         for (int i = 0; i < playerCount; i++)
         {
             PlayerScript player = players[i].GetComponent<PlayerScript>();
+            Debug.Log(i);
+            if (player.row == row && player.column == column)
+            {
+                Debug.Log("hit myself");
+                continue;
+            }
+
             if ((Mathf.Abs(player.row - row) <= 1) && (Mathf.Abs(player.column - column) <= 1))
             {
                 player.health--;
-                Debug.Log(player.health);
+                Debug.Log(i + " " + player.health);
                 return true;
             }
         }
+        Debug.Log("returned no");
         return false;
         
     }
