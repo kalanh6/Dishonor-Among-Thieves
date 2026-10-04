@@ -101,6 +101,7 @@ public class PlayerScript : MonoBehaviour
                  }
             }
         }
+        Debug.Log("Did not hit boss");
         return false;
     }
 

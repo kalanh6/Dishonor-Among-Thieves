@@ -4386,8 +4386,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BossScript
   hp: 20
   isAttacking: 0
-  rows: 
-  columns: 
+  rows: 0400000005000000
+  columns: 0400000005000000
+  playerManager: {fileID: 237345562}
 --- !u!1001 &1243392634
 PrefabInstance:
   m_ObjectHideFlags: 0

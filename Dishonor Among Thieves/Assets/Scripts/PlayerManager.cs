@@ -77,22 +77,29 @@ public class PlayerManager : MonoBehaviour
 
     public bool CheckAdjacentPlayer(int row, int column, int damage)
     {
+        bool returnBool = false;
+        int rowDiff;
+        int colDiff;
         for (int i = 0; i < playerCount; i++)
         {
             PlayerScript player = players[i].GetComponent<PlayerScript>();
-            Debug.Log(i);
             if (player.row == row && player.column == column)
             {
                 continue;
             }
-
-            if ((Mathf.Abs(player.row - row) <= 1) && (Mathf.Abs(player.column - column) <= 1))
+            Debug.Log($"Player Checked: Player {i + 1} \n row: {player.row} col: {player.column}");
+            Debug.Log($"Attacker At:\n row: {row} col: {column}");
+            rowDiff = Mathf.Abs(player.row - row);
+            colDiff = Mathf.Abs(player.column - column);
+            if ((rowDiff == 1 ^ colDiff == 1) && (rowDiff == 0 ^ colDiff == 0))
             {
-                player.health--;
-                return true;
+                Debug.Log(player.health + " hp now");
+                player.health -= damage;
+                Debug.Log(player.health + " hp now");
+                returnBool = true;
             }
         }
-        return false;
+        return returnBool;
         
     }
 
