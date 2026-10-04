@@ -13,8 +13,6 @@ public class TurnManager : MonoBehaviour
     // (player turn order is counterclockwise with how it is currently setup)
     public void OnCLickPass()
     {
-        // update the player rows and cxolumns in player manager
-        playerManager.UpdateCurrentPlayer(playerManager.players[playerIndex].GetComponent<PlayerScript>());
 
         if (playerIndex == 3){ //change to total Players instead of 4
            playerIndex = 0;
