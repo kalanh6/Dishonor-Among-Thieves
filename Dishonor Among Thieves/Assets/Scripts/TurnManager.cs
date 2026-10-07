@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TurnManager : MonoBehaviour
 {
@@ -12,6 +13,9 @@ public class TurnManager : MonoBehaviour
 
     [SerializeField]
     TMP_Text playerTurnText;
+
+    [SerializeField]
+    Slider healthBar;
 
     // when the pass button is clicked it goes to the next person
     // (player turn order is counterclockwise with how it is currently setup)
@@ -40,6 +44,7 @@ public class TurnManager : MonoBehaviour
         playerManager.currentPlayerScript = playerManager.players[playerIndex].GetComponent<PlayerScript>();
         playerManager.players[playerIndex].GetComponent<PlayerScript>().hasMoved = false; 
         playerManager.players[playerIndex].GetComponent<PlayerScript>().hasAttacked = false;
+        healthBar.value = playerManager.players[playerIndex].GetComponent<PlayerScript>().health;
         Debug.Log($"Current player = {playerIndex}");
     }
 }
