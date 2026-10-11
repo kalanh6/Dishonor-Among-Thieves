@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class PlayerManager : MonoBehaviour
 {
@@ -13,6 +14,12 @@ public class PlayerManager : MonoBehaviour
 
     int currentPlayer = 0; // goes 0-3 for 4 players to keep a normal index
 
+
+    [SerializeField]
+    public Slider[] healthBars = new Slider[4];
+
+
+    
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -97,6 +104,8 @@ public class PlayerManager : MonoBehaviour
                 player.health -= damage;
                 Debug.Log(player.health + " hp now");
                 returnBool = true;
+
+                UpdateHealthBars();
             }
         }
         return returnBool;
@@ -121,5 +130,13 @@ public class PlayerManager : MonoBehaviour
         Debug.Log("Moved");
         return true;
 
+    }
+
+    private void UpdateHealthBars()
+    {
+        for (int i = 0; i < healthBars.Length; i++)
+        {
+            healthBars[i].value = players[i].GetComponent<PlayerScript>().health;
+        }
     }
 }
