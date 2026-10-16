@@ -98,7 +98,8 @@ public class PlayerManager : MonoBehaviour
             Debug.Log($"Attacker At:\n row: {row} col: {column}");
             rowDiff = Mathf.Abs(player.row - row);
             colDiff = Mathf.Abs(player.column - column);
-            if ((rowDiff == 1 ^ colDiff == 1) && (rowDiff == 0 ^ colDiff == 0))
+            //if ((rowDiff == 1 ^ colDiff == 1) && (rowDiff == 0 ^ colDiff == 0)) no diagonal code
+            if (rowDiff <= 1 && colDiff <= 1)
             {
                 Debug.Log(player.health + " hp now");
                 player.health -= damage;

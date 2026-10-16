@@ -11,6 +11,10 @@ public class BossScript : MonoBehaviour
     internal int[] columns; // it was just a semi colon so idk what you wanted
     [SerializeField]
     PlayerManager playerManager;
+    [SerializeField]
+    float lowHpTimer;
+    [SerializeField]
+    int lowHpThreshold = 5;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public void BossAttack()
     {
@@ -22,5 +26,17 @@ public class BossScript : MonoBehaviour
             }
         }
             
+    }
+
+    void Update(){
+        if(hp<=lowHpThreshold){
+            lowHpTimer += Time.deltaTime;
+            if(lowHpTimer % 1 > .5){ //blink every half second
+                gameObject.GetComponent<SpriteRenderer>().color = Color.red;
+            }
+            else{
+                gameObject.GetComponent<SpriteRenderer>().color = Color.white;
+            }
+        }
     }
 }
