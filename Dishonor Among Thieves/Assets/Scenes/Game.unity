@@ -385,18 +385,18 @@ PrefabInstance:
     - target: {fileID: 4458606110488124905, guid: 8a192377d7e0d114d8560172fca2ef0b, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 2115881347558533056, guid: daf73a72226217749a6e854b3c09a279, type: 3}
+      objectReference: {fileID: -2027635695055004686, guid: 6deda7f01b8a64f4bb426f0721e386fb, type: 3}
     - target: {fileID: 4458606110488124905, guid: 8a192377d7e0d114d8560172fca2ef0b, type: 3}
       propertyPath: m_Color.b
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4458606110488124905, guid: 8a192377d7e0d114d8560172fca2ef0b, type: 3}
       propertyPath: m_Color.g
-      value: 0.026250124
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4458606110488124905, guid: 8a192377d7e0d114d8560172fca2ef0b, type: 3}
       propertyPath: m_Color.r
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7981007300296350905, guid: 8a192377d7e0d114d8560172fca2ef0b, type: 3}
       propertyPath: m_LocalScale.x
@@ -3296,7 +3296,19 @@ PrefabInstance:
     - target: {fileID: 4458606110488124905, guid: 8a192377d7e0d114d8560172fca2ef0b, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 2115881347558533056, guid: daf73a72226217749a6e854b3c09a279, type: 3}
+      objectReference: {fileID: -3506097528846882336, guid: c700580d1f4993841b8952bbf733bc87, type: 3}
+    - target: {fileID: 4458606110488124905, guid: 8a192377d7e0d114d8560172fca2ef0b, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4458606110488124905, guid: 8a192377d7e0d114d8560172fca2ef0b, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4458606110488124905, guid: 8a192377d7e0d114d8560172fca2ef0b, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7981007300296350905, guid: 8a192377d7e0d114d8560172fca2ef0b, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.862
@@ -4548,14 +4560,14 @@ PrefabInstance:
     - target: {fileID: 4458606110488124905, guid: 8a192377d7e0d114d8560172fca2ef0b, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 2115881347558533056, guid: daf73a72226217749a6e854b3c09a279, type: 3}
+      objectReference: {fileID: -789899136062772323, guid: 86bda2c04fcce154a81d2368830eacde, type: 3}
     - target: {fileID: 4458606110488124905, guid: 8a192377d7e0d114d8560172fca2ef0b, type: 3}
       propertyPath: m_Color.b
-      value: 0.92490506
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4458606110488124905, guid: 8a192377d7e0d114d8560172fca2ef0b, type: 3}
       propertyPath: m_Color.g
-      value: 0.27177358
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4458606110488124905, guid: 8a192377d7e0d114d8560172fca2ef0b, type: 3}
       propertyPath: m_Color.r
@@ -9168,10 +9180,10 @@ PrefabInstance:
     - target: {fileID: 4458606110488124905, guid: 8a192377d7e0d114d8560172fca2ef0b, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 2115881347558533056, guid: daf73a72226217749a6e854b3c09a279, type: 3}
+      objectReference: {fileID: 6814032818775105369, guid: ebb86c0101d90084b9d8e6a26716912a, type: 3}
     - target: {fileID: 4458606110488124905, guid: 8a192377d7e0d114d8560172fca2ef0b, type: 3}
       propertyPath: m_Color.b
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4458606110488124905, guid: 8a192377d7e0d114d8560172fca2ef0b, type: 3}
       propertyPath: m_Color.g
@@ -9179,7 +9191,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4458606110488124905, guid: 8a192377d7e0d114d8560172fca2ef0b, type: 3}
       propertyPath: m_Color.r
-      value: 0.29961658
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7981007300296350905, guid: 8a192377d7e0d114d8560172fca2ef0b, type: 3}
       propertyPath: m_LocalScale.x
