@@ -50,7 +50,7 @@ public class PlayerScript : MonoBehaviour
 
     // All functions that Player Manager will call to start the attack action for the current Player
     #region Attack
-    public void AttackSelected()
+    public bool AttackSelected()
     {
         Ray ray = Camera.main.ScreenPointToRay(new Vector2(Mouse.current.position.x.ReadValue(), Mouse.current.position.y.ReadValue()));
         RaycastHit hit;
@@ -65,16 +65,19 @@ public class PlayerScript : MonoBehaviour
                 {
                     isAttacking = false;
                     hasAttacked = true;
+                    return true;
                 }
                 else
                 {
                     hasAttacked = false;
                     Debug.Log("Didnt hit a player square");
+                    return false;
                 }
 
             }
             
         }
+        return AttackSelected();
 
 }
 

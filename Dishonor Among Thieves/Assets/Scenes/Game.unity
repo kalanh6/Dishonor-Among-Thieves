@@ -649,6 +649,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 237345562}
+        m_TargetAssemblyTypeName: PlayerManager, Assembly-CSharp
+        m_MethodName: OnClickPass
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &63371321
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1377,7 +1389,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 2
+  orthographic size: 3
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1487,9 +1499,6 @@ MonoBehaviour:
   playerManager: {fileID: 237345562}
   boss: {fileID: 1209712267}
   playerTurnText: {fileID: 1730190144}
-  leftSideHealth: 320
-  rightSideHealth: 1440
-  offsetValue: 1
 --- !u!4 &237345561
 Transform:
   m_ObjectHideFlags: 0
@@ -1529,6 +1538,8 @@ MonoBehaviour:
   - {fileID: 681420255}
   - {fileID: 916401191}
   - {fileID: 1824125717}
+  moveButton: {fileID: 2140914028}
+  attackButton: {fileID: 1023124506}
 --- !u!114 &237345563
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2280,7 +2291,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3071fa6869c730744a1634b5fe759330, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerScript
-  health: 10
+  health: 15
   playerNumber: 4
   row: 8
   column: 1
@@ -2408,7 +2419,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.12384033, y: -228.01689}
+  m_AnchoredPosition: {x: -0.12390137, y: -228.0169}
   m_SizeDelta: {x: -271.5524, y: -439.8338}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &589813186
@@ -2738,7 +2749,7 @@ RectTransform:
   m_GameObject: {fileID: 681420253}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1109701146}
@@ -2748,7 +2759,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 275, y: 60}
+  m_AnchoredPosition: {x: 319.48, y: 206.88}
   m_SizeDelta: {x: 110.7657, y: 34.614}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &681420255
@@ -2796,9 +2807,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 912866148}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 10
+  m_MaxValue: 15
   m_WholeNumbers: 1
-  m_Value: 10
+  m_Value: 15
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -3016,7 +3027,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3071fa6869c730744a1634b5fe759330, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerScript
-  health: 10
+  health: 15
   playerNumber: 2
   row: 1
   column: 8
@@ -3719,7 +3730,7 @@ RectTransform:
   m_GameObject: {fileID: 916401189}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2132626473}
@@ -3729,7 +3740,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 275, y: -5}
+  m_AnchoredPosition: {x: 319.48, y: 182.81}
   m_SizeDelta: {x: 110.7657, y: 34.614}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &916401191
@@ -3777,9 +3788,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1240645557}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 10
+  m_MaxValue: 15
   m_WholeNumbers: 1
-  m_Value: 10
+  m_Value: 15
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -4175,7 +4186,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 0.15686275, g: 0.15686275, b: 0.15686275, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 0.60784316, g: 0.6784314, b: 0.7137255, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -4982,6 +4993,8 @@ MonoBehaviour:
   rows: 0400000005000000
   columns: 0400000005000000
   playerManager: {fileID: 237345562}
+  lowHpTimer: 0
+  lowHpThreshold: 5
 --- !u!1 &1240645556
 GameObject:
   m_ObjectHideFlags: 0
@@ -5408,7 +5421,7 @@ RectTransform:
   m_GameObject: {fileID: 1299386339}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 345791624}
@@ -5418,7 +5431,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 275, y: 125}
+  m_AnchoredPosition: {x: 319.48, y: 229.5}
   m_SizeDelta: {x: 110.7657, y: 34.614}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1299386341
@@ -5466,9 +5479,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1329318589}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 10
+  m_MaxValue: 15
   m_WholeNumbers: 1
-  m_Value: 10
+  m_Value: 15
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -7561,9 +7574,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1256896904}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 10
+  m_MaxValue: 15
   m_WholeNumbers: 1
-  m_Value: 10
+  m_Value: 15
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -7576,7 +7589,7 @@ RectTransform:
   m_GameObject: {fileID: 1824125716}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1750041999}
@@ -7586,7 +7599,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 275, y: -70}
+  m_AnchoredPosition: {x: 319.48, y: 158.6}
   m_SizeDelta: {x: 110.7657, y: 34.614}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &1860772023
@@ -7758,7 +7771,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3071fa6869c730744a1634b5fe759330, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerScript
-  health: 10
+  health: 15
   playerNumber: 1
   row: 1
   column: 1
@@ -8028,7 +8041,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3071fa6869c730744a1634b5fe759330, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerScript
-  health: 10
+  health: 15
   playerNumber: 3
   row: 8
   column: 8
@@ -8621,8 +8634,8 @@ RectTransform:
   m_Children:
   - {fileID: 589813185}
   - {fileID: 2140914027}
-  - {fileID: 63371319}
   - {fileID: 1023124505}
+  - {fileID: 63371319}
   - {fileID: 1299386340}
   - {fileID: 681420254}
   - {fileID: 916401190}
@@ -9075,7 +9088,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 0.15686275, g: 0.15686275, b: 0.15686275, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 0.60784316, g: 0.6784314, b: 0.7137255, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:

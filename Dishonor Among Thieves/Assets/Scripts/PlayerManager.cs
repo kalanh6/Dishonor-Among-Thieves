@@ -18,6 +18,12 @@ public class PlayerManager : MonoBehaviour
     [SerializeField]
     public Slider[] healthBars = new Slider[4];
 
+    [SerializeField]
+    Button moveButton;
+
+    [SerializeField]
+    Button attackButton;
+
 
     
 
@@ -44,7 +50,8 @@ public class PlayerManager : MonoBehaviour
         // the attack button was pressed and now waiting for who the player will attack
         if (currentPlayerScript.isAttacking && Mouse.current.leftButton.wasPressedThisFrame)
         {
-            currentPlayerScript.AttackSelected();
+            // true means hit but we want the reverse
+            attackButton.interactable = !currentPlayerScript.AttackSelected();
         }
     }
     #region OnClick functions for Move/Attack/Etc
@@ -129,6 +136,7 @@ public class PlayerManager : MonoBehaviour
             }
         }
         Debug.Log("Moved");
+        moveButton.interactable = false;
         return true;
 
     }
@@ -139,5 +147,11 @@ public class PlayerManager : MonoBehaviour
         {
             healthBars[i].value = players[i].GetComponent<PlayerScript>().health;
         }
+    }
+
+    public void OnClickPass()
+    {
+        moveButton.interactable = true;
+        attackButton.interactable = true;
     }
 }

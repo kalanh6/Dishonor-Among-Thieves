@@ -8,6 +8,14 @@ using UnityEngine.UI;
 
 public class TurnManager : MonoBehaviour
 {
+    // ------------------------------------------------------------------------------------------------
+    // I do not understand why this all can't go into player manager.
+    // It uses everything from there and nothing of itself.
+    // The only thing that player manager doesn;t have thats here is Boss and thats another script.
+    // I want to talk about this Sunday
+    // ------------------------------------------------------------------------------------------------
+
+
     // goes from 1-4 and then resets
     public int playerIndex = 0;
     [SerializeField]
@@ -18,14 +26,14 @@ public class TurnManager : MonoBehaviour
     [SerializeField]
     TMP_Text playerTurnText;
 
-    [SerializeField]
-    int leftSideHealth = 450;
+    //[SerializeField]
+    //int leftSideHealth = 450;
 
-    [SerializeField]
-    int rightSideHealth = 1050;
+    //[SerializeField]
+    //int rightSideHealth = 1050;
 
-    [SerializeField]
-    int offsetValue = 1;
+    //[SerializeField]
+    //int offsetValue = 1;
 
     public void Start()
     {
@@ -79,23 +87,23 @@ public class TurnManager : MonoBehaviour
     {
         Vector3 playerPosition = new Vector3(playerManager.players[playerIndex].transform.position.x, playerManager.players[playerIndex].transform.position.y, -10);
         Vector3 bossPosition = new Vector3(boss.gameObject.transform.position.x, boss.gameObject.transform.position.y, -10);
-        Vector3 offset = new Vector3(offsetValue, 0, 0);
+        //Vector3 offset = new Vector3(offsetValue, 0, 0);
 
         if (playerPosition.x < bossPosition.x)
         {
-            Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position, (playerPosition + bossPosition) / 2.0f - offset, 5f * Time.deltaTime);
-            for (int i = 0; i < 4; i++)
-            {
-                playerManager.healthBars[i].transform.position = new Vector3(leftSideHealth, playerManager.healthBars[i].transform.position.y, playerManager.healthBars[i].transform.position.z);
-            }
+            Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position, (playerPosition + bossPosition) / 2.0f, 5f * Time.deltaTime);
+            //for (int i = 0; i < 4; i++)
+            //{
+            //    playerManager.healthBars[i].transform.position = new Vector3(leftSideHealth, playerManager.healthBars[i].transform.position.y, playerManager.healthBars[i].transform.position.z);
+            //}
         }
         else
         {
-            Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position, (playerPosition + bossPosition) / 2.0f + offset, 5f * Time.deltaTime);
-            for (int i = 0; i < 4; i++)
-            {
-                playerManager.healthBars[i].transform.position = new Vector3(rightSideHealth, playerManager.healthBars[i].transform.position.y, playerManager.healthBars[i].transform.position.z);
-            }
+            Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position, (playerPosition + bossPosition) / 2.0f, 5f * Time.deltaTime);
+            //for (int i = 0; i < 4; i++)
+            //{
+            //    playerManager.healthBars[i].transform.position = new Vector3(rightSideHealth, playerManager.healthBars[i].transform.position.y, playerManager.healthBars[i].transform.position.z);
+            //}
         }
 
 
