@@ -91,7 +91,7 @@ public class TurnManager : MonoBehaviour
 
         if (playerPosition.x < bossPosition.x)
         {
-            Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position, (playerPosition + bossPosition) / 2.0f, 5f * Time.deltaTime);
+            Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position, (2 * playerPosition + bossPosition) / 3.0f, 5f * Time.deltaTime);
             //for (int i = 0; i < 4; i++)
             //{
             //    playerManager.healthBars[i].transform.position = new Vector3(leftSideHealth, playerManager.healthBars[i].transform.position.y, playerManager.healthBars[i].transform.position.z);
@@ -99,7 +99,7 @@ public class TurnManager : MonoBehaviour
         }
         else
         {
-            Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position, (playerPosition + bossPosition) / 2.0f, 5f * Time.deltaTime);
+            Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position, (2 * playerPosition + bossPosition) / 3.0f, 5f * Time.deltaTime);
             //for (int i = 0; i < 4; i++)
             //{
             //    playerManager.healthBars[i].transform.position = new Vector3(rightSideHealth, playerManager.healthBars[i].transform.position.y, playerManager.healthBars[i].transform.position.z);

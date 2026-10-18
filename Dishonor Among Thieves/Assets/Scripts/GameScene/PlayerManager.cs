@@ -50,8 +50,8 @@ public class PlayerManager : MonoBehaviour
         // the attack button was pressed and now waiting for who the player will attack
         if (currentPlayerScript.isAttacking && Mouse.current.leftButton.wasPressedThisFrame)
         {
-            // true means hit but we want the reverse
-            attackButton.interactable = !currentPlayerScript.AttackSelected();
+            currentPlayerScript.AttackSelected();
+            attackButton.interactable = !currentPlayerScript.hasAttacked;
         }
     }
     #region OnClick functions for Move/Attack/Etc
