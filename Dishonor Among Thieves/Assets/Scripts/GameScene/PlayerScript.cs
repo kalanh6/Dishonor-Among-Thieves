@@ -64,7 +64,7 @@ public class PlayerScript : MonoBehaviour
             // mouse clicked on a square to attack a player
             if (hit.collider.CompareTag("boardSquare"))
             {                
-                if (playerManager.CheckAdjacentPlayer(row, column, 1) || CheckAdjacent())
+                if (playerManager.CheckAdjacentPlayer(row, column, 1) || CheckAdjacentBoss())
                 {
                     isAttacking = false;
                     hasAttacked = true;
@@ -88,7 +88,7 @@ public class PlayerScript : MonoBehaviour
 
     // Helper functions to check for certain properties needed for attack and move
     #region Tests
-    private bool CheckAdjacent(){
+    private bool CheckAdjacentBoss(){
         // if(Mathf.Abs(currentSquare.GetComponent<TileScript>().row - tile.row) <= 1){
         //     if(Mathf.Abs(currentSquare.GetComponent<TileScript>().column - tile.column) <= 1){
         //         return true;
@@ -100,9 +100,9 @@ public class PlayerScript : MonoBehaviour
                  for(int j = 0; j < boss.columns.Length; j++){
                     if(Mathf.Abs(column - boss.columns[i]) <= 1){
                         Debug.Log($"Boss Hit at {boss.hp} health");
-                            boss.hp -= 1;
-                            Debug.Log($"Boss is now at {boss.hp} health");
-                            return true;
+                        boss.hp -= 1;
+                        Debug.Log($"Boss is now at {boss.hp} health");
+                        return true;
                     }
                  }
             }
@@ -134,7 +134,7 @@ public class PlayerScript : MonoBehaviour
             {
                 if (!hit.collider.GetComponent<TileScript>().isBossSquare)
                 {
-                    if (playerManager.CheckMoveSquare(hit.collider.GetComponent<TileScript>().row, hit.collider.GetComponent<TileScript>().column, 0))
+                    if (playerManager.CheckMoveSquare(hit.collider.GetComponent<TileScript>().row, hit.collider.GetComponent<TileScript>().column))
                     {
                         nextPosition = hit.collider.gameObject.transform.position;
                         nextPosition.z = -4;
