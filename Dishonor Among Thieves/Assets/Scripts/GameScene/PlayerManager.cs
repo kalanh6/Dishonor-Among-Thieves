@@ -147,7 +147,7 @@ public class PlayerManager : MonoBehaviour
         
     }
 
-    public bool CheckMoveSquare(int row, int column, int damage)
+    public bool CheckMoveSquare(int row, int column)
     {
         Debug.Log(row + " " + column);
 

@@ -1,11 +1,16 @@
+using TMPro;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
+    [SerializeField]
+    TMP_Text winScreenText;
 
-    // --- YOUR DATA TO PASS HERE ---
+    //the winner
     public string thiefName;
+
+
 
     private void Awake()
     {
@@ -17,5 +22,10 @@ public class GameManager : MonoBehaviour
 
         Instance = this;
         DontDestroyOnLoad(gameObject);
+    }
+
+    public void WhoWon()
+    {
+
     }
 }

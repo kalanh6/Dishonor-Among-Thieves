@@ -134,7 +134,7 @@ public class PlayerScript : MonoBehaviour
             {
                 if (!hit.collider.GetComponent<TileScript>().isBossSquare)
                 {
-                    if (playerManager.CheckMoveSquare(hit.collider.GetComponent<TileScript>().row, hit.collider.GetComponent<TileScript>().column, 0))
+                    if (playerManager.CheckMoveSquare(hit.collider.GetComponent<TileScript>().row, hit.collider.GetComponent<TileScript>().column))
                     {
                         nextPosition = hit.collider.gameObject.transform.position;
                         nextPosition.z = -4;
