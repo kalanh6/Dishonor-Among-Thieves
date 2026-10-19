@@ -63,20 +63,26 @@ public class PlayerScript : MonoBehaviour
         {
             // mouse clicked on a square to attack a player
             if (hit.collider.CompareTag("boardSquare"))
-            {                
-                if (playerManager.CheckAdjacentPlayer(row, column, 1) || CheckAdjacentBoss())
-                {
+            {
+                if(hit.collider.GetComponent<TileScript>().isBossSquare){        
+                    if (CheckAdjacentBoss(/*hit.collider.GetComponent<TileScript>().row, hit.collider.GetComponent<TileScript>().column*/))
+                    {
+                        Debug.Log("AttackingBoss");
+                        isAttacking = false;
+                        hasAttacked = true;
+                    }
+                }
+                else if(playerManager.CheckAdjacentPlayer(row, column, 1)){
                     isAttacking = false;
                     hasAttacked = true;
-                    //return true;
                 }
                 else
-                {
-                    hasAttacked = false;
-                    Debug.Log("Didnt hit a player square");
-                    //return false;
-                }
-
+                    {
+                        Debug.Log("AttackingNobody");
+                        hasAttacked = false;
+                        Debug.Log("Didnt hit a player square");
+                        //return false;
+                    }
             }
             
         }
@@ -96,15 +102,13 @@ public class PlayerScript : MonoBehaviour
         // }
         Debug.Log("CheckingBossAttack");
         for(int i = 0; i < boss.rows.Length; i++){
-            if(Mathf.Abs(row - boss.rows[i]) <= 1){
-                 for(int j = 0; j < boss.columns.Length; j++){
-                    if(Mathf.Abs(column - boss.columns[i]) <= 1){
-                        Debug.Log($"Boss Hit at {boss.hp} health");
-                        boss.hp -= 1;
-                        Debug.Log($"Boss is now at {boss.hp} health");
-                        return true;
-                    }
-                 }
+            for(int j = 0; j < boss.columns.Length; j++){
+                if(playerManager.CheckAdjacentMath(row, column, boss.rows[i], boss.columns[i])){
+                    Debug.Log($"Boss Hit at {boss.hp} health");
+                    boss.hp -= 1;
+                    Debug.Log($"Boss is now at {boss.hp} health");
+                    return true;
+                }
             }
         }
         Debug.Log("Did not hit boss");
@@ -134,7 +138,7 @@ public class PlayerScript : MonoBehaviour
             {
                 if (!hit.collider.GetComponent<TileScript>().isBossSquare)
                 {
-                    if (playerManager.CheckMoveSquare(hit.collider.GetComponent<TileScript>().row, hit.collider.GetComponent<TileScript>().column))
+                    if (playerManager.CheckSquare(hit.collider.GetComponent<TileScript>().row, hit.collider.GetComponent<TileScript>().column))
                     {
                         nextPosition = hit.collider.gameObject.transform.position;
                         nextPosition.z = -4;

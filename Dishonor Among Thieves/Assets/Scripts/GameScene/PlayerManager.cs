@@ -116,8 +116,8 @@ public class PlayerManager : MonoBehaviour
     public bool CheckAdjacentPlayer(int row, int column, int damage)
     {
         bool returnBool = false;
-        int rowDiff;
-        int colDiff;
+        // int rowDiff;
+        // int colDiff;
         for (int i = 0; i < playerCount; i++)
         {
             PlayerScript player = players[i].GetComponent<PlayerScript>();
@@ -127,10 +127,11 @@ public class PlayerManager : MonoBehaviour
             }
             Debug.Log($"Player Checked: Player {i + 1} \n row: {player.row} col: {player.column}");
             Debug.Log($"Attacker At:\n row: {row} col: {column}");
-            rowDiff = Mathf.Abs(player.row - row);
-            colDiff = Mathf.Abs(player.column - column);
+            // rowDiff = Mathf.Abs(player.row - row);
+            // colDiff = Mathf.Abs(player.column - column);
             //if ((rowDiff == 1 ^ colDiff == 1) && (rowDiff == 0 ^ colDiff == 0)) no diagonal code
-            if (rowDiff <= 1 && colDiff <= 1)
+            // if (rowDiff <= 1 && colDiff <= 1)
+            if(CheckAdjacentMath(player.row, player.column, row, column))
             {
                 if(!player.hasBeenAttacked)
                 {
@@ -147,9 +148,36 @@ public class PlayerManager : MonoBehaviour
         
     }
 
-    public bool CheckMoveSquare(int row, int column)
+    public bool CheckAdjacentMath(int aRow, int aCol, int bRow, int bCol){
+        if(Mathf.Abs(aRow - bRow) <= 1){
+            if(Mathf.Abs(aCol - bCol) <= 1){
+                return true;
+            }
+        }
+        return false;
+    }
+    
+
+    public bool CheckSquare(int row, int column)
     {
-        Debug.Log(row + " " + column);
+        if(!currentPlayerScript.isAttacking){
+            Debug.Log(row + " " + column);
+
+            for (int i = 0; i < playerCount; i++)
+            {
+                PlayerScript player = players[i].GetComponent<PlayerScript>();
+                Debug.Log(i);
+
+                if ((player.row == row) && (player.column == column))
+                {
+                    
+                    return false;
+                }
+            }
+            Debug.Log("Moved");
+            moveButton.interactable = false;
+            return true;
+        }
 
         for (int i = 0; i < playerCount; i++)
         {
@@ -159,13 +187,10 @@ public class PlayerManager : MonoBehaviour
             if ((player.row == row) && (player.column == column))
             {
                 
-                return false;
+                return true;
             }
         }
-        Debug.Log("Moved");
-        moveButton.interactable = false;
-        return true;
-
+        return false;
     }
 
     private void UpdateHealthBars()
