@@ -105,9 +105,6 @@ public class TurnManager : MonoBehaviour
             //    playerManager.healthBars[i].transform.position = new Vector3(rightSideHealth, playerManager.healthBars[i].transform.position.y, playerManager.healthBars[i].transform.position.z);
             //}
         }
-
-
-
     }
 }
 

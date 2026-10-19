@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -24,14 +25,30 @@ public class PlayerManager : MonoBehaviour
     [SerializeField]
     Button attackButton;
 
+    //Variables from turn manager
+    // goes from 1-4 and then resets
+    public int playerIndex = 0;
+    [SerializeField]
+    public BossScript boss;
 
-    
+    [SerializeField]
+    TMP_Text playerTurnText;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         playerCount = players.Length;
         currentPlayerScript = players[currentPlayer].GetComponent<PlayerScript>();
+
+        //from turn man
+        MoveCamera();
+    }
+
+    // from turn man
+    public void LateUpdate()
+    {
+        MoveCamera();
     }
 
     // Update is called once per frame
@@ -151,7 +168,70 @@ public class PlayerManager : MonoBehaviour
 
     public void OnClickPass()
     {
+        healthBars[playerIndex].handleRect.GetComponent<Image>().color = Color.grey;
+
+        if (playerIndex == 3)
+        { //change to total Players instead of 4
+            boss.BossAttack();
+            playerIndex = 0;
+        }
+        else
+        {
+            playerIndex += 1;
+        }
+
+        if (players[playerIndex].GetComponent<PlayerScript>().health <= 0)
+        {
+
+            Vector3 moveBehind = new Vector3(players[playerIndex].transform.position.x, players[playerIndex].transform.position.y, 5);
+            players[playerIndex].transform.position = moveBehind;
+            OnClickPass();
+        }
+
+        //if (boss.hp <= 0)
+        //{
+        //    Vector3 moveBehind = new Vector3(boss.gameObject.transform.position.x, boss.gameObject.transform.position.y, 5);
+        //    boss.gameObject.transform.position = moveBehind;
+        //}
+
+        playerTurnText.text = "Player " + (playerIndex + 1);
+
+        // give playerManager the correct current player script for the next player
+        currentPlayerScript = players[playerIndex].GetComponent<PlayerScript>();
+        players[playerIndex].GetComponent<PlayerScript>().hasMoved = false;
+        players[playerIndex].GetComponent<PlayerScript>().hasAttacked = false;
+        healthBars[playerIndex].handleRect.GetComponent<Image>().color = healthBars[playerIndex].fillRect.GetComponent<Image>().color;
+        Debug.Log($"Current player = {playerIndex}");
+
+
+
+
+
         moveButton.interactable = true;
         attackButton.interactable = true;
+    }
+
+    private void MoveCamera()
+    {
+        Vector3 playerPosition = new Vector3(players[playerIndex].transform.position.x, players[playerIndex].transform.position.y, -10);
+        Vector3 bossPosition = new Vector3(boss.gameObject.transform.position.x, boss.gameObject.transform.position.y, -10);
+        //Vector3 offset = new Vector3(offsetValue, 0, 0);
+
+        if (playerPosition.x < bossPosition.x)
+        {
+            Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position, (2 * playerPosition + bossPosition) / 3.0f, 5f * Time.deltaTime);
+            //for (int i = 0; i < 4; i++)
+            //{
+            //    playerManager.healthBars[i].transform.position = new Vector3(leftSideHealth, playerManager.healthBars[i].transform.position.y, playerManager.healthBars[i].transform.position.z);
+            //}
+        }
+        else
+        {
+            Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position, (2 * playerPosition + bossPosition) / 3.0f, 5f * Time.deltaTime);
+            //for (int i = 0; i < 4; i++)
+            //{
+            //    playerManager.healthBars[i].transform.position = new Vector3(rightSideHealth, playerManager.healthBars[i].transform.position.y, playerManager.healthBars[i].transform.position.z);
+            //}
+        }
     }
 }
