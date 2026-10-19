@@ -71,6 +71,13 @@ public class PlayerManager : MonoBehaviour
             attackButton.interactable = !currentPlayerScript.hasAttacked;
         }
     }
+    
+    internal void ResetAttacked(){
+        foreach(GameObject player in players){
+            player.GetComponent<PlayerScript>().hasBeenAttacked = false;
+        }
+    }
+
     #region OnClick functions for Move/Attack/Etc
     public void OnMoveClick()
     {
@@ -125,12 +132,15 @@ public class PlayerManager : MonoBehaviour
             //if ((rowDiff == 1 ^ colDiff == 1) && (rowDiff == 0 ^ colDiff == 0)) no diagonal code
             if (rowDiff <= 1 && colDiff <= 1)
             {
-                Debug.Log(player.health + " hp now");
-                player.health -= damage;
-                Debug.Log(player.health + " hp now");
-                returnBool = true;
-
-                UpdateHealthBars();
+                if(!player.hasBeenAttacked)
+                {
+                    Debug.Log(player.health + " hp now");
+                    player.health -= damage;
+                    Debug.Log(player.health + " hp now");
+                    returnBool = true;
+                    player.hasBeenAttacked = true;
+                    UpdateHealthBars();
+                }
             }
         }
         return returnBool;

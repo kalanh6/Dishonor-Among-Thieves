@@ -20,6 +20,9 @@ public class PlayerScript : MonoBehaviour
     [SerializeField]
     BossScript boss;
 
+    [SerializeField]
+    internal bool hasBeenAttacked;
+
 
 
     // variables for player state of turn
