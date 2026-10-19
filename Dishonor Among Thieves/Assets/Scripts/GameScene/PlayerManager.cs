@@ -190,6 +190,8 @@ public class PlayerManager : MonoBehaviour
             playerIndex += 1;
         }
 
+        ResetAttacked();
+
         if (players[playerIndex].GetComponent<PlayerScript>().health <= 0)
         {
 
