@@ -461,7 +461,7 @@ PrefabInstance:
     - target: {fileID: 9107469187327484633, guid: 8a192377d7e0d114d8560172fca2ef0b, type: 3}
       propertyPath: turnManager
       value: 
-      objectReference: {fileID: 237345560}
+      objectReference: {fileID: 0}
     - target: {fileID: 9107469187327484633, guid: 8a192377d7e0d114d8560172fca2ef0b, type: 3}
       propertyPath: playerScript
       value: 
@@ -637,18 +637,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 237345560}
-        m_TargetAssemblyTypeName: TurnManager, Assembly-CSharp
-        m_MethodName: OnCLickPass
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 237345562}
         m_TargetAssemblyTypeName: PlayerManager, Assembly-CSharp
         m_MethodName: OnClickPass
@@ -1473,7 +1461,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 237345561}
-  - component: {fileID: 237345560}
   - component: {fileID: 237345562}
   - component: {fileID: 237345563}
   m_Layer: 0
@@ -1483,22 +1470,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &237345560
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 237345559}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 13fb1b9dcb8e8674ab0aa81567eba282, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::TurnManager
-  playerIndex: 0
-  playerManager: {fileID: 237345562}
-  boss: {fileID: 1209712267}
-  playerTurnText: {fileID: 1730190144}
 --- !u!4 &237345561
 Transform:
   m_ObjectHideFlags: 0
@@ -1540,6 +1511,9 @@ MonoBehaviour:
   - {fileID: 1824125717}
   moveButton: {fileID: 2140914028}
   attackButton: {fileID: 1023124506}
+  playerIndex: 0
+  boss: {fileID: 1209712267}
+  playerTurnText: {fileID: 1730190144}
 --- !u!114 &237345563
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2297,11 +2271,12 @@ MonoBehaviour:
   column: 1
   tileSet: {fileID: 237345563}
   boss: {fileID: 1209712267}
+  hasBeenAttacked: 0
   isAttacking: 0
   hasAttacked: 0
   isTargeting: 0
   hasMoved: 0
-  turnManager: {fileID: 237345560}
+  turnManager: {fileID: 0}
   playerManager: {fileID: 237345562}
 --- !u!1001 &579048039
 PrefabInstance:
@@ -3033,11 +3008,12 @@ MonoBehaviour:
   column: 8
   tileSet: {fileID: 237345563}
   boss: {fileID: 1209712267}
+  hasBeenAttacked: 0
   isAttacking: 0
   hasAttacked: 0
   isTargeting: 0
   hasMoved: 0
-  turnManager: {fileID: 237345560}
+  turnManager: {fileID: 0}
   playerManager: {fileID: 237345562}
 --- !u!1001 &782001911
 PrefabInstance:
@@ -3372,7 +3348,7 @@ PrefabInstance:
     - target: {fileID: 9107469187327484633, guid: 8a192377d7e0d114d8560172fca2ef0b, type: 3}
       propertyPath: turnManager
       value: 
-      objectReference: {fileID: 237345560}
+      objectReference: {fileID: 0}
     - target: {fileID: 9107469187327484633, guid: 8a192377d7e0d114d8560172fca2ef0b, type: 3}
       propertyPath: playerScript
       value: 
@@ -4636,7 +4612,7 @@ PrefabInstance:
     - target: {fileID: 9107469187327484633, guid: 8a192377d7e0d114d8560172fca2ef0b, type: 3}
       propertyPath: turnManager
       value: 
-      objectReference: {fileID: 237345560}
+      objectReference: {fileID: 0}
     - target: {fileID: 9107469187327484633, guid: 8a192377d7e0d114d8560172fca2ef0b, type: 3}
       propertyPath: playerScript
       value: 
@@ -5007,6 +4983,8 @@ MonoBehaviour:
   playerManager: {fileID: 237345562}
   lowHpTimer: 0
   lowHpThreshold: 5
+  attackTimer: 0
+  isAttacking: 0
 --- !u!1 &1240645556
 GameObject:
   m_ObjectHideFlags: 0
@@ -7789,11 +7767,12 @@ MonoBehaviour:
   column: 1
   tileSet: {fileID: 237345563}
   boss: {fileID: 1209712267}
+  hasBeenAttacked: 0
   isAttacking: 0
   hasAttacked: 0
   isTargeting: 0
   hasMoved: 0
-  turnManager: {fileID: 237345560}
+  turnManager: {fileID: 0}
   playerManager: {fileID: 237345562}
 --- !u!1001 &1923189582
 PrefabInstance:
@@ -8059,11 +8038,12 @@ MonoBehaviour:
   column: 8
   tileSet: {fileID: 237345563}
   boss: {fileID: 1209712267}
+  hasBeenAttacked: 0
   isAttacking: 0
   hasAttacked: 0
   isTargeting: 0
   hasMoved: 0
-  turnManager: {fileID: 237345560}
+  turnManager: {fileID: 0}
   playerManager: {fileID: 237345562}
 --- !u!1001 &2017196877
 PrefabInstance:
@@ -9256,7 +9236,7 @@ PrefabInstance:
     - target: {fileID: 9107469187327484633, guid: 8a192377d7e0d114d8560172fca2ef0b, type: 3}
       propertyPath: turnManager
       value: 
-      objectReference: {fileID: 237345560}
+      objectReference: {fileID: 0}
     - target: {fileID: 9107469187327484633, guid: 8a192377d7e0d114d8560172fca2ef0b, type: 3}
       propertyPath: playerScript
       value: 
