@@ -15,13 +15,16 @@ public class BossScript : MonoBehaviour
     float lowHpTimer;
     [SerializeField]
     int lowHpThreshold = 5;
+    [SerializeField]
+    float attackTimer = 0;
+    [SerializeField]
+    internal bool isAttacking;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public void BossAttack()
     {
         //work on
         for(int i = 0; i < rows.Length; i++){
             for(int j = 0; j < columns.Length; j++){
-                    
                 playerManager.CheckAdjacentPlayer(rows[i], columns[j], 3);
             }
         }
@@ -29,6 +32,13 @@ public class BossScript : MonoBehaviour
     }
 
     void Update(){
+        if(isAttacking){
+            attackTimer += Time.deltaTime;
+            if(attackTimer >= 2.0f){
+                isAttacking = false;
+                attackTimer = 0;
+            }
+        }
         if(hp<=lowHpThreshold){
             lowHpTimer += Time.deltaTime;
             if(lowHpTimer % 1 > .5){ //blink every half second

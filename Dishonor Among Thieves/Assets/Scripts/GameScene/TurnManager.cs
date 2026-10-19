@@ -8,14 +8,6 @@ using UnityEngine.UI;
 
 public class TurnManager : MonoBehaviour
 {
-    // ------------------------------------------------------------------------------------------------
-    // I do not understand why this all can't go into player manager.
-    // It uses everything from there and nothing of itself.
-    // The only thing that player manager doesn;t have thats here is Boss and thats another script.
-    // I want to talk about this Sunday
-    // ------------------------------------------------------------------------------------------------
-
-
     // goes from 1-4 and then resets
     public int playerIndex = 0;
     [SerializeField]
@@ -52,12 +44,15 @@ public class TurnManager : MonoBehaviour
         playerManager.healthBars[playerIndex].handleRect.GetComponent<Image>().color = Color.grey;
 
         if (playerIndex == 3) { //change to total Players instead of 4
+            boss.isAttacking = true;
             boss.BossAttack();
             playerIndex = 0;
         }
         else{
             playerIndex += 1;
         }
+
+        playerManager.ResetAttacked();
 
         if (playerManager.players[playerIndex].GetComponent<PlayerScript>().health <= 0)
         {
