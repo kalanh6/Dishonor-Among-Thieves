@@ -211,6 +211,7 @@ public class PlayerManager : MonoBehaviour
             }
 
         }
+        playersAlive = alive;
     }
 
     public void OnClickPass()
