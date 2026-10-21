@@ -1,6 +1,8 @@
 using TMPro;
+using Unity.VectorGraphics;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PlayerManager : MonoBehaviour
@@ -9,6 +11,7 @@ public class PlayerManager : MonoBehaviour
 
     [SerializeField]
     public GameObject[] players = new GameObject[4];
+    int playersAlive;
 
     // to make it easier to pass to the next script
     public PlayerScript currentPlayerScript;
@@ -43,6 +46,8 @@ public class PlayerManager : MonoBehaviour
 
         //from turn man
         MoveCamera();
+
+        playersAlive = players.Length;
     }
 
     // from turn man
@@ -96,8 +101,8 @@ public class PlayerManager : MonoBehaviour
 
     public void OnAttackClick()
     {
-        Debug.Log(currentPlayerScript.hasAttacked);
-        Debug.Log(currentPlayerScript.isAttacking);
+        //Debug.Log(currentPlayerScript.hasAttacked);
+        //Debug.Log(currentPlayerScript.isAttacking);
 
         // player hit Move button and now needs to click a square to move to
         // Moving happens in the update and MoveSelected in PlayerScript
@@ -125,8 +130,8 @@ public class PlayerManager : MonoBehaviour
             {
                 continue;
             }
-            Debug.Log($"Player Checked: Player {i + 1} \n row: {player.row} col: {player.column}");
-            Debug.Log($"Attacker At:\n row: {row} col: {column}");
+            //Debug.Log($"Player Checked: Player {i + 1} \n row: {player.row} col: {player.column}");
+            //Debug.Log($"Attacker At:\n row: {row} col: {column}");
             // rowDiff = Mathf.Abs(player.row - row);
             // colDiff = Mathf.Abs(player.column - column);
             //if ((rowDiff == 1 ^ colDiff == 1) && (rowDiff == 0 ^ colDiff == 0)) no diagonal code
@@ -161,12 +166,12 @@ public class PlayerManager : MonoBehaviour
     public bool CheckSquare(int row, int column)
     {
         if(!currentPlayerScript.isAttacking){
-            Debug.Log(row + " " + column);
+            //Debug.Log(row + " " + column);
 
             for (int i = 0; i < playerCount; i++)
             {
                 PlayerScript player = players[i].GetComponent<PlayerScript>();
-                Debug.Log(i);
+                //Debug.Log(i);
 
                 if ((player.row == row) && (player.column == column))
                 {
@@ -174,7 +179,7 @@ public class PlayerManager : MonoBehaviour
                     return false;
                 }
             }
-            Debug.Log("Moved");
+            //Debug.Log("Moved");
             moveButton.interactable = false;
             return true;
         }
@@ -182,7 +187,7 @@ public class PlayerManager : MonoBehaviour
         for (int i = 0; i < playerCount; i++)
         {
             PlayerScript player = players[i].GetComponent<PlayerScript>();
-            Debug.Log(i);
+            //Debug.Log(i);
 
             if ((player.row == row) && (player.column == column))
             {
@@ -195,9 +200,16 @@ public class PlayerManager : MonoBehaviour
 
     private void UpdateHealthBars()
     {
+        int alive = players.Length;
         for (int i = 0; i < healthBars.Length; i++)
         {
             healthBars[i].value = players[i].GetComponent<PlayerScript>().health;
+
+            if (players[i].GetComponent<PlayerScript>().health <= 0)
+            {
+                alive--;
+            }
+
         }
     }
 
@@ -215,14 +227,18 @@ public class PlayerManager : MonoBehaviour
             playerIndex += 1;
         }
 
-        ResetAttacked();
-
         if (players[playerIndex].GetComponent<PlayerScript>().health <= 0)
         {
-
             Vector3 moveBehind = new Vector3(players[playerIndex].transform.position.x, players[playerIndex].transform.position.y, 5);
             players[playerIndex].transform.position = moveBehind;
-            OnClickPass();
+            if (playersAlive > 0)
+            {
+                OnClickPass();
+            }
+            else
+            {
+                SceneManager.LoadScene("WinLoseMenu");
+            }
         }
 
         //if (boss.hp <= 0)
@@ -238,7 +254,7 @@ public class PlayerManager : MonoBehaviour
         players[playerIndex].GetComponent<PlayerScript>().hasMoved = false;
         players[playerIndex].GetComponent<PlayerScript>().hasAttacked = false;
         healthBars[playerIndex].handleRect.GetComponent<Image>().color = healthBars[playerIndex].fillRect.GetComponent<Image>().color;
-        Debug.Log($"Current player = {playerIndex}");
+        //Debug.Log($"Current player = {playerIndex}");
 
 
 
@@ -246,6 +262,7 @@ public class PlayerManager : MonoBehaviour
 
         moveButton.interactable = true;
         attackButton.interactable = true;
+        ResetAttacked();
     }
 
     private void MoveCamera()
