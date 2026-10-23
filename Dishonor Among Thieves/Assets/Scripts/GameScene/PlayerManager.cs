@@ -174,6 +174,7 @@ public class PlayerManager : MonoBehaviour
 
     public bool CheckSquare(int row, int column)
     {
+        Debug.Log($"Trying to move from {currentPlayerScript.row}, {currentPlayerScript.column} to {row}, {column}");
         if(!currentPlayerScript.isAttacking){
             //Debug.Log(row + " " + column);
 
@@ -185,6 +186,9 @@ public class PlayerManager : MonoBehaviour
                 if ((player.row == row) && (player.column == column))
                 {
                     
+                    return false;
+                }
+                if((Mathf.Abs(currentPlayerScript.row - row) + Mathf.Abs(currentPlayerScript.column - column)) > 3){
                     return false;
                 }
             }
