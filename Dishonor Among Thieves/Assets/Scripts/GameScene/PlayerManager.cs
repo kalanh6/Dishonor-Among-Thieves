@@ -40,6 +40,9 @@ public class PlayerManager : MonoBehaviour
     [SerializeField]
     internal TMP_Text damageLog;
 
+     [SerializeField]
+    internal int maxMove;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -185,10 +188,11 @@ public class PlayerManager : MonoBehaviour
 
                 if ((player.row == row) && (player.column == column))
                 {
-                    
+                    currentPlayerScript.isTargeting = false;
                     return false;
                 }
-                if((Mathf.Abs(currentPlayerScript.row - row) + Mathf.Abs(currentPlayerScript.column - column)) > 3){
+                if((Mathf.Abs(currentPlayerScript.row - row) + Mathf.Abs(currentPlayerScript.column - column)) > maxMove){
+                    currentPlayerScript.isTargeting = false;
                     return false;
                 }
             }
