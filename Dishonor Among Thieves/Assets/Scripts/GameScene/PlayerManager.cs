@@ -37,6 +37,9 @@ public class PlayerManager : MonoBehaviour
     [SerializeField]
     TMP_Text playerTurnText;
 
+    [SerializeField]
+    internal TMP_Text damageLog;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -118,7 +121,7 @@ public class PlayerManager : MonoBehaviour
     }
     #endregion
 
-    public bool CheckAdjacentPlayer(int row, int column, int damage)
+    public bool CheckAdjacentPlayer(int row, int column, int damage, bool isBoss)
     {
         bool returnBool = false;
         // int rowDiff;
@@ -145,6 +148,12 @@ public class PlayerManager : MonoBehaviour
                     Debug.Log(player.health + " hp now");
                     returnBool = true;
                     player.hasBeenAttacked = true;
+                    if(isBoss){
+                    damageLog.text = "The Boss attacked all adjacent players";
+                    }
+                    else if(!isBoss){
+                        damageLog.text = "Player " + (playerIndex + 1) + " attacked Player " + player.playerNumber + " for " + damage + "damage.";
+                    }
                     UpdateHealthBars();
                 }
             }

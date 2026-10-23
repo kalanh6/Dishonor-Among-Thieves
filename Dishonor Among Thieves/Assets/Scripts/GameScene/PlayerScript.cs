@@ -24,7 +24,6 @@ public class PlayerScript : MonoBehaviour
     internal bool hasBeenAttacked;
 
 
-
     // variables for player state of turn
     public bool isAttacking = false;
     public bool hasAttacked = false;
@@ -72,7 +71,7 @@ public class PlayerScript : MonoBehaviour
                         hasAttacked = true;
                     }
                 }
-                else if(playerManager.CheckAdjacentPlayer(row, column, 1)){
+                else if(playerManager.CheckAdjacentPlayer(row, column, 1, false)){
                     isAttacking = false;
                     hasAttacked = true;
                 }
@@ -106,6 +105,7 @@ public class PlayerScript : MonoBehaviour
                 if(playerManager.CheckAdjacentMath(row, column, boss.rows[i], boss.columns[i])){
                     Debug.Log($"Boss Hit at {boss.hp} health");
                     boss.hp -= 1;
+                    playerManager.damageLog.text = "Player " + (playerManager.playerIndex + 1) + " attacked the Boss for 1 damage.";
                     Debug.Log($"Boss is now at {boss.hp} health");
                     return true;
                 }

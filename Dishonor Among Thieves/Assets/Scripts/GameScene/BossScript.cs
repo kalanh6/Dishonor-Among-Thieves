@@ -25,7 +25,7 @@ public class BossScript : MonoBehaviour
         //work on
         for(int i = 0; i < rows.Length; i++){
             for(int j = 0; j < columns.Length; j++){
-                playerManager.CheckAdjacentPlayer(rows[i], columns[j], 3);
+                playerManager.CheckAdjacentPlayer(rows[i], columns[j], 3, true);
             }
         }
             
