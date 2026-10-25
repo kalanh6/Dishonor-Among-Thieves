@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -9,8 +10,9 @@ public class GameManager : MonoBehaviour
 
     //the winner
     public string thiefName;
+    public bool playerWon;
 
-
+    
 
     private void Awake()
     {
@@ -22,10 +24,49 @@ public class GameManager : MonoBehaviour
 
         Instance = this;
         DontDestroyOnLoad(gameObject);
+
+
+    }
+
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if (SceneManager.GetActiveScene().name == "WinLoseMenu")
+        {
+            FindTextInCurrentScene();
+        }
+    }
+
+    private void FindTextInCurrentScene()
+    {
+        GameObject textObj = GameObject.FindGameObjectWithTag("GameManagerText");
+        if (textObj != null)
+        {
+            winScreenText = textObj.GetComponent<TMP_Text>();
+        }
+        Debug.Log("hi");
+        Debug.Log(winScreenText != null);
+
+        WhoWon();
     }
 
     public void WhoWon()
     {
-
+        if (playerWon)
+        {
+            winScreenText.text = thiefName + " Wins!";
+        }
+        else
+        {
+            winScreenText.text = "Boss Wins!";
+        }
     }
 }

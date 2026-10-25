@@ -43,6 +43,9 @@ public class PlayerManager : MonoBehaviour
      [SerializeField]
     internal int maxMove;
 
+    [SerializeField]
+    GameManager gameManager;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -255,15 +258,17 @@ public class PlayerManager : MonoBehaviour
             }
             else
             {
+                gameManager.playerWon = false;
                 SceneManager.LoadScene("WinLoseMenu");
             }
         }
 
-        //if (boss.hp <= 0)
-        //{
-        //    Vector3 moveBehind = new Vector3(boss.gameObject.transform.position.x, boss.gameObject.transform.position.y, 5);
-        //    boss.gameObject.transform.position = moveBehind;
-        //}
+        if (boss.hp <= 0)
+        {
+            gameManager.playerWon = true;
+            gameManager.thiefName = "Player " + (playerIndex);
+            SceneManager.LoadScene("WinLoseMenu");
+        }
 
         playerTurnText.text = "Player " + (playerIndex + 1);
 

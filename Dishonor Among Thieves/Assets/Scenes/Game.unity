@@ -1515,6 +1515,8 @@ MonoBehaviour:
   boss: {fileID: 1209712267}
   playerTurnText: {fileID: 1730190144}
   damageLog: {fileID: 671600379}
+  maxMove: 5
+  gameManager: {fileID: 1046840896}
 --- !u!114 &237345563
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4499,6 +4501,53 @@ RectTransform:
   m_AnchoredPosition: {x: -5, y: 0}
   m_SizeDelta: {x: -20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1046840895
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1046840897}
+  - component: {fileID: 1046840896}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1046840896
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1046840895}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4907f0ef824af449b27a10b18f79689, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameManager
+  winScreenText: {fileID: 0}
+  thiefName: 
+  playerWon: 0
+--- !u!4 &1046840897
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1046840895}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.41323, y: 3.26412, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1060638092
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8024,7 +8073,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2628678549041809833, guid: a6ebb03834130174f8660e7df2249418, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 310.56223
+      value: 310.57
       objectReference: {fileID: 0}
     - target: {fileID: 2628678549041809833, guid: a6ebb03834130174f8660e7df2249418, type: 3}
       propertyPath: m_LocalPosition.y
@@ -9410,3 +9459,4 @@ SceneRoots:
   - {fileID: 1209712266}
   - {fileID: 85150064}
   - {fileID: 1568849061}
+  - {fileID: 1046840897}
