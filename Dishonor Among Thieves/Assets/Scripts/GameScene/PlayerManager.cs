@@ -46,6 +46,9 @@ public class PlayerManager : MonoBehaviour
     [SerializeField]
     GameManager gameManager;
 
+    [SerializeField]
+    GameObject actionBarGroup;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -297,18 +300,14 @@ public class PlayerManager : MonoBehaviour
         if (playerPosition.x < bossPosition.x)
         {
             Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position, (2 * playerPosition + bossPosition) / 3.0f, 5f * Time.deltaTime);
-            //for (int i = 0; i < 4; i++)
-            //{
-            //    playerManager.healthBars[i].transform.position = new Vector3(leftSideHealth, playerManager.healthBars[i].transform.position.y, playerManager.healthBars[i].transform.position.z);
-            //}
+
+            actionBarGroup.transform.position = new Vector3(150, actionBarGroup.transform.position.y, actionBarGroup.transform.position.z);
         }
         else
         {
             Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position, (2 * playerPosition + bossPosition) / 3.0f, 5f * Time.deltaTime);
-            //for (int i = 0; i < 4; i++)
-            //{
-            //    playerManager.healthBars[i].transform.position = new Vector3(rightSideHealth, playerManager.healthBars[i].transform.position.y, playerManager.healthBars[i].transform.position.z);
-            //}
+
+            actionBarGroup.transform.position = new Vector3(1200, actionBarGroup.transform.position.y, actionBarGroup.transform.position.z);
         }
     }
 }
