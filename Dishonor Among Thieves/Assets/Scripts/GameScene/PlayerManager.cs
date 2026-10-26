@@ -74,9 +74,12 @@ public class PlayerManager : MonoBehaviour
         // Move Function call----------------------------------------------------------
         // all done in PlayerScript but called here for the current Player
         // the move button was pressed and now waiting for where the player will move to
-        if (currentPlayerScript.isTargeting && Mouse.current.leftButton.wasPressedThisFrame)
+        if (currentPlayerScript.isTargeting)
         {
-            currentPlayerScript.MoveSelected();
+            // currentPlayerScript.HighlightSelected();
+            if(Mouse.current.leftButton.wasPressedThisFrame){
+                currentPlayerScript.MoveSelected();
+            }
         }
 
         // Attack Function
@@ -181,7 +184,7 @@ public class PlayerManager : MonoBehaviour
     }
     
 
-    public bool CheckSquare(int row, int column)
+    public bool CheckSquare(int row, int column, bool moving)
     {
         Debug.Log($"Trying to move from {currentPlayerScript.row}, {currentPlayerScript.column} to {row}, {column}");
         if(!currentPlayerScript.isAttacking){
@@ -194,16 +197,22 @@ public class PlayerManager : MonoBehaviour
 
                 if ((player.row == row) && (player.column == column))
                 {
+                    if(moving){
                     currentPlayerScript.isTargeting = false;
+                    }
                     return false;
                 }
                 if((Mathf.Abs(currentPlayerScript.row - row) + Mathf.Abs(currentPlayerScript.column - column)) > maxMove){
+                    if(moving){
                     currentPlayerScript.isTargeting = false;
+                    }
                     return false;
                 }
             }
             //Debug.Log("Moved");
-            moveButton.interactable = false;
+            if(moving){
+                moveButton.interactable = false;
+            }
             return true;
         }
 

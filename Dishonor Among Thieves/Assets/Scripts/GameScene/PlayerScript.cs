@@ -138,7 +138,7 @@ public class PlayerScript : MonoBehaviour
             {
                 if (!hit.collider.GetComponent<TileScript>().isBossSquare)
                 {
-                    if (playerManager.CheckSquare(hit.collider.GetComponent<TileScript>().row, hit.collider.GetComponent<TileScript>().column))
+                    if (playerManager.CheckSquare(hit.collider.GetComponent<TileScript>().row, hit.collider.GetComponent<TileScript>().column, true))
                     {
                         nextPosition = hit.collider.gameObject.transform.position;
                         nextPosition.z = -4;
@@ -154,6 +154,28 @@ public class PlayerScript : MonoBehaviour
                         column = hit.collider.gameObject.GetComponent<TileScript>().column;
                     }
                     
+                }
+            }
+        }
+    }
+
+    public void HighlightSelected()
+    {
+        Ray ray = Camera.main.ScreenPointToRay(new Vector2(Mouse.current.position.x.ReadValue(), Mouse.current.position.y.ReadValue()));
+        RaycastHit hit;
+
+
+        if (Physics.Raycast(ray, out hit, 100f))
+        {
+            // mouse clicked on a square to move the player to
+            if (hit.collider.CompareTag("boardSquare"))
+            {
+                if (!hit.collider.GetComponent<TileScript>().isBossSquare)
+                {
+                    if (playerManager.CheckSquare(hit.collider.GetComponent<TileScript>().row, hit.collider.GetComponent<TileScript>().column, false))
+                    {
+                        hit.collider.GetComponent<TileScript>().hovered = true;
+                    }
                 }
             }
         }

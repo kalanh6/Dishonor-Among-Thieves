@@ -759,6 +759,10 @@ PrefabInstance:
       propertyPath: column
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 9134142601924035246, guid: 439537854e0e5d44cb9b578166f88a6c, type: 3}
+      propertyPath: isWhite
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1085,6 +1089,10 @@ PrefabInstance:
     - target: {fileID: 9134142601924035246, guid: 439537854e0e5d44cb9b578166f88a6c, type: 3}
       propertyPath: column
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 9134142601924035246, guid: 439537854e0e5d44cb9b578166f88a6c, type: 3}
+      propertyPath: isWhite
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1960,6 +1968,10 @@ PrefabInstance:
       propertyPath: column
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 9134142601924035246, guid: 439537854e0e5d44cb9b578166f88a6c, type: 3}
+      propertyPath: isWhite
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2040,6 +2052,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9134142601924035246, guid: 439537854e0e5d44cb9b578166f88a6c, type: 3}
       propertyPath: column
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9134142601924035246, guid: 439537854e0e5d44cb9b578166f88a6c, type: 3}
+      propertyPath: isWhite
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -2124,6 +2140,10 @@ PrefabInstance:
       propertyPath: column
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 9134142601924035246, guid: 439537854e0e5d44cb9b578166f88a6c, type: 3}
+      propertyPath: isWhite
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2205,6 +2225,10 @@ PrefabInstance:
     - target: {fileID: 9134142601924035246, guid: 439537854e0e5d44cb9b578166f88a6c, type: 3}
       propertyPath: column
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 9134142601924035246, guid: 439537854e0e5d44cb9b578166f88a6c, type: 3}
+      propertyPath: isWhite
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2680,6 +2704,10 @@ PrefabInstance:
       propertyPath: column
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 9134142601924035246, guid: 439537854e0e5d44cb9b578166f88a6c, type: 3}
+      propertyPath: isWhite
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2824,6 +2852,10 @@ PrefabInstance:
     - target: {fileID: 9134142601924035246, guid: 439537854e0e5d44cb9b578166f88a6c, type: 3}
       propertyPath: column
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 9134142601924035246, guid: 439537854e0e5d44cb9b578166f88a6c, type: 3}
+      propertyPath: isWhite
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3170,6 +3202,10 @@ PrefabInstance:
       propertyPath: column
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 9134142601924035246, guid: 439537854e0e5d44cb9b578166f88a6c, type: 3}
+      propertyPath: isWhite
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3443,6 +3479,10 @@ PrefabInstance:
       propertyPath: column
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 9134142601924035246, guid: 439537854e0e5d44cb9b578166f88a6c, type: 3}
+      propertyPath: isWhite
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3523,6 +3563,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9134142601924035246, guid: 439537854e0e5d44cb9b578166f88a6c, type: 3}
       propertyPath: column
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9134142601924035246, guid: 439537854e0e5d44cb9b578166f88a6c, type: 3}
+      propertyPath: isWhite
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -3717,6 +3761,10 @@ PrefabInstance:
       propertyPath: column
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 9134142601924035246, guid: 439537854e0e5d44cb9b578166f88a6c, type: 3}
+      propertyPath: isWhite
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3880,6 +3928,10 @@ PrefabInstance:
     - target: {fileID: 9134142601924035246, guid: 439537854e0e5d44cb9b578166f88a6c, type: 3}
       propertyPath: column
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 9134142601924035246, guid: 439537854e0e5d44cb9b578166f88a6c, type: 3}
+      propertyPath: isWhite
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4128,6 +4180,10 @@ PrefabInstance:
       propertyPath: column
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 9134142601924035246, guid: 439537854e0e5d44cb9b578166f88a6c, type: 3}
+      propertyPath: isWhite
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4373,6 +4429,10 @@ PrefabInstance:
     - target: {fileID: 9134142601924035246, guid: 439537854e0e5d44cb9b578166f88a6c, type: 3}
       propertyPath: column
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 9134142601924035246, guid: 439537854e0e5d44cb9b578166f88a6c, type: 3}
+      propertyPath: isWhite
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4628,6 +4688,10 @@ PrefabInstance:
     - target: {fileID: 9134142601924035246, guid: 439537854e0e5d44cb9b578166f88a6c, type: 3}
       propertyPath: column
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 9134142601924035246, guid: 439537854e0e5d44cb9b578166f88a6c, type: 3}
+      propertyPath: isWhite
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5139,6 +5203,10 @@ PrefabInstance:
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 9134142601924035246, guid: 439537854e0e5d44cb9b578166f88a6c, type: 3}
+      propertyPath: isWhite
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9134142601924035246, guid: 439537854e0e5d44cb9b578166f88a6c, type: 3}
       propertyPath: isBossSquare
       value: 1
       objectReference: {fileID: 0}
@@ -5223,6 +5291,10 @@ PrefabInstance:
     - target: {fileID: 9134142601924035246, guid: 439537854e0e5d44cb9b578166f88a6c, type: 3}
       propertyPath: column
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9134142601924035246, guid: 439537854e0e5d44cb9b578166f88a6c, type: 3}
+      propertyPath: isWhite
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5493,6 +5565,10 @@ PrefabInstance:
       propertyPath: column
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 9134142601924035246, guid: 439537854e0e5d44cb9b578166f88a6c, type: 3}
+      propertyPath: isWhite
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5731,6 +5807,10 @@ PrefabInstance:
     - target: {fileID: 9134142601924035246, guid: 439537854e0e5d44cb9b578166f88a6c, type: 3}
       propertyPath: column
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 9134142601924035246, guid: 439537854e0e5d44cb9b578166f88a6c, type: 3}
+      propertyPath: isWhite
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9134142601924035246, guid: 439537854e0e5d44cb9b578166f88a6c, type: 3}
       propertyPath: isBossSquare
@@ -5990,6 +6070,10 @@ PrefabInstance:
       propertyPath: column
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 9134142601924035246, guid: 439537854e0e5d44cb9b578166f88a6c, type: 3}
+      propertyPath: isWhite
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6071,6 +6155,10 @@ PrefabInstance:
     - target: {fileID: 9134142601924035246, guid: 439537854e0e5d44cb9b578166f88a6c, type: 3}
       propertyPath: column
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 9134142601924035246, guid: 439537854e0e5d44cb9b578166f88a6c, type: 3}
+      propertyPath: isWhite
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -6687,6 +6775,10 @@ PrefabInstance:
       propertyPath: column
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 9134142601924035246, guid: 439537854e0e5d44cb9b578166f88a6c, type: 3}
+      propertyPath: isWhite
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6768,6 +6860,10 @@ PrefabInstance:
     - target: {fileID: 9134142601924035246, guid: 439537854e0e5d44cb9b578166f88a6c, type: 3}
       propertyPath: column
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9134142601924035246, guid: 439537854e0e5d44cb9b578166f88a6c, type: 3}
+      propertyPath: isWhite
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -6963,6 +7059,10 @@ PrefabInstance:
     - target: {fileID: 9134142601924035246, guid: 439537854e0e5d44cb9b578166f88a6c, type: 3}
       propertyPath: column
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 9134142601924035246, guid: 439537854e0e5d44cb9b578166f88a6c, type: 3}
+      propertyPath: isWhite
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -7191,6 +7291,10 @@ PrefabInstance:
       propertyPath: column
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 9134142601924035246, guid: 439537854e0e5d44cb9b578166f88a6c, type: 3}
+      propertyPath: isWhite
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -7272,6 +7376,10 @@ PrefabInstance:
     - target: {fileID: 9134142601924035246, guid: 439537854e0e5d44cb9b578166f88a6c, type: 3}
       propertyPath: column
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 9134142601924035246, guid: 439537854e0e5d44cb9b578166f88a6c, type: 3}
+      propertyPath: isWhite
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -8162,6 +8270,10 @@ PrefabInstance:
       propertyPath: column
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 9134142601924035246, guid: 439537854e0e5d44cb9b578166f88a6c, type: 3}
+      propertyPath: isWhite
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -8343,6 +8455,10 @@ PrefabInstance:
     - target: {fileID: 9134142601924035246, guid: 439537854e0e5d44cb9b578166f88a6c, type: 3}
       propertyPath: column
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9134142601924035246, guid: 439537854e0e5d44cb9b578166f88a6c, type: 3}
+      propertyPath: isWhite
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -8854,6 +8970,10 @@ PrefabInstance:
       propertyPath: column
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 9134142601924035246, guid: 439537854e0e5d44cb9b578166f88a6c, type: 3}
+      propertyPath: isWhite
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -9345,6 +9465,10 @@ PrefabInstance:
       propertyPath: column
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 9134142601924035246, guid: 439537854e0e5d44cb9b578166f88a6c, type: 3}
+      propertyPath: isWhite
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -9501,6 +9625,10 @@ PrefabInstance:
     - target: {fileID: 9134142601924035246, guid: 439537854e0e5d44cb9b578166f88a6c, type: 3}
       propertyPath: column
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 9134142601924035246, guid: 439537854e0e5d44cb9b578166f88a6c, type: 3}
+      propertyPath: isWhite
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
