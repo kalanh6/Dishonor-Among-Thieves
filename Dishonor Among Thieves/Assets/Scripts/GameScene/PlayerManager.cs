@@ -131,6 +131,22 @@ public class PlayerManager : MonoBehaviour
             currentPlayerScript.isAttacking = false;
         }
     }
+
+    // will need to be fixed so clicking basic attack and special attack rgight after doesnt turn it off
+    public void OnSpecialAttackClick()
+    {
+        // player hit Move button and now needs to click a square to move to
+        // Moving happens in the update and MoveSelected in PlayerScript
+        if (currentPlayerScript.hasAttacked == false && currentPlayerScript.isAttacking == false)
+        {
+            currentPlayerScript.isSpecialAttacking = true;
+        }
+        // turn off targeting if player hit the move button again before moving
+        else
+        {
+            currentPlayerScript.isSpecialAttacking = false;
+        }
+    }
     #endregion
 
     public bool CheckAdjacentPlayer(int row, int column, int damage, bool isBoss)

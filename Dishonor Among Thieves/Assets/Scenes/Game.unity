@@ -2391,7 +2391,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 237345562}
         m_TargetAssemblyTypeName: PlayerManager, Assembly-CSharp
-        m_MethodName: OnAttackClick
+        m_MethodName: OnSpecialAttackClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

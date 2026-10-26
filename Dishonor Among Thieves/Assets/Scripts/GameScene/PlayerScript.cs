@@ -27,6 +27,7 @@ public class PlayerScript : MonoBehaviour
     // variables for player state of turn
     public bool isAttacking = false;
     public bool hasAttacked = false;
+    public bool isSpecialAttacking = false;
     public bool isTargeting = false;
     public bool hasMoved = false;
 
@@ -85,9 +86,14 @@ public class PlayerScript : MonoBehaviour
             }
             
         }
-        //return AttackSelected();
-
 }
+
+    // Here is where we want to make the new attacks
+    // Make a method that is only for a specific character
+    // When it is used then hasAttacked needs to be true so neither attack can work again
+    // For checking players hit, use playerManager.Check adjacentplayer
+    // For checking boss hit use CheckAdjacentBoss (not from player manager)(why is this different i dont know)(before we submit to magic maker, i want to fix all this code again ahhhhhhh)
+
 
     #endregion
 
