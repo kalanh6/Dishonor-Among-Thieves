@@ -180,7 +180,10 @@ public class PlayerScript : MonoBehaviour
                 {
                     if (playerManager.CheckSquare(hit.collider.GetComponent<TileScript>().row, hit.collider.GetComponent<TileScript>().column, false))
                     {
-                        hit.collider.GetComponent<TileScript>().hovered = true;
+                        hit.collider.GetComponent<TileScript>().Hover(true);
+                    }
+                    else{
+                        hit.collider.GetComponent<TileScript>().Hover(false);
                     }
                 }
             }

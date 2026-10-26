@@ -76,7 +76,7 @@ public class PlayerManager : MonoBehaviour
         // the move button was pressed and now waiting for where the player will move to
         if (currentPlayerScript.isTargeting)
         {
-            // currentPlayerScript.HighlightSelected();
+            currentPlayerScript.HighlightSelected();
             if(Mouse.current.leftButton.wasPressedThisFrame){
                 currentPlayerScript.MoveSelected();
             }
@@ -202,7 +202,9 @@ public class PlayerManager : MonoBehaviour
 
     public bool CheckSquare(int row, int column, bool moving)
     {
-        Debug.Log($"Trying to move from {currentPlayerScript.row}, {currentPlayerScript.column} to {row}, {column}");
+        if(moving){
+            Debug.Log($"Trying to move from {currentPlayerScript.row}, {currentPlayerScript.column} to {row}, {column}");
+        }
         if(!currentPlayerScript.isAttacking){
             //Debug.Log(row + " " + column);
 
