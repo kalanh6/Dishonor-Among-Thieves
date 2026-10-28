@@ -288,46 +288,47 @@ public class PlayerManager : MonoBehaviour
                 default:
                     break;
             }
-            UpdateHealthBars();
-            //boss check
-            for(int k = 0; k < boss.rows.Length; k++){
-                for(int j = 0; j < boss.columns.Length; j++){
-                    switch(dir){
-                        case "left":
-                            if(boss.columns[j] - currentPlayerScript.column >= distance && boss.rows[k] == currentPlayerScript.row){
-                                boss.hp -= 2; 
-                                Debug.Log($"Boss hit by special");
-                                returnBool = true;
-                            }
-                        break;
-                        case "right":
-                            if(boss.columns[j] - currentPlayerScript.column <= distance && boss.rows[k] == currentPlayerScript.row){
-                                boss.hp -= 2; 
-                                //TEST THIS
-                                Debug.Log($"Boss hit by special");
-                                returnBool = true;
-                            }
-                        break;
-                        case "up":
-                            if(boss.rows[k] - currentPlayerScript.row >= distance && boss.columns[j] == currentPlayerScript.column){
-                                boss.hp -= 2; 
-                                Debug.Log($"Boss hit by special");
-                                returnBool = true;
-                            }
-                        break;
-                        case "down":
-                            if(boss.rows[k] - currentPlayerScript.row <= distance && boss.columns[j] == currentPlayerScript.column){
-                                boss.hp -= 2; 
-                                Debug.Log($"Boss hit by special");
-                                returnBool = true;
-                            }
-                        break;
-                        default:
-                        break;
-                    }
+        }
+        UpdateHealthBars();
+        //boss check
+        for(int k = 0; k < boss.rows.Length; k++){
+            for(int j = 0; j < boss.columns.Length; j++){
+                switch(dir){
+                    case "left":
+                        if(boss.columns[j] - currentPlayerScript.column >= distance && boss.rows[k] == currentPlayerScript.row){
+                            boss.hp -= 2; 
+                            Debug.Log($"Boss hit by special");
+                            returnBool = true;
+                        }
+                    break;
+                    case "right":
+                        if(boss.columns[j] - currentPlayerScript.column <= distance && boss.rows[k] == currentPlayerScript.row){
+                            boss.hp -= 2; 
+                            //TEST THIS
+                            Debug.Log($"Boss hit by special");
+                            returnBool = true;
+                        }
+                    break;
+                    case "up":
+                        if(boss.rows[k] - currentPlayerScript.row >= distance && boss.columns[j] == currentPlayerScript.column){
+                            boss.hp -= 2; 
+                            Debug.Log($"Boss hit by special");
+                            returnBool = true;
+                        }
+                    break;
+                    case "down":
+                        if(boss.rows[k] - currentPlayerScript.row <= distance && boss.columns[j] == currentPlayerScript.column){
+                            boss.hp -= 2; 
+                            Debug.Log($"Boss hit by special");
+                            returnBool = true;
+                        }
+                    break;
+                    default:
+                    break;
                 }
             }
         }
+        currentPlayerScript.specialCooldown = 3;
         return returnBool;
     }
     
@@ -417,6 +418,11 @@ public class PlayerManager : MonoBehaviour
         { //change to total Players instead of 4
             boss.BossAttack();
             playerIndex = 0;
+            for(int i = 0; i < playerCount; i++){
+                if(players[i].GetComponent<PlayerScript>().specialCooldown > 0){
+                    players[i].GetComponent<PlayerScript>().specialCooldown--;
+                }
+            }
         }
         else
         {
@@ -456,8 +462,12 @@ public class PlayerManager : MonoBehaviour
 
 
 
-
-        specialAttackButton.interactable = true;
+        if(currentPlayerScript.specialCooldown == 0){
+            specialAttackButton.interactable = true;
+        }
+        else if(currentPlayerScript.specialCooldown != 0){
+            specialAttackButton.interactable = false;
+        }
         moveButton.interactable = true;
         attackButton.interactable = true;
         ResetAttacked();

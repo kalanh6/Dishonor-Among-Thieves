@@ -67,6 +67,5 @@ public class TileScript : MonoBehaviour
         }
         tempVec.z = -8;
         gameObject.transform.position = tempVec;
-        Debug.Log(gameObject.transform.position);
     }
 }

@@ -23,6 +23,9 @@ public class PlayerScript : MonoBehaviour
     [SerializeField]
     internal bool hasBeenAttacked;
 
+    [SerializeField]
+    internal int specialCooldown = 0;
+
 
     // variables for player state of turn
     public bool isAttacking = false;
