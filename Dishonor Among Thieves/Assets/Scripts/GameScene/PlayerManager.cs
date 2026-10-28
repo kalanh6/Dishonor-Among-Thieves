@@ -93,6 +93,15 @@ public class PlayerManager : MonoBehaviour
             currentPlayerScript.AttackSelected();
             attackButton.interactable = !currentPlayerScript.hasAttacked;
         }
+
+        if (currentPlayerScript.isSpecialAttacking)
+        {
+            currentPlayerScript.HighlightSelected();
+            if(Mouse.current.leftButton.wasPressedThisFrame){
+                currentPlayerScript.AttackSpecial();
+                attackButton.interactable = !currentPlayerScript.hasAttacked;
+            }
+        }
     }
     
     internal void ResetAttacked(){
@@ -201,6 +210,69 @@ public class PlayerManager : MonoBehaviour
         }
         return false;
     }
+
+    public bool CheckSpecialAttack(int sRow, int sCol){
+        int distance = 0;
+        string dir = "";
+        bool isVertical = false;
+        PlayerScript player;
+        if(sRow == currentPlayerScript.row && Mathf.Abs(sCol - currentPlayerScript.column) <= 3){
+            distance = sCol - currentPlayerScript.column;
+        }
+        //equal columns, less than 3 difference rows
+        else if(sCol == currentPlayerScript.column && Mathf.Abs(sRow - currentPlayerScript.row) <= 3){
+            distance = sRow - currentPlayerScript.row;
+            isVertical = true;
+        }
+
+        if(isVertical){
+            if(distance < 0){
+                dir = "up";
+            }
+            else{
+                dir = "down";
+            }
+        }
+
+        if(!isVertical){
+            if(distance < 0){
+                dir = "left";
+            }
+            else{
+                dir = "right";
+            }
+        }
+        Debug.Log($"Special {dir} for {Mathf.Abs(distance)} squares");
+        for(int i = 0; i < playerCount; i++){
+            player = players[i].GetComponent<PlayerScript>();
+            switch(dir){
+                case "left":
+                    if(player.column - currentPlayerScript.column >= distance && player.row == currentPlayerScript.row){
+                        Debug.Log($"Player {i+1} hit by special");
+                    }
+                break;
+                case "right":
+                    if(player.column - currentPlayerScript.column <= distance && player.row == currentPlayerScript.row){
+                        Debug.Log($"Player {i+1} hit by special");
+                    }
+                break;
+                case "up":
+                    if(player.row - currentPlayerScript.row >= distance && player.column == currentPlayerScript.column){
+                        Debug.Log($"Player {i+1} hit by special");
+                    }
+                break;
+                case "down":
+                    if(player.row - currentPlayerScript.row <= distance && player.column == currentPlayerScript.column){
+                        Debug.Log($"Player {i+1} hit by special");
+                    }
+                break;
+
+                default:
+                break;
+            }
+        }
+        return false;
+    }
     
 
     public bool CheckSquare(int row, int column, bool moving)
@@ -208,7 +280,7 @@ public class PlayerManager : MonoBehaviour
         if(moving){
             Debug.Log($"Trying to move from {currentPlayerScript.row}, {currentPlayerScript.column} to {row}, {column}");
         }
-        if(!currentPlayerScript.isAttacking){
+        if(currentPlayerScript.isTargeting){
             //Debug.Log(row + " " + column);
 
             for (int i = 0; i < playerCount; i++)
@@ -235,6 +307,16 @@ public class PlayerManager : MonoBehaviour
                 moveButton.interactable = false;
             }
             return true;
+        }
+
+        if(currentPlayerScript.isSpecialAttacking){
+            if(row == currentPlayerScript.row && Mathf.Abs(column - currentPlayerScript.column) <= 3){
+                return true;
+            }
+            //equal columns, less than 3 difference rows
+            else if(column == currentPlayerScript.column && Mathf.Abs(row - currentPlayerScript.row) <= 3){
+                return true;
+            }
         }
 
         for (int i = 0; i < playerCount; i++)

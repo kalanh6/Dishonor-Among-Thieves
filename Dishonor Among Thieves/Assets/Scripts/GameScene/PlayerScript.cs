@@ -50,7 +50,22 @@ public class PlayerScript : MonoBehaviour
         //    }
         //}
     }
+    public void AttackSpecial(){
+        Ray ray = Camera.main.ScreenPointToRay(new Vector2(Mouse.current.position.x.ReadValue(), Mouse.current.position.y.ReadValue()));
+        RaycastHit hit;
 
+        Debug.Log("Special Attacking");
+        if (Physics.Raycast(ray, out hit, 100f))
+        {
+            // mouse clicked on a square to attack a player
+            if (hit.collider.CompareTag("boardSquare"))
+            {
+                    if(playerManager.CheckSpecialAttack(hit.collider.GetComponent<TileScript>().row, hit.collider.GetComponent<TileScript>().column)){
+
+                    }
+            }
+        }
+    }
     // All functions that Player Manager will call to start the attack action for the current Player
     #region Attack
     public void AttackSelected()
