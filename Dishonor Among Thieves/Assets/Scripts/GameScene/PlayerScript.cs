@@ -60,9 +60,16 @@ public class PlayerScript : MonoBehaviour
             // mouse clicked on a square to attack a player
             if (hit.collider.CompareTag("boardSquare"))
             {
-                    if(playerManager.CheckSpecialAttack(hit.collider.GetComponent<TileScript>().row, hit.collider.GetComponent<TileScript>().column)){
-
-                    }
+                if(playerManager.CheckSpecialAttack(hit.collider.GetComponent<TileScript>().row, hit.collider.GetComponent<TileScript>().column)){
+                    isSpecialAttacking = false;
+                    hasAttacked = true;
+                }
+                else
+                {
+                    Debug.Log("SpecialAttackingNobody");
+                    hasAttacked = false;
+                    Debug.Log("Didnt hit a player square");
+                }
             }
         }
     }
@@ -191,15 +198,12 @@ public class PlayerScript : MonoBehaviour
             // mouse clicked on a square to move the player to
             if (hit.collider.CompareTag("boardSquare"))
             {
-                if (!hit.collider.GetComponent<TileScript>().isBossSquare)
+                if (playerManager.CheckSquare(hit.collider.GetComponent<TileScript>().row, hit.collider.GetComponent<TileScript>().column, false))
                 {
-                    if (playerManager.CheckSquare(hit.collider.GetComponent<TileScript>().row, hit.collider.GetComponent<TileScript>().column, false))
-                    {
-                        hit.collider.GetComponent<TileScript>().Hover(true);
-                    }
-                    else{
-                        hit.collider.GetComponent<TileScript>().Hover(false);
-                    }
+                    hit.collider.GetComponent<TileScript>().Hover(true);
+                }
+                else{
+                    hit.collider.GetComponent<TileScript>().Hover(false);
                 }
             }
         }

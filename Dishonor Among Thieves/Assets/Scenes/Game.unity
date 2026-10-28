@@ -1519,6 +1519,7 @@ MonoBehaviour:
   - {fileID: 1824125717}
   moveButton: {fileID: 2140914028}
   attackButton: {fileID: 1023124506}
+  specialAttackButton: {fileID: 571134625}
   playerIndex: 0
   boss: {fileID: 1209712267}
   playerTurnText: {fileID: 1730190144}

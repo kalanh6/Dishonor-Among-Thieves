@@ -65,7 +65,8 @@ public class TileScript : MonoBehaviour
             tempCol.a = 0.3f;
             gameObject.GetComponent<SpriteRenderer>().color = tempCol;
         }
-        tempVec.z = -5;
+        tempVec.z = -8;
         gameObject.transform.position = tempVec;
+        Debug.Log(gameObject.transform.position);
     }
 }

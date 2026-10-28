@@ -28,6 +28,9 @@ public class PlayerManager : MonoBehaviour
     [SerializeField]
     Button attackButton;
 
+    [SerializeField]
+    Button specialAttackButton;
+
     //Variables from turn manager
     // goes from 1-4 and then resets
     public int playerIndex = 0;
@@ -91,6 +94,7 @@ public class PlayerManager : MonoBehaviour
         if (currentPlayerScript.isAttacking && Mouse.current.leftButton.wasPressedThisFrame)
         {
             currentPlayerScript.AttackSelected();
+            specialAttackButton.interactable = !currentPlayerScript.hasAttacked;
             attackButton.interactable = !currentPlayerScript.hasAttacked;
         }
 
@@ -99,6 +103,7 @@ public class PlayerManager : MonoBehaviour
             currentPlayerScript.HighlightSelected();
             if(Mouse.current.leftButton.wasPressedThisFrame){
                 currentPlayerScript.AttackSpecial();
+                specialAttackButton.interactable = !currentPlayerScript.hasAttacked;
                 attackButton.interactable = !currentPlayerScript.hasAttacked;
             }
         }
@@ -215,6 +220,7 @@ public class PlayerManager : MonoBehaviour
         int distance = 0;
         string dir = "";
         bool isVertical = false;
+        bool returnBool = false;
         PlayerScript player;
         if(sRow == currentPlayerScript.row && Mathf.Abs(sCol - currentPlayerScript.column) <= 3){
             distance = sCol - currentPlayerScript.column;
@@ -243,35 +249,86 @@ public class PlayerManager : MonoBehaviour
             }
         }
         Debug.Log($"Special {dir} for {Mathf.Abs(distance)} squares");
+        //player check
         for(int i = 0; i < playerCount; i++){
             player = players[i].GetComponent<PlayerScript>();
+            if (player.row == currentPlayerScript.row && player.column == currentPlayerScript.column)
+            {
+                continue;
+            }
             switch(dir){
                 case "left":
                     if(player.column - currentPlayerScript.column >= distance && player.row == currentPlayerScript.row){
+                        player.health -= 2;
                         Debug.Log($"Player {i+1} hit by special");
+                        returnBool = true;
                     }
                 break;
                 case "right":
                     if(player.column - currentPlayerScript.column <= distance && player.row == currentPlayerScript.row){
+                        player.health -= 2;
                         Debug.Log($"Player {i+1} hit by special");
+                        returnBool = true;
                     }
                 break;
                 case "up":
                     if(player.row - currentPlayerScript.row >= distance && player.column == currentPlayerScript.column){
+                        player.health -= 2;
                         Debug.Log($"Player {i+1} hit by special");
+                        returnBool = true;
                     }
                 break;
                 case "down":
                     if(player.row - currentPlayerScript.row <= distance && player.column == currentPlayerScript.column){
+                        player.health -= 2;
                         Debug.Log($"Player {i+1} hit by special");
+                        returnBool = true;
                     }
                 break;
-
                 default:
-                break;
+                    break;
+            }
+            UpdateHealthBars();
+            //boss check
+            for(int k = 0; k < boss.rows.Length; k++){
+                for(int j = 0; j < boss.columns.Length; j++){
+                    switch(dir){
+                        case "left":
+                            if(boss.columns[j] - currentPlayerScript.column >= distance && boss.rows[k] == currentPlayerScript.row){
+                                boss.hp -= 2; 
+                                Debug.Log($"Boss hit by special");
+                                returnBool = true;
+                            }
+                        break;
+                        case "right":
+                            if(boss.columns[j] - currentPlayerScript.column <= distance && boss.rows[k] == currentPlayerScript.row){
+                                boss.hp -= 2; 
+                                //TEST THIS
+                                Debug.Log($"Boss hit by special");
+                                returnBool = true;
+                            }
+                        break;
+                        case "up":
+                            if(boss.rows[k] - currentPlayerScript.row >= distance && boss.columns[j] == currentPlayerScript.column){
+                                boss.hp -= 2; 
+                                Debug.Log($"Boss hit by special");
+                                returnBool = true;
+                            }
+                        break;
+                        case "down":
+                            if(boss.rows[k] - currentPlayerScript.row <= distance && boss.columns[j] == currentPlayerScript.column){
+                                boss.hp -= 2; 
+                                Debug.Log($"Boss hit by special");
+                                returnBool = true;
+                            }
+                        break;
+                        default:
+                        break;
+                    }
+                }
             }
         }
-        return false;
+        return returnBool;
     }
     
 
@@ -310,6 +367,9 @@ public class PlayerManager : MonoBehaviour
         }
 
         if(currentPlayerScript.isSpecialAttacking){
+            if(currentPlayerScript.column == column && currentPlayerScript.row == row){
+                return false;
+            }
             if(row == currentPlayerScript.row && Mathf.Abs(column - currentPlayerScript.column) <= 3){
                 return true;
             }
@@ -397,7 +457,7 @@ public class PlayerManager : MonoBehaviour
 
 
 
-
+        specialAttackButton.interactable = true;
         moveButton.interactable = true;
         attackButton.interactable = true;
         ResetAttacked();
