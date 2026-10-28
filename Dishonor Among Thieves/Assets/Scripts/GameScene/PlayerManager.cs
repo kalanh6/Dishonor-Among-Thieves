@@ -49,6 +49,9 @@ public class PlayerManager : MonoBehaviour
     [SerializeField]
     GameObject actionBarGroup;
 
+    [SerializeField]
+    Canvas canvasUI;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -323,18 +326,22 @@ public class PlayerManager : MonoBehaviour
         Vector3 playerPosition = new Vector3(players[playerIndex].transform.position.x, players[playerIndex].transform.position.y, -10);
         Vector3 bossPosition = new Vector3(boss.gameObject.transform.position.x, boss.gameObject.transform.position.y, -10);
         //Vector3 offset = new Vector3(offsetValue, 0, 0);
+        
+        float width = canvasUI.GetComponent<RectTransform>().rect.width;
 
+        //left side
         if (playerPosition.x < bossPosition.x)
         {
             Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position, (2 * playerPosition + bossPosition) / 3.0f, 5f * Time.deltaTime);
 
-            actionBarGroup.transform.position = new Vector3(150, actionBarGroup.transform.position.y, actionBarGroup.transform.position.z);
+            actionBarGroup.transform.position = new Vector3(canvasUI.transform.position.x - (width), actionBarGroup.transform.position.y, actionBarGroup.transform.position.z);
         }
+        //right side
         else
         {
             Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position, (2 * playerPosition + bossPosition) / 3.0f, 5f * Time.deltaTime);
 
-            actionBarGroup.transform.position = new Vector3(1200, actionBarGroup.transform.position.y, actionBarGroup.transform.position.z);
+            actionBarGroup.transform.position = new Vector3(canvasUI.transform.position.x + (width), actionBarGroup.transform.position.y, actionBarGroup.transform.position.z);
         }
     }
 }

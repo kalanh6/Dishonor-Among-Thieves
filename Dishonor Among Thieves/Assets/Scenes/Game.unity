@@ -529,7 +529,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0.37647063, g: 0.0627451, b: 0.06666667, a: 1}
+  m_Color: {r: 0.60784316, g: 0.6784314, b: 0.7137255, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1526,6 +1526,7 @@ MonoBehaviour:
   maxMove: 5
   gameManager: {fileID: 1046840896}
   actionBarGroup: {fileID: 1023253363}
+  canvasUI: {fileID: 2071636054}
 --- !u!114 &237345563
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2302,6 +2303,7 @@ MonoBehaviour:
   hasBeenAttacked: 0
   isAttacking: 0
   hasAttacked: 0
+  isSpecialAttacking: 0
   isTargeting: 0
   hasMoved: 0
   turnManager: {fileID: 0}
@@ -3321,6 +3323,7 @@ MonoBehaviour:
   hasBeenAttacked: 0
   isAttacking: 0
   hasAttacked: 0
+  isSpecialAttacking: 0
   isTargeting: 0
   hasMoved: 0
   turnManager: {fileID: 0}
@@ -6295,7 +6298,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0.40784317, g: 0.09019608, b: 0.38431376, a: 1}
+  m_Color: {r: 0.34901962, g: 0.52156866, b: 0.45098042, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -8334,7 +8337,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0.4156863, a: 1}
+  m_Color: {r: 0.59607846, g: 0.43137258, b: 0.65882355, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -8380,6 +8383,7 @@ MonoBehaviour:
   hasBeenAttacked: 0
   isAttacking: 0
   hasAttacked: 0
+  isSpecialAttacking: 0
   isTargeting: 0
   hasMoved: 0
   turnManager: {fileID: 0}
@@ -8655,6 +8659,7 @@ MonoBehaviour:
   hasBeenAttacked: 0
   isAttacking: 0
   hasAttacked: 0
+  isSpecialAttacking: 0
   isTargeting: 0
   hasMoved: 0
   turnManager: {fileID: 0}
@@ -8791,7 +8796,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0.10196079, g: 0.4156863, b: 0, a: 1}
+  m_Color: {r: 0.8117648, g: 0.8117648, b: 0.4156863, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
