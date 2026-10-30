@@ -1,9 +1,12 @@
+using System.Runtime.InteropServices.WindowsRuntime;
 using TMPro;
 using Unity.VectorGraphics;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using static UnityEngine.Rendering.DebugUI.Table;
 
 public class PlayerManager : MonoBehaviour
 {
@@ -55,6 +58,8 @@ public class PlayerManager : MonoBehaviour
     [SerializeField]
     Canvas canvasUI;
 
+    
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -91,21 +96,54 @@ public class PlayerManager : MonoBehaviour
         // Attack Function
         // all done in PlayerScript but called here for the current Player
         // the attack button was pressed and now waiting for who the player will attack
-        if (currentPlayerScript.isAttacking && Mouse.current.leftButton.wasPressedThisFrame)
-        {
-            currentPlayerScript.AttackSelected();
-            specialAttackButton.interactable = !currentPlayerScript.hasAttacked;
-            attackButton.interactable = !currentPlayerScript.hasAttacked;
-        }
 
-        if (currentPlayerScript.isSpecialAttacking)
+        if (currentPlayerScript.isAttacking)
         {
-            currentPlayerScript.HighlightSelected();
-            if(Mouse.current.leftButton.wasPressedThisFrame){
-                currentPlayerScript.AttackSpecial();
+            //currentPlayerScript.HighlightSelected();
+
+            if (Mouse.current.leftButton.wasPressedThisFrame)
+            {
+                currentPlayerScript.AttackSelected();
                 specialAttackButton.interactable = !currentPlayerScript.hasAttacked;
                 attackButton.interactable = !currentPlayerScript.hasAttacked;
             }
+        }
+
+        
+
+        
+
+        if (currentPlayerScript.isSpecialAttacking)
+        {
+            // checking which special attack to do - different per class
+            switch (playerIndex)
+            {
+                case 0:
+                    currentPlayerScript.HighlightSelected();
+                    if (Mouse.current.leftButton.wasPressedThisFrame)
+                    {
+                        currentPlayerScript.AttackSpecial();
+                    }
+                    break;
+                case 1:
+                    currentPlayerScript.HighlightAOE();
+
+                    if (Mouse.current.leftButton.wasPressedThisFrame)
+                    {
+                        Debug.Log("specialAttack clicked");
+                        currentPlayerScript.AttackSpecialMage();
+                    }
+                    break;
+                case 2:
+                    break;
+                case 3:
+                    break;
+                default:
+                    break;
+            }
+
+            specialAttackButton.interactable = !currentPlayerScript.hasAttacked;
+            attackButton.interactable = !currentPlayerScript.hasAttacked;
         }
     }
     
@@ -123,6 +161,10 @@ public class PlayerManager : MonoBehaviour
         if (currentPlayerScript.hasMoved == false && currentPlayerScript.isTargeting == false)
         {
             currentPlayerScript.isTargeting = true;
+
+            currentPlayerScript.isAttacking = false;
+            currentPlayerScript.isSpecialAttacking = false;
+            currentPlayerScript.AOEgroup.transform.position = new Vector3(-10, 0, -2f);
         }
         // turn off targeting if player hit the move button again before moving
         else
@@ -141,6 +183,10 @@ public class PlayerManager : MonoBehaviour
         if (currentPlayerScript.hasAttacked == false && currentPlayerScript.isAttacking == false)
         {
             currentPlayerScript.isAttacking = true;
+
+            currentPlayerScript.isTargeting = false;
+            currentPlayerScript.isSpecialAttacking = false;
+            currentPlayerScript.AOEgroup.transform.position = new Vector3(-10, 0, -2f);
         }
         // turn off targeting if player hit the move button again before moving
         else
@@ -154,14 +200,18 @@ public class PlayerManager : MonoBehaviour
     {
         // player hit Move button and now needs to click a square to move to
         // Moving happens in the update and MoveSelected in PlayerScript
-        if (currentPlayerScript.hasAttacked == false && currentPlayerScript.isAttacking == false)
+        if (currentPlayerScript.hasAttacked == false && currentPlayerScript.isSpecialAttacking == false)
         {
             currentPlayerScript.isSpecialAttacking = true;
+
+            currentPlayerScript.isTargeting = false;
+            currentPlayerScript.isAttacking = false;
         }
         // turn off targeting if player hit the move button again before moving
         else
         {
             currentPlayerScript.isSpecialAttacking = false;
+            currentPlayerScript.AOEgroup.transform.position = new Vector3(-10, 0, -2f);
         }
     }
     #endregion
@@ -331,7 +381,62 @@ public class PlayerManager : MonoBehaviour
         currentPlayerScript.specialCooldown = 3;
         return returnBool;
     }
-    
+
+    public bool CheckSpecialAttackMage(int sRow, int sCol, int distanceAllowed, int damage)
+    {
+        bool returnBool = false;
+        int playerRow = currentPlayerScript.row;
+        int playerCol = currentPlayerScript.column;
+
+        // didnt hit a close enough square to self
+        if (distanceAllowed - Mathf.Abs(playerCol - sCol) - Mathf.Abs(playerRow - sRow) < 0)
+        {
+            Debug.Log("Clicked bad square");
+            return false;
+        }
+
+        Debug.Log("Clicked good square");
+
+
+        // checks all players to be next to clicked square
+        for (int i = 0; i < playerCount; i++)
+        {
+            // dont hit yourself - (could turn this part off for a bit more strategy)
+            PlayerScript player = players[i].GetComponent<PlayerScript>();
+            //if (i == playerIndex)
+            //{
+            //    continue;
+            //}
+
+            // hit a player
+            if (CheckAdjacentMath(sRow, sCol, player.row, player.column))
+            {
+                player.health -= damage;
+                returnBool = true; ;
+            }
+        }
+
+        // check for boss hit
+        for (int i = 0; i < boss.rows.Length; i++)
+        {
+            for (int j = 0; j < boss.columns.Length; j++)
+            {
+                if (CheckAdjacentMath(sRow, sCol, boss.rows[i], boss.columns[i]))
+                {
+                    Debug.Log($"Boss Hit at {boss.hp} health");
+                    boss.hp -= 1;
+                    damageLog.text = "Player " + (playerIndex + 1) + " attacked the Boss for 1 damage.";
+                    Debug.Log($"Boss is now at {boss.hp} health");
+                    returnBool = true;
+                }
+            }
+        }
+
+        //Show the players what took damage
+        UpdateHealthBars();
+
+        return returnBool;
+    }
 
     public bool CheckSquare(int row, int column, bool moving)
     {
@@ -371,13 +476,34 @@ public class PlayerManager : MonoBehaviour
             if(currentPlayerScript.column == column && currentPlayerScript.row == row){
                 return false;
             }
-            if(row == currentPlayerScript.row && Mathf.Abs(column - currentPlayerScript.column) <= 3){
-                return true;
+            switch (playerIndex)
+            {
+                case 0:
+                    if (row == currentPlayerScript.row && Mathf.Abs(column - currentPlayerScript.column) <= 3)
+                    {
+                        return true;
+                    }
+                    //equal columns, less than 3 difference rows
+                    else if (column == currentPlayerScript.column && Mathf.Abs(row - currentPlayerScript.row) <= 3)
+                    {
+                        return true;
+                    }
+                    break;
+                case 1:
+                    //the 5 is distance allowed (didnt feel like moving it
+                    if ((2 - Mathf.Abs(currentPlayerScript.column - column) - Mathf.Abs(currentPlayerScript.row - row)) >= 0)
+                    {
+                        return true;
+                    }
+                    break;
+                case 2:
+                    break;
+                case 3:
+                    break;
+                default:
+                    break;
             }
-            //equal columns, less than 3 difference rows
-            else if(column == currentPlayerScript.column && Mathf.Abs(row - currentPlayerScript.row) <= 3){
-                return true;
-            }
+            
         }
 
         for (int i = 0; i < playerCount; i++)
@@ -470,6 +596,7 @@ public class PlayerManager : MonoBehaviour
         }
         moveButton.interactable = true;
         attackButton.interactable = true;
+        specialAttackButton.interactable = true;
         ResetAttacked();
     }
 

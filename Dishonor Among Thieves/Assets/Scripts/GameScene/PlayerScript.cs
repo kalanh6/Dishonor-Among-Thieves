@@ -26,6 +26,9 @@ public class PlayerScript : MonoBehaviour
     [SerializeField]
     internal int specialCooldown = 0;
 
+    [SerializeField]
+    public GameObject AOEgroup;
+
 
     // variables for player state of turn
     public bool isAttacking = false;
@@ -76,6 +79,37 @@ public class PlayerScript : MonoBehaviour
             }
         }
     }
+    public void AttackSpecialMage()
+    {
+        Ray ray = Camera.main.ScreenPointToRay(new Vector2(Mouse.current.position.x.ReadValue(), Mouse.current.position.y.ReadValue()));
+        RaycastHit hit;
+
+        Debug.Log("Special Attacking");
+        if (Physics.Raycast(ray, out hit, 100f))
+        {
+            // mouse clicked on a square to attack a player
+            if (hit.collider.CompareTag("boardSquare"))
+            {
+                // Check parameters (row of square clicked on, column of square clicked on, distance allowed, damage amount)
+                if (playerManager.CheckSpecialAttackMage(hit.collider.GetComponent<TileScript>().row, hit.collider.GetComponent<TileScript>().column, 2, 2))
+                {
+                    Debug.Log("Clicked special attack square");
+
+                    isSpecialAttacking = false;
+                    hasAttacked = true;
+                    AOEgroup.transform.position = new Vector3(-10, 0, -2f);
+                    hit.collider.GetComponent<TileScript>().Hover(false);
+                }
+                else
+                {
+                    Debug.Log("SpecialAttackingNobody");
+                    hasAttacked = false;
+                    Debug.Log("Didnt hit a player square");
+                }
+            }
+        }
+    }
+
     // All functions that Player Manager will call to start the attack action for the current Player
     #region Attack
     public void AttackSelected()
@@ -208,6 +242,40 @@ public class PlayerScript : MonoBehaviour
                 else{
                     hit.collider.GetComponent<TileScript>().Hover(false);
                 }
+            }
+        }
+    }
+
+    public void HighlightAOE()
+    {
+        Ray ray = Camera.main.ScreenPointToRay(new Vector2(Mouse.current.position.x.ReadValue(), Mouse.current.position.y.ReadValue()));
+        RaycastHit hit;
+
+
+        if (Physics.Raycast(ray, out hit, 100f))
+        {
+            // mouse clicked on a square to move the player to
+            if (hit.collider.CompareTag("boardSquare"))
+            {
+                Debug.Log("hit square");
+                if (playerManager.CheckSquare(hit.collider.GetComponent<TileScript>().row, hit.collider.GetComponent<TileScript>().column, false) && isSpecialAttacking)
+                {
+                    AOEgroup.transform.position = new Vector3(hit.transform.position.x, hit.transform.position.y, -4.5f);
+                    hit.collider.GetComponent<TileScript>().Hover(true);
+                    Debug.Log("change red position - Row: " + hit.collider.GetComponent<TileScript>().row + " Col: " + hit.collider.GetComponent<TileScript>().column);
+                }
+                else
+                {
+                    Debug.Log("reset aoe group");
+                    AOEgroup.transform.position = new Vector3(-10, 0, -2f);
+                    hit.collider.GetComponent<TileScript>().Hover(false);
+                }
+            }
+            else
+            {
+                Debug.Log("reset aoe group");
+                AOEgroup.transform.position = new Vector3(-10, 0, -2f);
+                hit.collider.GetComponent<TileScript>().Hover(false);
             }
         }
     }
