@@ -119,6 +119,7 @@ public class PlayerManager : MonoBehaviour
             switch (playerIndex)
             {
                 case 0:
+                case 2:
                     currentPlayerScript.HighlightSelected();
                     if (Mouse.current.leftButton.wasPressedThisFrame)
                     {
@@ -126,6 +127,7 @@ public class PlayerManager : MonoBehaviour
                     }
                     break;
                 case 1:
+                case 3:
                     currentPlayerScript.HighlightAOE();
 
                     if (Mouse.current.leftButton.wasPressedThisFrame)
@@ -134,10 +136,10 @@ public class PlayerManager : MonoBehaviour
                         currentPlayerScript.AttackSpecialMage();
                     }
                     break;
-                case 2:
-                    break;
-                case 3:
-                    break;
+                //case 2:
+                //    break;
+                //case 3:
+                //    break;
                 default:
                     break;
             }
@@ -479,6 +481,7 @@ public class PlayerManager : MonoBehaviour
             switch (playerIndex)
             {
                 case 0:
+                case 2:
                     if (row == currentPlayerScript.row && Mathf.Abs(column - currentPlayerScript.column) <= 3)
                     {
                         return true;
@@ -490,16 +493,17 @@ public class PlayerManager : MonoBehaviour
                     }
                     break;
                 case 1:
+                case 3:
                     //the 5 is distance allowed (didnt feel like moving it
                     if ((2 - Mathf.Abs(currentPlayerScript.column - column) - Mathf.Abs(currentPlayerScript.row - row)) >= 0)
                     {
                         return true;
                     }
                     break;
-                case 2:
-                    break;
-                case 3:
-                    break;
+                //case 2:
+                //    break;
+                //case 3:
+                //    break;
                 default:
                     break;
             }
