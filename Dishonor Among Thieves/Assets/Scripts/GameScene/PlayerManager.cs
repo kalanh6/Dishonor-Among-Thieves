@@ -436,7 +436,7 @@ public class PlayerManager : MonoBehaviour
 
         //Show the players what took damage
         UpdateHealthBars();
-
+        currentPlayerScript.specialCooldown = 3;
         return returnBool;
     }
 
@@ -600,7 +600,6 @@ public class PlayerManager : MonoBehaviour
         }
         moveButton.interactable = true;
         attackButton.interactable = true;
-        specialAttackButton.interactable = true;
         ResetAttacked();
     }
 

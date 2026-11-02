@@ -16,6 +16,8 @@ public class BossScript : MonoBehaviour
     [SerializeField]
     int lowHpThreshold = 5;
     [SerializeField]
+    int midHpThreshold = 10;
+    [SerializeField]
     float attackTimer = 0;
     [SerializeField]
     internal bool isAttacking;
@@ -42,6 +44,15 @@ public class BossScript : MonoBehaviour
         if(hp<=lowHpThreshold){
             lowHpTimer += Time.deltaTime;
             if(lowHpTimer % 1 > .5){ //blink every half second
+                gameObject.GetComponent<SpriteRenderer>().color = Color.red;
+            }
+            else{
+                gameObject.GetComponent<SpriteRenderer>().color = Color.white;
+            }
+        }
+        else if(hp<=midHpThreshold){
+            lowHpTimer += Time.deltaTime;
+            if(lowHpTimer % 2 > 1){ //blink every second
                 gameObject.GetComponent<SpriteRenderer>().color = Color.red;
             }
             else{
