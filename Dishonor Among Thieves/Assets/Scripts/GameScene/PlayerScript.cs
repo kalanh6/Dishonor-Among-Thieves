@@ -257,23 +257,24 @@ public class PlayerScript : MonoBehaviour
             // mouse clicked on a square to move the player to
             if (hit.collider.CompareTag("boardSquare"))
             {
-                Debug.Log("hit square");
+                //Debug.Log("hit square");
                 if (playerManager.CheckSquare(hit.collider.GetComponent<TileScript>().row, hit.collider.GetComponent<TileScript>().column, false) && isSpecialAttacking)
                 {
                     AOEgroup.transform.position = new Vector3(hit.transform.position.x, hit.transform.position.y, -4.5f);
                     hit.collider.GetComponent<TileScript>().Hover(true);
                     Debug.Log("change red position - Row: " + hit.collider.GetComponent<TileScript>().row + " Col: " + hit.collider.GetComponent<TileScript>().column);
+                    Debug.Log((2 - Mathf.Abs(column - hit.collider.GetComponent<TileScript>().column) - Mathf.Abs(row - hit.collider.GetComponent<TileScript>().row)));
                 }
                 else
                 {
-                    Debug.Log("reset aoe group");
+                    Debug.Log("reset aoe group inside");
                     AOEgroup.transform.position = new Vector3(-10, 0, -2f);
                     hit.collider.GetComponent<TileScript>().Hover(false);
                 }
             }
             else
             {
-                Debug.Log("reset aoe group");
+                Debug.Log("reset aoe group outside");
                 AOEgroup.transform.position = new Vector3(-10, 0, -2f);
                 hit.collider.GetComponent<TileScript>().Hover(false);
             }

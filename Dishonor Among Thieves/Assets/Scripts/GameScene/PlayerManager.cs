@@ -147,6 +147,14 @@ public class PlayerManager : MonoBehaviour
             specialAttackButton.interactable = !currentPlayerScript.hasAttacked;
             attackButton.interactable = !currentPlayerScript.hasAttacked;
         }
+
+        // change scene when boss dies
+        if (boss.hp <= 0)
+        {
+            gameManager.playerWon = true;
+            gameManager.thiefName = "Player " + (playerIndex);
+            SceneManager.LoadScene("WinLoseMenu");
+        }
     }
     
     internal void ResetAttacked(){
@@ -475,7 +483,9 @@ public class PlayerManager : MonoBehaviour
         }
 
         if(currentPlayerScript.isSpecialAttacking){
+            Debug.Log("check square");
             if(currentPlayerScript.column == column && currentPlayerScript.row == row){
+                Debug.Log("check self");
                 return false;
             }
             switch (playerIndex)
@@ -494,12 +504,14 @@ public class PlayerManager : MonoBehaviour
                     break;
                 case 1:
                 case 3:
+                    Debug.Log("got to player index 1/3");
                     //the 5 is distance allowed (didnt feel like moving it
                     if ((2 - Mathf.Abs(currentPlayerScript.column - column) - Mathf.Abs(currentPlayerScript.row - row)) >= 0)
                     {
                         return true;
                     }
-                    break;
+                    return false;
+                    
                 //case 2:
                 //    break;
                 //case 3:
@@ -572,13 +584,6 @@ public class PlayerManager : MonoBehaviour
                 gameManager.playerWon = false;
                 SceneManager.LoadScene("WinLoseMenu");
             }
-        }
-
-        if (boss.hp <= 0)
-        {
-            gameManager.playerWon = true;
-            gameManager.thiefName = "Player " + (playerIndex);
-            SceneManager.LoadScene("WinLoseMenu");
         }
 
         playerTurnText.text = "Player " + (playerIndex + 1);

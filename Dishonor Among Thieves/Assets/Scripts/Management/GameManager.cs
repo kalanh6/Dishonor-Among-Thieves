@@ -52,7 +52,7 @@ public class GameManager : MonoBehaviour
         {
             winScreenText = textObj.GetComponent<TMP_Text>();
         }
-        Debug.Log("hi");
+        //Debug.Log("hi");
         Debug.Log(winScreenText != null);
 
         WhoWon();
