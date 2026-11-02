@@ -105,7 +105,9 @@ public class PlayerManager : MonoBehaviour
             if (Mouse.current.leftButton.wasPressedThisFrame)
             {
                 currentPlayerScript.AttackSelected();
-                specialAttackButton.interactable = !currentPlayerScript.hasAttacked;
+                if(specialAttackButton.interactable){
+                 specialAttackButton.interactable = !currentPlayerScript.hasAttacked;
+                }
                 attackButton.interactable = !currentPlayerScript.hasAttacked;
             }
         }
