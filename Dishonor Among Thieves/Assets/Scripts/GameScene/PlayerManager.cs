@@ -282,6 +282,29 @@ public class PlayerManager : MonoBehaviour
         return false;
     }
 
+    public bool CheckBossAttack2(int num, bool row, int damage){
+        bool returnBool = false;
+        for (int i = 0; i < playerCount; i++)
+        {
+            PlayerScript player = players[i].GetComponent<PlayerScript>();
+            if(row){
+                if(player.row == num){
+                    player.health -= damage;
+                    returnBool = true;
+                }
+            }
+
+            if(!row){
+                if(player.column == num){
+                    player.health -= damage;
+                    returnBool = true;
+                }
+            }
+        }
+        UpdateHealthBars();
+        return returnBool;
+    }
+
     public bool CheckSpecialAttack(int sRow, int sCol){
         int distance = 0;
         string dir = "";
@@ -789,7 +812,13 @@ public class PlayerManager : MonoBehaviour
 
         if (playerIndex == 3)
         { //change to total Players instead of 4
+            if(boss.adjacentAttack){
             boss.BossAttack();
+            }
+            else if(!boss.adjacentAttack){
+            boss.BossAttack2();
+            }
+            
             playerIndex = 0;
             for(int i = 0; i < playerCount; i++){
                 if(players[i].GetComponent<PlayerScript>().specialCooldown > 0){

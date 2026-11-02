@@ -21,16 +21,30 @@ public class BossScript : MonoBehaviour
     float attackTimer = 0;
     [SerializeField]
     internal bool isAttacking;
+    [SerializeField]
+    internal bool adjacentAttack = true;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public void BossAttack()
     {
-        //work on
         for(int i = 0; i < rows.Length; i++){
             for(int j = 0; j < columns.Length; j++){
                 playerManager.CheckAdjacentPlayer(rows[i], columns[j], 3, true);
             }
         }
-            
+        Debug.Log("Boss Attack 1 complete");
+        adjacentAttack = false;
+    }
+
+    public void BossAttack2()
+    {
+        Debug.Log("Boss attack 2");
+        for(int i = 0; i < rows.Length; i++){
+            playerManager.CheckBossAttack2(rows[i], true, 2);
+        }
+        for(int i = 0; i < columns.Length; i++){
+            playerManager.CheckBossAttack2(columns[i], false, 2);
+        }
+        adjacentAttack = true;
     }
 
     void Update(){
