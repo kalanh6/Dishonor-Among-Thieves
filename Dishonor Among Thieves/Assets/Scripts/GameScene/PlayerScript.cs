@@ -1,5 +1,8 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static UnityEditor.Searcher.SearcherWindow.Alignment;
+using static UnityEngine.Rendering.DebugUI.Table;
 
 public class PlayerScript : MonoBehaviour
 {
@@ -28,6 +31,9 @@ public class PlayerScript : MonoBehaviour
 
     [SerializeField]
     public GameObject AOEgroup;
+
+    [SerializeField]
+    public GameObject chargeGroup;
 
 
     // variables for player state of turn
@@ -108,6 +114,39 @@ public class PlayerScript : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void AttackSpecialTank()
+    {
+        // tank charge attack
+        Ray ray = Camera.main.ScreenPointToRay(new Vector2(Mouse.current.position.x.ReadValue(), Mouse.current.position.y.ReadValue()));
+        RaycastHit hit;
+
+        Debug.Log("Special Attacking");
+        if (Physics.Raycast(ray, out hit, 100f))
+        {
+            // mouse clicked on a square to attack a player
+            if (hit.collider.CompareTag("boardSquare"))
+            {
+                // Check parameters (row of square clicked on, column of square clicked on, distance allowed, damage amount)
+                if (playerManager.CheckSpecialAttackTank(hit.collider.GetComponent<TileScript>().row, hit.collider.GetComponent<TileScript>().column, 5, 2))
+                {
+                    Debug.Log("Clicked special attack square");
+
+                    isSpecialAttacking = false;
+                    hasAttacked = true;
+                    chargeGroup.transform.position = new Vector3(-9.6544f, 2, -2f);
+                    hit.collider.GetComponent<TileScript>().Hover(false);
+                }
+                else
+                {
+                    Debug.Log("SpecialAttackingNobody");
+                    hasAttacked = false;
+                    Debug.Log("Didnt hit a player square");
+                }
+            }
+        }
+
     }
 
     // All functions that Player Manager will call to start the attack action for the current Player
@@ -223,7 +262,9 @@ public class PlayerScript : MonoBehaviour
             }
         }
     }
+    #endregion
 
+    #region Highlights
     public void HighlightSelected()
     {
         Ray ray = Camera.main.ScreenPointToRay(new Vector2(Mouse.current.position.x.ReadValue(), Mouse.current.position.y.ReadValue()));
@@ -276,6 +317,71 @@ public class PlayerScript : MonoBehaviour
             {
                 Debug.Log("reset aoe group outside");
                 AOEgroup.transform.position = new Vector3(-10, 0, -2f);
+                hit.collider.GetComponent<TileScript>().Hover(false);
+            }
+        }
+    }
+
+    public void HighlightCharge()
+    {
+        Ray ray = Camera.main.ScreenPointToRay(new Vector2(Mouse.current.position.x.ReadValue(), Mouse.current.position.y.ReadValue()));
+        RaycastHit hit;
+
+
+        if (Physics.Raycast(ray, out hit, 100f))
+        {
+            // mouse clicked on a square to move the player to
+            if (hit.collider.CompareTag("boardSquare"))
+            {
+                int checkRow = hit.collider.GetComponent<TileScript>().row;
+                int checkColumn = hit.collider.GetComponent<TileScript>().column;
+                bool isVertical = false;
+                int distance = 0;
+                Vector3 rotationVector = new Vector3(0,0, 0);
+
+                if (checkRow == row)
+                {
+                    distance = checkColumn - column;
+                }
+                //equal columns, less than 3 difference rows
+                else if (checkColumn == column)
+                {
+                    distance = checkRow - row;
+                    isVertical = true;
+                }
+
+                // rotate the group in the right directions
+                if (isVertical)
+                {
+                    if (distance < 0)
+                    {
+                        rotationVector.z = 90;
+                    }
+                    else
+                    {
+                        rotationVector.z = 270;
+                    }
+                }
+
+                if (!isVertical)
+                {
+                    if (distance < 0)
+                    {
+                        rotationVector.z = 180;
+                    }
+                    else
+                    {
+                        rotationVector.z = 0;
+                    }
+                }
+
+                chargeGroup.transform.position = new Vector3(hit.transform.position.x, hit.transform.position.y, -4.5f);
+                chargeGroup.transform.eulerAngles = rotationVector;
+            }
+            else
+            {
+                Debug.Log("reset charge group");
+                AOEgroup.transform.position = new Vector3(-9.6544f, 2, -2f);
                 hit.collider.GetComponent<TileScript>().Hover(false);
             }
         }

@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using static UnityEditor.ShaderGraph.Internal.KeywordDependentCollection;
 using static UnityEngine.Rendering.DebugUI.Table;
 
 public class PlayerManager : MonoBehaviour
@@ -119,7 +120,6 @@ public class PlayerManager : MonoBehaviour
             switch (playerIndex)
             {
                 case 0:
-                case 2:
                     currentPlayerScript.HighlightSelected();
                     if (Mouse.current.leftButton.wasPressedThisFrame)
                     {
@@ -136,8 +136,14 @@ public class PlayerManager : MonoBehaviour
                         currentPlayerScript.AttackSpecialMage();
                     }
                     break;
-                //case 2:
-                //    break;
+                case 2:
+                    currentPlayerScript.HighlightCharge();
+                    if (Mouse.current.leftButton.wasPressedThisFrame)
+                    {
+                        currentPlayerScript.AttackSpecialTank();
+                    }
+
+                    break;
                 //case 3:
                 //    break;
                 default:
@@ -422,7 +428,7 @@ public class PlayerManager : MonoBehaviour
             if (CheckAdjacentMath(sRow, sCol, player.row, player.column))
             {
                 player.health -= damage;
-                returnBool = true; ;
+                returnBool = true;
             }
         }
 
@@ -438,6 +444,231 @@ public class PlayerManager : MonoBehaviour
                     damageLog.text = "Player " + (playerIndex + 1) + " attacked the Boss for 1 damage.";
                     Debug.Log($"Boss is now at {boss.hp} health");
                     returnBool = true;
+                }
+            }
+        }
+
+        //Show the players what took damage
+        UpdateHealthBars();
+        currentPlayerScript.specialCooldown = 3;
+        return returnBool;
+    }
+    public bool CheckSpecialAttackTank(int sRow, int sCol, int distanceAllowed, int damage)
+    {
+        // needs to be in a signle cardinal direction from the player
+        // needs to check for walls hit/not hit
+        // needs to hit players in the path it moves
+        // needs to lerp the player in that direction
+        // needs to check hitting boss and hit for both squares hit
+
+
+        bool returnBool = false;
+        int playerRow = currentPlayerScript.row;
+        int playerCol = currentPlayerScript.column;
+
+        // checking for distance it moves
+        // if too far it doesnt begin moving
+        if (distanceAllowed - Mathf.Abs(playerCol - sCol) - Mathf.Abs(playerRow - sRow) < 0)
+        {
+            Debug.Log("Clicked bad square");
+            return false;
+        }
+
+        // good distance -> start charging
+        Debug.Log("Clicked good square");
+
+        int distance = 0;
+        string dir = "";
+        bool isVertical = false;
+        PlayerScript player;
+
+        if (sRow == currentPlayerScript.row && Mathf.Abs(sCol - currentPlayerScript.column) <= distanceAllowed)
+        {
+            distance = sCol - currentPlayerScript.column;
+        }
+        //equal columns, less than 3 difference rows
+        else if (sCol == currentPlayerScript.column && Mathf.Abs(sRow - currentPlayerScript.row) <= distanceAllowed)
+        {
+            distance = sRow - currentPlayerScript.row;
+            isVertical = true;
+        }
+
+        if (isVertical)
+        {
+            if (distance < 0)
+            {
+                dir = "up";
+
+                //check if you hit a wall
+                if (sRow == 0)
+                {
+                    currentPlayerScript.health -= damage;
+                }
+            }
+            else
+            {
+                dir = "down";
+
+                //check if you hit a wall
+                if (sRow == 8)
+                {
+                    currentPlayerScript.health -= damage;
+                }
+            }
+        }
+
+        if (!isVertical)
+        {
+            if (distance < 0)
+            {
+                dir = "left";
+
+                //check if you hit a wall
+                if (sCol == 0)
+                {
+                    currentPlayerScript.health -= damage;
+                }
+            }
+            else
+            {
+                dir = "right";
+
+                //check if you hit a wall
+                if (sCol == 8)
+                {
+                    currentPlayerScript.health -= damage;
+                }
+            }
+        }
+
+        
+
+        // checks all players to be next to clicked square
+        for (int i = 0; i < playerCount; i++)
+        {
+            // dont hit yourself - (could turn this part off for a bit more strategy)
+            player = players[i].GetComponent<PlayerScript>();
+            if (i == playerIndex)
+            {
+                continue;
+            }
+
+            // checking columns for players
+            if (isVertical)
+            {
+                // only check if its possible to hit
+                if (player.column == currentPlayerScript.column)
+                {
+                    //check up
+                    if (dir == "up")
+                    {
+                        if (CheckSquareBetween(player.row, currentPlayerScript.row - distanceAllowed, currentPlayerScript.row))
+                        {
+                            player.health -= damage;
+                            returnBool = true;
+                        }
+                    }
+
+                    //check down
+                    else if (dir == "down")
+                    {
+                        if (CheckSquareBetween(player.row, currentPlayerScript.row, currentPlayerScript.row - distanceAllowed))
+                        {
+                            player.health -= damage;
+                            returnBool = true;
+                        }
+                    }
+                }
+                else
+                {
+                    continue;
+                }
+            }
+
+            //checking rows for players
+            if (!isVertical)
+            {
+                if (player.row == currentPlayerScript.row)
+                {
+                    //check left
+                    if (dir == "left")
+                    {
+                        if (CheckSquareBetween(player.column, currentPlayerScript.column - distanceAllowed, currentPlayerScript.column))
+                        {
+                            player.health -= damage;
+                            returnBool = true;
+                        }
+                    }
+
+                    //check right
+                    else if (dir == "right")
+                    {
+                        if (CheckSquareBetween(player.column, currentPlayerScript.column, currentPlayerScript.column - distanceAllowed))
+                        {
+                            player.health -= damage;
+                            returnBool = true;
+                        }
+                    }
+                }
+            }
+        }
+
+        if (isVertical)
+        {
+            if (currentPlayerScript.column == 4 || currentPlayerScript.column == 5)
+            {
+                for (int i = 0; i < boss.columns.Length; i++)
+                {
+                    if (boss.columns[i] == currentPlayerScript.column)
+                    {
+                        //check up
+                        if (dir == "up")
+                        {
+                            if (CheckSquareBetween(boss.rows[i], currentPlayerScript.row - distanceAllowed, currentPlayerScript.row))
+                            {
+                                boss.hp -= damage;
+                                returnBool = true;
+                            }
+                        }
+
+                        //check down
+                        else if (dir == "down")
+                        {
+                            if (CheckSquareBetween(boss.rows[i], currentPlayerScript.row, currentPlayerScript.row - distanceAllowed))
+                            {
+                                boss.hp -= damage;
+                                returnBool = true;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        else
+        {
+            if (currentPlayerScript.row == 4 || currentPlayerScript.row == 5)
+            {
+                for (int i = 0; i < boss.rows.Length; i++)
+                {
+                    //check up
+                    if (dir == "up")
+                    {
+                        if (CheckSquareBetween(boss.rows[i], currentPlayerScript.row - distanceAllowed, currentPlayerScript.row))
+                        {
+                            boss.hp -= damage;
+                            returnBool = true;
+                        }
+                    }
+
+                    //check down
+                    else if (dir == "down")
+                    {
+                        if (CheckSquareBetween(boss.rows[i], currentPlayerScript.row, currentPlayerScript.row - distanceAllowed))
+                        {
+                            boss.hp -= damage;
+                            returnBool = true;
+                        }
+                    }
                 }
             }
         }
@@ -586,7 +817,7 @@ public class PlayerManager : MonoBehaviour
             }
         }
 
-        playerTurnText.text = "Player " + (playerIndex + 1);
+        //playerTurnText.text = "Player " + (playerIndex);
 
         // give playerManager the correct current player script for the next player
         currentPlayerScript = players[playerIndex].GetComponent<PlayerScript>();
@@ -630,5 +861,25 @@ public class PlayerManager : MonoBehaviour
 
             actionBarGroup.transform.position = new Vector3(canvasUI.transform.position.x + (width), actionBarGroup.transform.position.y, actionBarGroup.transform.position.z);
         }
+    }
+
+    /// <summary>
+    /// used in a for loop of checking players' squares for rows and/or columns
+    /// first used in SpecialAttackTank
+    /// </summary>
+    /// <param name="playerCheckProp">what the value starts at for the checked player</param>
+    /// <param name="rangeBegin">where the range starts for checking against the player</param>
+    /// <param name="rangeEnd">where it is ends to check the player against</param>
+    /// <returns>return true if the player is in the range; returns false if the player is not in the range at all</returns>
+    private bool CheckSquareBetween(int playerCheckProp, int rangeBegin, int rangeEnd)
+    {
+        for (int i = rangeBegin; i < rangeEnd; i++)
+        {
+            if (playerCheckProp == rangeBegin)
+            {
+                return true;
+            }
+        }
+        return false;
     }
 }
