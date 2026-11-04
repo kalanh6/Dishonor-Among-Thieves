@@ -261,18 +261,17 @@ public class PlayerManager : MonoBehaviour
                     Debug.Log(player.health + " hp now");
                     returnBool = true;
                     player.hasBeenAttacked = true;
-                    if(isBoss){
-                    damageLog.text = "The Boss attacked all adjacent players";
-                    }
-                    else if(!isBoss){
+                    if(!isBoss){
                         damageLog.text = "Player " + (playerIndex + 1) + " attacked Player " + player.playerNumber + " for " + damage + "damage.";
                     }
                     UpdateHealthBars();
                 }
             }
         }
-        return returnBool;
-        
+        if(isBoss){
+        damageLog.text = "The Boss attacked all adjacent players";
+        }
+        return returnBool;  
     }
 
     public bool CheckAdjacentMath(int aRow, int aCol, int bRow, int bCol){
@@ -304,6 +303,7 @@ public class PlayerManager : MonoBehaviour
             }
         }
         UpdateHealthBars();
+         damageLog.text = "The Boss attacked all of its rows and columns";
         return returnBool;
     }
 
@@ -352,6 +352,7 @@ public class PlayerManager : MonoBehaviour
                     if(player.column - currentPlayerScript.column >= distance && player.row == currentPlayerScript.row){
                         player.health -= 2;
                         Debug.Log($"Player {i+1} hit by special");
+                        damageLog.text = "Player " + (playerIndex + 1) + " attacked Player " + (i+1) + " for " + 2 + " damage.";
                         returnBool = true;
                     }
                 break;
@@ -359,6 +360,7 @@ public class PlayerManager : MonoBehaviour
                     if(player.column - currentPlayerScript.column <= distance && player.row == currentPlayerScript.row){
                         player.health -= 2;
                         Debug.Log($"Player {i+1} hit by special");
+                        damageLog.text = "Player " + (playerIndex + 1) + " attacked Player " + (i+1) + " for " + 2 + " damage.";
                         returnBool = true;
                     }
                 break;
@@ -366,6 +368,7 @@ public class PlayerManager : MonoBehaviour
                     if(player.row - currentPlayerScript.row >= distance && player.column == currentPlayerScript.column){
                         player.health -= 2;
                         Debug.Log($"Player {i+1} hit by special");
+                        damageLog.text = "Player " + (playerIndex + 1) + " attacked Player " + (i+1) + " for " + 2 + " damage.";
                         returnBool = true;
                     }
                 break;
@@ -373,6 +376,7 @@ public class PlayerManager : MonoBehaviour
                     if(player.row - currentPlayerScript.row <= distance && player.column == currentPlayerScript.column){
                         player.health -= 2;
                         Debug.Log($"Player {i+1} hit by special");
+                        damageLog.text = "Player " + (playerIndex + 1) + " attacked Player " + (i+1) + " for " + 2 + " damage.";
                         returnBool = true;
                     }
                 break;
@@ -452,6 +456,7 @@ public class PlayerManager : MonoBehaviour
             // hit a player
             if (CheckAdjacentMath(sRow, sCol, player.row, player.column))
             {
+                damageLog.text = "Player " + (playerIndex + 1) + " attacked Player " + (i+1) + " for " + damage + " damage.";
                 player.health -= damage;
                 returnBool = true;
             }
