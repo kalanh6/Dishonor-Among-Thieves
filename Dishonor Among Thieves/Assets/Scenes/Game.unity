@@ -2493,7 +2493,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3071fa6869c730744a1634b5fe759330, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerScript
-  health: 15
+  health: 10
+  maxHealth: 10
   playerNumber: 4
   row: 8
   column: 1
@@ -3388,9 +3389,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 912866148}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 15
+  m_MaxValue: 10
   m_WholeNumbers: 1
-  m_Value: 15
+  m_Value: 10
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -3703,7 +3704,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3071fa6869c730744a1634b5fe759330, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerScript
-  health: 15
+  health: 10
+  maxHealth: 10
   playerNumber: 2
   row: 1
   column: 8
@@ -4502,9 +4504,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1240645557}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 15
+  m_MaxValue: 10
   m_WholeNumbers: 1
-  m_Value: 15
+  m_Value: 10
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -6312,9 +6314,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1329318589}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 15
+  m_MaxValue: 10
   m_WholeNumbers: 1
-  m_Value: 15
+  m_Value: 10
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -9146,9 +9148,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1256896904}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 15
+  m_MaxValue: 10
   m_WholeNumbers: 1
-  m_Value: 15
+  m_Value: 10
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -9347,7 +9349,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3071fa6869c730744a1634b5fe759330, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerScript
-  health: 15
+  health: 10
+  maxHealth: 10
   playerNumber: 1
   row: 1
   column: 1
@@ -9631,7 +9634,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3071fa6869c730744a1634b5fe759330, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerScript
-  health: 15
+  health: 10
+  maxHealth: 10
   playerNumber: 3
   row: 8
   column: 8

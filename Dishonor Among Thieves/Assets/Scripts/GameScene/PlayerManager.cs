@@ -702,6 +702,26 @@ public class PlayerManager : MonoBehaviour
         return true;
     }
 
+    public void CheckSpecialAttackHeal(){
+        int bossGiveBack; // 1 per player. Damage each player for 2
+        PlayerScript player;
+        for(int i = 0; i < playerCount; i++){
+            player = players[i].GetComponent<PlayerScript>();
+            if(player.row == currentPlayerScript.row && player.column == currentPlayerScript.column){
+            continue;
+            }
+            if(player.health <= 0){
+                continue;
+            }
+            Debug.Log($"Healing boss and attacking Player {i+1}");
+            player.health -= 2;
+            boss.hp += 1;
+        }
+        currentPlayerScript.health += 2;
+        UpdateHealthBars();
+        currentPlayerScript.specialCooldown = 3;
+    }
+
     public bool CheckSquare(int row, int column, bool moving)
     {
         if(moving){

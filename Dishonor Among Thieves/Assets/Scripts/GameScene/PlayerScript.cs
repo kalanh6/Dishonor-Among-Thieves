@@ -11,6 +11,8 @@ public class PlayerScript : MonoBehaviour
     [SerializeField]
     internal int health = 10; //make property?
     [SerializeField]
+    internal int maxHealth = 10;
+    [SerializeField]
     internal int playerNumber;
 
     [SerializeField]
@@ -62,6 +64,12 @@ public class PlayerScript : MonoBehaviour
         //        currentSquare = tiles[i];
         //    }
         //}
+    }
+
+    void Update(){
+        if(health > maxHealth){
+            health = maxHealth;
+        }
     }
     public void AttackSpecial(){
         Ray ray = Camera.main.ScreenPointToRay(new Vector2(Mouse.current.position.x.ReadValue(), Mouse.current.position.y.ReadValue()));
@@ -221,6 +229,33 @@ public class PlayerScript : MonoBehaviour
             }
         }
 
+    }
+
+    public void AttackSpecialHealer(){
+        Ray ray = Camera.main.ScreenPointToRay(new Vector2(Mouse.current.position.x.ReadValue(), Mouse.current.position.y.ReadValue()));
+        RaycastHit hit;
+
+        Debug.Log("Special Attacking With Healer");
+        if (Physics.Raycast(ray, out hit, 100f))
+        {
+            // mouse clicked on a square to attack a player
+            if (hit.collider.CompareTag("boardSquare"))
+            {
+                if(hit.collider.GetComponent<TileScript>().isBossSquare){
+                    if(playerManager.players.Length > 1){
+                        playerManager.CheckSpecialAttackHeal();
+                        isSpecialAttacking = false;
+                        hasAttacked = true;
+                    }
+                    else
+                    {
+                        Debug.Log("SpecialAttackingNobody");
+                        hasAttacked = false;
+                        Debug.Log("Didnt hit a player square");
+                    }
+                }
+            }
+        }
     }
 
     // All functions that Player Manager will call to start the attack action for the current Player
@@ -497,6 +532,28 @@ public class PlayerScript : MonoBehaviour
                 Debug.Log("reset charge group");
                 AOEgroup.transform.position = new Vector3(-9.6544f, 2, -2f);
                 hit.collider.GetComponent<TileScript>().Hover(false);
+            }
+        }
+    }
+
+    public void HighlightHeal()
+    {
+        Ray ray = Camera.main.ScreenPointToRay(new Vector2(Mouse.current.position.x.ReadValue(), Mouse.current.position.y.ReadValue()));
+        RaycastHit hit;
+
+
+        if (Physics.Raycast(ray, out hit, 100f))
+        {
+            // mouse clicked on a square to move the player to
+            if (hit.collider.CompareTag("boardSquare"))
+            {
+                if (hit.collider.GetComponent<TileScript>().isBossSquare)
+                {
+                    hit.collider.GetComponent<TileScript>().Hover(true);
+                }
+                else{
+                    hit.collider.GetComponent<TileScript>().Hover(false);
+                }
             }
         }
     }

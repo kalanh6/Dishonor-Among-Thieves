@@ -73,5 +73,8 @@ public class BossScript : MonoBehaviour
                 gameObject.GetComponent<SpriteRenderer>().color = Color.white;
             }
         }
+        if(hp > 20){
+            hp = 20;
+        }
     }
 }
