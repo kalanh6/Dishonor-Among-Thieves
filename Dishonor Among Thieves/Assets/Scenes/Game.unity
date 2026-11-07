@@ -2502,7 +2502,12 @@ MonoBehaviour:
   hasBeenAttacked: 0
   specialCooldown: 0
   AOEgroup: {fileID: 1621724425}
-  chargeGroup: {fileID: 1353955858}
+  chargeGroup:
+  - {fileID: 274975250}
+  - {fileID: 1722164527}
+  - {fileID: 721975670}
+  - {fileID: 678095970}
+  - {fileID: 1727141945}
   isAttacking: 0
   hasAttacked: 0
   isSpecialAttacking: 0
@@ -3707,7 +3712,12 @@ MonoBehaviour:
   hasBeenAttacked: 0
   specialCooldown: 0
   AOEgroup: {fileID: 1621724425}
-  chargeGroup: {fileID: 1353955858}
+  chargeGroup:
+  - {fileID: 274975250}
+  - {fileID: 1722164527}
+  - {fileID: 721975670}
+  - {fileID: 678095970}
+  - {fileID: 1727141945}
   isAttacking: 0
   hasAttacked: 0
   isSpecialAttacking: 0
@@ -5809,6 +5819,7 @@ MonoBehaviour:
   midHpThreshold: 10
   attackTimer: 0
   isAttacking: 0
+  adjacentAttack: 1
 --- !u!1 &1240645556
 GameObject:
   m_ObjectHideFlags: 0
@@ -9345,7 +9356,12 @@ MonoBehaviour:
   hasBeenAttacked: 0
   specialCooldown: 0
   AOEgroup: {fileID: 1621724425}
-  chargeGroup: {fileID: 1353955858}
+  chargeGroup:
+  - {fileID: 274975250}
+  - {fileID: 1722164527}
+  - {fileID: 721975670}
+  - {fileID: 678095970}
+  - {fileID: 1727141945}
   isAttacking: 0
   hasAttacked: 0
   isSpecialAttacking: 0
@@ -9624,7 +9640,12 @@ MonoBehaviour:
   hasBeenAttacked: 0
   specialCooldown: 0
   AOEgroup: {fileID: 1621724425}
-  chargeGroup: {fileID: 1353955858}
+  chargeGroup:
+  - {fileID: 274975250}
+  - {fileID: 1722164527}
+  - {fileID: 721975670}
+  - {fileID: 678095970}
+  - {fileID: 1727141945}
   isAttacking: 0
   hasAttacked: 0
   isSpecialAttacking: 0

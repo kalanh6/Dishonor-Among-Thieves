@@ -122,7 +122,6 @@ public class PlayerManager : MonoBehaviour
             switch (playerIndex)
             {
                 case 0:
-                case 2:
                     currentPlayerScript.HighlightSelected();
                     if (Mouse.current.leftButton.wasPressedThisFrame)
                     {
@@ -139,14 +138,13 @@ public class PlayerManager : MonoBehaviour
                         currentPlayerScript.AttackSpecialMage();
                     }
                     break;
-                //case 2:
-                //    currentPlayerScript.HighlightCharge();
-                //    if (Mouse.current.leftButton.wasPressedThisFrame)
-                //    {
-                //        currentPlayerScript.AttackSpecialTank();
-                //    }
-
-                //    break;
+                case 2:
+                    currentPlayerScript.HighlightCharge();
+                    if (Mouse.current.leftButton.wasPressedThisFrame)
+                    {
+                        currentPlayerScript.AttackSpecialTank();
+                    }
+                    break;
                 //case 3:
                 //    break;
                 default:
@@ -493,13 +491,17 @@ public class PlayerManager : MonoBehaviour
         // needs to check hitting boss and hit for both squares hit
 
 
-        bool returnBool = false;
         int playerRow = currentPlayerScript.row;
         int playerCol = currentPlayerScript.column;
 
         // checking for distance it moves
         // if too far it doesnt begin moving
-        if (distanceAllowed - Mathf.Abs(playerCol - sCol) - Mathf.Abs(playerRow - sRow) < 0)
+        if (!(sRow == currentPlayerScript.row || sCol == currentPlayerScript.column))
+        {
+            Debug.Log("Clicked bad square");
+            return false;
+        }
+        if (sRow == currentPlayerScript.row && sCol == currentPlayerScript.column)
         {
             Debug.Log("Clicked bad square");
             return false;
@@ -593,20 +595,18 @@ public class PlayerManager : MonoBehaviour
                     //check up
                     if (dir == "up")
                     {
-                        if (CheckSquareBetween(player.row, currentPlayerScript.row - distanceAllowed, currentPlayerScript.row))
+                        if (CheckSquareBetween(player.row, sRow, currentPlayerScript.row))
                         {
                             player.health -= damage;
-                            returnBool = true;
                         }
                     }
 
                     //check down
                     else if (dir == "down")
                     {
-                        if (CheckSquareBetween(player.row, currentPlayerScript.row, currentPlayerScript.row - distanceAllowed))
+                        if (CheckSquareBetween(player.row, currentPlayerScript.row, sRow))
                         {
                             player.health -= damage;
-                            returnBool = true;
                         }
                     }
                 }
@@ -624,20 +624,18 @@ public class PlayerManager : MonoBehaviour
                     //check left
                     if (dir == "left")
                     {
-                        if (CheckSquareBetween(player.column, currentPlayerScript.column - distanceAllowed, currentPlayerScript.column))
+                        if (CheckSquareBetween(player.column, sCol, currentPlayerScript.column))
                         {
                             player.health -= damage;
-                            returnBool = true;
                         }
                     }
 
                     //check right
                     else if (dir == "right")
                     {
-                        if (CheckSquareBetween(player.column, currentPlayerScript.column, currentPlayerScript.column - distanceAllowed))
+                        if (CheckSquareBetween(player.column, currentPlayerScript.column, sCol))
                         {
                             player.health -= damage;
-                            returnBool = true;
                         }
                     }
                 }
@@ -648,28 +646,24 @@ public class PlayerManager : MonoBehaviour
         {
             if (currentPlayerScript.column == 4 || currentPlayerScript.column == 5)
             {
-                for (int i = 0; i < boss.columns.Length; i++)
+                for (int i = 0; i < boss.rows.Length; i++)
                 {
-                    if (boss.columns[i] == currentPlayerScript.column)
-                    {
-                        //check up
-                        if (dir == "up")
-                        {
-                            if (CheckSquareBetween(boss.rows[i], currentPlayerScript.row - distanceAllowed, currentPlayerScript.row))
-                            {
-                                boss.hp -= damage;
-                                returnBool = true;
-                            }
-                        }
 
-                        //check down
-                        else if (dir == "down")
+                    //check up
+                    if (dir == "up")
+                    {
+                        if (CheckSquareBetween(boss.rows[i], sRow, currentPlayerScript.row))
                         {
-                            if (CheckSquareBetween(boss.rows[i], currentPlayerScript.row, currentPlayerScript.row - distanceAllowed))
-                            {
-                                boss.hp -= damage;
-                                returnBool = true;
-                            }
+                            boss.hp -= damage;
+                        }
+                    }
+
+                    //check down
+                    else if (dir == "down")
+                    {
+                        if (CheckSquareBetween(boss.rows[i], currentPlayerScript.row, sRow))
+                        {
+                            boss.hp -= damage;
                         }
                     }
                 }
@@ -679,25 +673,23 @@ public class PlayerManager : MonoBehaviour
         {
             if (currentPlayerScript.row == 4 || currentPlayerScript.row == 5)
             {
-                for (int i = 0; i < boss.rows.Length; i++)
+                for (int i = 0; i < boss.columns.Length; i++)
                 {
                     //check up
-                    if (dir == "up")
+                    if (dir == "left")
                     {
-                        if (CheckSquareBetween(boss.rows[i], currentPlayerScript.row - distanceAllowed, currentPlayerScript.row))
+                        if (CheckSquareBetween(boss.columns[i], sCol, currentPlayerScript.column))
                         {
                             boss.hp -= damage;
-                            returnBool = true;
                         }
                     }
 
                     //check down
-                    else if (dir == "down")
+                    else if (dir == "right")
                     {
-                        if (CheckSquareBetween(boss.rows[i], currentPlayerScript.row, currentPlayerScript.row - distanceAllowed))
+                        if (CheckSquareBetween(boss.columns[i], currentPlayerScript.column, sCol))
                         {
                             boss.hp -= damage;
-                            returnBool = true;
                         }
                     }
                 }
@@ -706,8 +698,8 @@ public class PlayerManager : MonoBehaviour
 
         //Show the players what took damage
         UpdateHealthBars();
-        currentPlayerScript.specialCooldown = 3;
-        return returnBool;
+        currentPlayerScript.specialCooldown = 0;
+        return true;
     }
 
     public bool CheckSquare(int row, int column, bool moving)
@@ -910,12 +902,14 @@ public class PlayerManager : MonoBehaviour
     /// <returns>return true if the player is in the range; returns false if the player is not in the range at all</returns>
     private bool CheckSquareBetween(int playerCheckProp, int rangeBegin, int rangeEnd)
     {
-        for (int i = rangeBegin; i < rangeEnd; i++)
+        if (playerCheckProp >= rangeBegin && playerCheckProp <= rangeEnd)
         {
-            if (playerCheckProp == rangeBegin)
-            {
-                return true;
-            }
+            Debug.Log("checkProp, rangeBegin, rangeEnd");
+            Debug.Log(playerCheckProp);
+            Debug.Log(rangeBegin);
+            Debug.Log(rangeEnd);
+
+            return true;
         }
         return false;
     }

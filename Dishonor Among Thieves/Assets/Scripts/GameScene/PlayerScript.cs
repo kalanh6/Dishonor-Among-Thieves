@@ -1,4 +1,5 @@
 using Unity.VisualScripting;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using static UnityEditor.Searcher.SearcherWindow.Alignment;
@@ -33,7 +34,7 @@ public class PlayerScript : MonoBehaviour
     public GameObject AOEgroup;
 
     [SerializeField]
-    public GameObject chargeGroup;
+    public GameObject[] chargeGroup = new GameObject[5];
 
 
     // variables for player state of turn
@@ -131,12 +132,85 @@ public class PlayerScript : MonoBehaviour
                 // Check parameters (row of square clicked on, column of square clicked on, distance allowed, damage amount)
                 if (playerManager.CheckSpecialAttackTank(hit.collider.GetComponent<TileScript>().row, hit.collider.GetComponent<TileScript>().column, 5, 2))
                 {
+                    Vector3 nextPosition;
                     Debug.Log("Clicked special attack square");
 
                     isSpecialAttacking = false;
                     hasAttacked = true;
-                    chargeGroup.transform.position = new Vector3(-9.6544f, 2, -2f);
+                    for (int i = 0; i < chargeGroup.Length; i++)
+                    {
+                        chargeGroup[i].transform.position = new Vector3(-9.6544f, 2, -2f);
+                    }
                     hit.collider.GetComponent<TileScript>().Hover(false);
+
+                    int checkRow = hit.collider.GetComponent<TileScript>().row;
+                    int checkColumn = hit.collider.GetComponent<TileScript>().column;
+
+                    if (!(playerManager.CheckSquare(hit.collider.GetComponent<TileScript>().row, hit.collider.GetComponent<TileScript>().column, true)))
+                    {
+                        nextPosition = hit.collider.gameObject.transform.position;
+                        nextPosition.z = -4;
+                        //playerScript.currentSquare = hit.collider.gameObject;
+                        transform.position = nextPosition;
+
+                        row = checkRow;
+                        column = checkColumn;
+                    }
+                    else
+                    {
+                        Debug.Log("Im here moving away from player");
+                        int distanceRow = row - checkRow;
+                        int distanceColumn = column - checkColumn;
+                        Debug.Log(distanceRow);
+                        Debug.Log(distanceColumn);
+
+                        if (distanceRow > 0)
+                        {
+                            nextPosition = hit.collider.gameObject.transform.position;
+                            nextPosition.y += -0.6896f;
+                            nextPosition.z = -4;
+                            
+                            transform.position = nextPosition;
+
+                            row = checkRow + 1;
+                            column = checkColumn;
+                        }
+                        else if (distanceRow < 0)
+                        {
+                            nextPosition = hit.collider.gameObject.transform.position;
+                            nextPosition.y += 0.6896f;
+                            nextPosition.z = -4;
+                            
+                            transform.position = nextPosition;
+
+                            row = checkRow - 1;
+                            column = checkColumn;
+                        }
+                        else if (distanceColumn > 0)
+                        {
+                            nextPosition = hit.collider.gameObject.transform.position;
+                            nextPosition.x += 0.6896f;
+                            nextPosition.z = -4;
+                            
+                            transform.position = nextPosition;
+
+                            row = checkRow;
+                            column = checkColumn + 1;
+                        }
+                        else if (distanceColumn < 0)
+                        {
+                            nextPosition = hit.collider.gameObject.transform.position;
+                            nextPosition.y += -0.6896f;
+                            nextPosition.z = -4;
+                            
+                            transform.position = nextPosition;
+
+                            row = checkRow;
+                            column = checkColumn - 1;
+                        }
+
+                    }
+                    
                 }
                 else
                 {
@@ -229,7 +303,7 @@ public class PlayerScript : MonoBehaviour
     public void MoveSelected()
     {
         //teleports to the position given in Selected()
-        Vector3 nextPosition;
+        
 
         Ray ray = Camera.main.ScreenPointToRay(new Vector2(Mouse.current.position.x.ReadValue(), Mouse.current.position.y.ReadValue()));
         RaycastHit hit;
@@ -244,6 +318,7 @@ public class PlayerScript : MonoBehaviour
                 {
                     if (playerManager.CheckSquare(hit.collider.GetComponent<TileScript>().row, hit.collider.GetComponent<TileScript>().column, true))
                     {
+                        Vector3 nextPosition;
                         nextPosition = hit.collider.gameObject.transform.position;
                         nextPosition.z = -4;
                         //playerScript.currentSquare = hit.collider.gameObject;
@@ -337,7 +412,8 @@ public class PlayerScript : MonoBehaviour
                 int checkColumn = hit.collider.GetComponent<TileScript>().column;
                 bool isVertical = false;
                 int distance = 0;
-                Vector3 rotationVector = new Vector3(0,0, 0);
+                int directionInDegrees = 0;
+                float newPosition = 0;
 
                 if (checkRow == row)
                 {
@@ -350,16 +426,21 @@ public class PlayerScript : MonoBehaviour
                     isVertical = true;
                 }
 
+                if (distance > 5)
+                {
+                    return;
+                }
+
                 // rotate the group in the right directions
                 if (isVertical)
                 {
                     if (distance < 0)
                     {
-                        rotationVector.z = 90;
+                        directionInDegrees = 90;
                     }
                     else
                     {
-                        rotationVector.z = 270;
+                        directionInDegrees = 270;
                     }
                 }
 
@@ -367,16 +448,49 @@ public class PlayerScript : MonoBehaviour
                 {
                     if (distance < 0)
                     {
-                        rotationVector.z = 180;
+                        directionInDegrees = 180;
                     }
                     else
                     {
-                        rotationVector.z = 0;
+                        directionInDegrees = 0;
                     }
                 }
+                for (int i = 0; i < Mathf.Abs(distance); i++)
+                {
+                    //Debug.Log(i);
+                    switch(directionInDegrees)
+                    {
+                        case 0:
+                            newPosition = transform.position.x + (0.6896f * (i + 1));
+                            chargeGroup[i].transform.position = new Vector3(newPosition, hit.transform.position.y, -4.5f);
+                            //Debug.Log("Right");
+                            break;
+                        case 90:
+                            newPosition = transform.position.y + (0.6896f * (i + 1));
+                            chargeGroup[i].transform.position = new Vector3(hit.transform.position.x, newPosition, -4.5f);
+                            //Debug.Log("Up");
+                            break;
+                        case 180:
+                            newPosition = transform.position.x - (0.6896f * (i + 1));
+                            chargeGroup[i].transform.position = new Vector3(newPosition, hit.transform.position.y, -4.5f);
+                            //Debug.Log("Left");
+                            break;
+                        case 270:
+                            newPosition = transform.position.y - (0.6896f * (i + 1));
+                            chargeGroup[i].transform.position = new Vector3(hit.transform.position.x, newPosition, -4.5f);
+                            //Debug.Log("Down");
+                            break;
+                    }
 
-                chargeGroup.transform.position = new Vector3(hit.transform.position.x, hit.transform.position.y, -4.5f);
-                chargeGroup.transform.eulerAngles = rotationVector;
+                    
+                }
+                if (distance < 5)
+                {
+                    for (int i = Mathf.Abs(distance); i < 5; i++)
+                    {
+                        chargeGroup[i].transform.position = new Vector3(-9.6544f, 2, -2f);
+                    }
+                }
             }
             else
             {
