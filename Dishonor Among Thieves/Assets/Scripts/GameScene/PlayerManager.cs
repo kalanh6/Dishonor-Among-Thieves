@@ -159,7 +159,7 @@ public class PlayerManager : MonoBehaviour
         if (boss.hp <= 0)
         {
             gameManager.playerWon = true;
-            gameManager.thiefName = "Player " + (playerIndex);
+            gameManager.playerWhoWon = playerIndex;
             SceneManager.LoadScene("WinLoseMenu");
         }
     }
@@ -698,7 +698,7 @@ public class PlayerManager : MonoBehaviour
 
         //Show the players what took damage
         UpdateHealthBars();
-        currentPlayerScript.specialCooldown = 0;
+        currentPlayerScript.specialCooldown = 3;
         return true;
     }
 

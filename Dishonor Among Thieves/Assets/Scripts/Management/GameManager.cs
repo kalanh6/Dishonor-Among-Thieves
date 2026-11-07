@@ -1,23 +1,23 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
-    [SerializeField]
-    TMP_Text winScreenText;
 
-    //the winner
-    public string thiefName;
+    public int playerWhoWon;
     public bool playerWon;
 
-    
+
 
     private void Awake()
     {
         if (Instance != null && Instance != this)
         {
+            playerWhoWon = Instance.playerWhoWon;
+            playerWon = Instance.playerWon;
             Destroy(gameObject);
             return;
         }
@@ -25,48 +25,59 @@ public class GameManager : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(gameObject);
 
-
     }
 
-    private void OnEnable()
-    {
-        SceneManager.sceneLoaded += OnSceneLoaded;
-    }
-    private void OnDisable()
-    {
-        SceneManager.sceneLoaded -= OnSceneLoaded;
-    }
+    //private void OnEnable()
+    //{
+    //    SceneManager.sceneLoaded += OnSceneLoaded;
+    //}
+    //private void OnDisable()
+    //{
+    //    SceneManager.sceneLoaded -= OnSceneLoaded;
+    //}
 
-    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    //private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    //{
+    //    if (SceneManager.GetActiveScene().name == "WinLoseMenu")
+    //    {
+    //        FindTextInCurrentScene();
+    //    }
+    //}
+
+    //private void FindTextInCurrentScene()
+    //{
+    //    GameObject textObj = GameObject.FindGameObjectWithTag("GameManagerText");
+    //    if (textObj != null)
+    //    {
+    //        myImage = textObj.GetComponent<Image>();
+    //    }
+    //    //Debug.Log("hi");
+
+    //    //WhoWon();
+    //}
+
+    //public void WhoWon()
+    //{
+    //    if (playerWon)
+    //    {
+    //        myImage.sprite = sprite[playerWhoWon];
+    //    }
+    //    else
+    //    {
+    //        myImage.sprite = sprite[4];
+    //    }
+    //}
+
+    public void PressStart()
     {
-        if (SceneManager.GetActiveScene().name == "WinLoseMenu")
-        {
-            FindTextInCurrentScene();
-        }
+        SceneManager.LoadScene("Game");
     }
-
-    private void FindTextInCurrentScene()
+    public void Restart()
     {
-        GameObject textObj = GameObject.FindGameObjectWithTag("GameManagerText");
-        if (textObj != null)
-        {
-            winScreenText = textObj.GetComponent<TMP_Text>();
-        }
-        //Debug.Log("hi");
-        Debug.Log(winScreenText != null);
-
-        WhoWon();
+        SceneManager.LoadScene("Game");
     }
-
-    public void WhoWon()
+    public void BackToMainMenu()
     {
-        if (playerWon)
-        {
-            winScreenText.text = thiefName + " Wins!";
-        }
-        else
-        {
-            winScreenText.text = "Boss Wins!";
-        }
+        SceneManager.LoadScene("Main_Menu");
     }
 }
