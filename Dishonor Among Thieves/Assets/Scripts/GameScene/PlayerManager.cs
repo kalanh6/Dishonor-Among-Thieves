@@ -1,13 +1,13 @@
-using System.Runtime.InteropServices.WindowsRuntime;
+//using System.Runtime.InteropServices.WindowsRuntime;
 using TMPro;
-using Unity.VectorGraphics;
-using Unity.VisualScripting;
+//using Unity.VectorGraphics;
+//using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using static UnityEditor.ShaderGraph.Internal.KeywordDependentCollection;
-using static UnityEngine.Rendering.DebugUI.Table;
+//using static UnityEditor.ShaderGraph.Internal.KeywordDependentCollection;
+//using static UnityEngine.Rendering.DebugUI.Table;
 
 public class PlayerManager : MonoBehaviour
 {
