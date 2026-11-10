@@ -67,7 +67,7 @@ public class BossScript : MonoBehaviour
         else if(hp<=midHpThreshold){
             lowHpTimer += Time.deltaTime;
             if(lowHpTimer % 2 > 1){ //blink every second
-                gameObject.GetComponent<SpriteRenderer>().color = Color.red;
+                gameObject.GetComponent<SpriteRenderer>().color = Color.orange  ;
             }
             else{
                 gameObject.GetComponent<SpriteRenderer>().color = Color.white;

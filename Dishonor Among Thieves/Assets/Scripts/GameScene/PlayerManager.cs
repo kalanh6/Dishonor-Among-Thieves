@@ -132,7 +132,6 @@ public class PlayerManager : MonoBehaviour
                     }
                     break;
                 case 1:
-                case 3:
                     currentPlayerScript.HighlightAOE();
 
                     if (Mouse.current.leftButton.wasPressedThisFrame)
@@ -148,8 +147,13 @@ public class PlayerManager : MonoBehaviour
                         currentPlayerScript.AttackSpecialTank();
                     }
                     break;
-                //case 3:
-                //    break;
+                case 3:
+                currentPlayerScript.HighlightHeal();
+                    if (Mouse.current.leftButton.wasPressedThisFrame)
+                    {
+                        currentPlayerScript.AttackSpecialHealer();
+                    }
+                    break;
                 default:
                     break;
             }
