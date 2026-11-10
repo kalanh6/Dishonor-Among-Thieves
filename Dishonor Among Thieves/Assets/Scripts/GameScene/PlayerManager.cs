@@ -36,7 +36,7 @@ public class PlayerManager : MonoBehaviour
     Button specialAttackButton;
 
     //Variables from turn manager
-    // goes from 1-4 and then resets
+    // goes from 0-3 and then resets
     public int playerIndex = 0;
     [SerializeField]
     public BossScript boss;
@@ -72,6 +72,9 @@ public class PlayerManager : MonoBehaviour
         MoveCamera();
 
         playersAlive = players.Length;
+
+        //UpdateHealthBars();
+        //OnClickPass();
     }
 
     // from turn man
@@ -158,9 +161,10 @@ public class PlayerManager : MonoBehaviour
         // change scene when boss dies
         if (boss.hp <= 0)
         {
+            gameManager.AddPoints(5, playerIndex);
             gameManager.playerWon = true;
             gameManager.playerWhoWon = playerIndex;
-            SceneManager.LoadScene("WinLoseMenu");
+            SceneManager.LoadScene("EndlessModeEnd");
         }
     }
     
@@ -816,10 +820,15 @@ public class PlayerManager : MonoBehaviour
         for (int i = 0; i < healthBars.Length; i++)
         {
             healthBars[i].value = players[i].GetComponent<PlayerScript>().health;
+            
 
             if (players[i].GetComponent<PlayerScript>().health <= 0)
             {
                 alive--;
+                if (playerIndex != i)
+                {
+                    gameManager.AddPoints(5, playerIndex);
+                }
             }
 
         }
@@ -862,7 +871,7 @@ public class PlayerManager : MonoBehaviour
             else
             {
                 gameManager.playerWon = false;
-                SceneManager.LoadScene("WinLoseMenu");
+                SceneManager.LoadScene("EndlessModeEnd");
             }
         }
 

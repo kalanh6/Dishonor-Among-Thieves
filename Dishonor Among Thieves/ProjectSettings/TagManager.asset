@@ -6,6 +6,10 @@ TagManager:
   tags:
   - boardSquare
   - GameManagerText
+  - RestartButton
+  - MainMenuButton
+  - Leaderboard
+  - Canvas
   layers:
   - Default
   - TransparentFX

@@ -2589,7 +2589,6 @@ MonoBehaviour:
   isSpecialAttacking: 0
   isTargeting: 0
   hasMoved: 0
-  turnManager: {fileID: 0}
   playerManager: {fileID: 237345562}
 --- !u!1 &571134623
 GameObject:
@@ -3910,7 +3909,6 @@ MonoBehaviour:
   isSpecialAttacking: 0
   isTargeting: 0
   hasMoved: 0
-  turnManager: {fileID: 0}
   playerManager: {fileID: 237345562}
 --- !u!1001 &782001911
 PrefabInstance:
@@ -5357,6 +5355,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   playerWhoWon: 0
   playerWon: 0
+  points: 00000000000000000000000000000000
+  startPosition: -666
+  difference: 446
+  height: 104
 --- !u!4 &1046840897
 Transform:
   m_ObjectHideFlags: 0
@@ -9523,7 +9525,6 @@ MonoBehaviour:
   isSpecialAttacking: 0
   isTargeting: 0
   hasMoved: 0
-  turnManager: {fileID: 0}
   playerManager: {fileID: 237345562}
 --- !u!1001 &1923189582
 PrefabInstance:
@@ -9808,7 +9809,6 @@ MonoBehaviour:
   isSpecialAttacking: 0
   isTargeting: 0
   hasMoved: 0
-  turnManager: {fileID: 0}
   playerManager: {fileID: 237345562}
 --- !u!1001 &2017196877
 PrefabInstance:

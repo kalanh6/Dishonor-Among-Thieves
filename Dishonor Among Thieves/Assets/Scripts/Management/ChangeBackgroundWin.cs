@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class ChangeBackgroundWin : MonoBehaviour
@@ -22,14 +23,18 @@ public class ChangeBackgroundWin : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (manager.playerWon)
+        if (SceneManager.GetActiveScene().name == "WinLoseScreen")
         {
-            myImage.sprite = sprite[manager.playerWhoWon];
+            if (manager.playerWon)
+            {
+                myImage.sprite = sprite[manager.playerWhoWon];
+            }
+            else
+            {
+                myImage.sprite = sprite[4];
+            }
         }
-        else
-        {
-            myImage.sprite = sprite[4];
-        }
+        
 
         
     }

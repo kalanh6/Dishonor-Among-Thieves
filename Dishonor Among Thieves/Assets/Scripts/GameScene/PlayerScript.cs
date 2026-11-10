@@ -46,10 +46,6 @@ public class PlayerScript : MonoBehaviour
     public bool isTargeting = false;
     public bool hasMoved = false;
 
-    // keeping track of whos turn it is
-    [SerializeField]
-    TurnManager turnManager;
-
     [SerializeField]
     PlayerManager playerManager;
 

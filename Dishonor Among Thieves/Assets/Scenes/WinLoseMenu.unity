@@ -606,7 +606,7 @@ GameObject:
   - component: {fileID: 757006417}
   m_Layer: 5
   m_Name: MainMenuButton
-  m_TagString: Untagged
+  m_TagString: MainMenuButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -756,6 +756,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   playerWhoWon: 0
   playerWon: 0
+  playerToPlayerPoints: 00000000000000000000000000000000
+  playerToBossPoints: 00000000000000000000000000000000
+  playerFinalHitPoints: 00000000000000000000000000000000
+  playerFinalBossHitPoints: 00000000000000000000000000000000
 --- !u!4 &878582454
 Transform:
   m_ObjectHideFlags: 0
@@ -783,7 +787,7 @@ GameObject:
   - component: {fileID: 1009321140}
   - component: {fileID: 1009321139}
   m_Layer: 5
-  m_Name: StartButtonText
+  m_Name: ContinueButtonText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -828,7 +832,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Play Again
+  m_text: Continue
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -921,8 +925,8 @@ GameObject:
   - component: {fileID: 1466899038}
   - component: {fileID: 1466899037}
   m_Layer: 5
-  m_Name: PlayAgainButton
-  m_TagString: Untagged
+  m_Name: ContinueButton
+  m_TagString: RestartButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
