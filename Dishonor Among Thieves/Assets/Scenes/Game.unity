@@ -1599,7 +1599,7 @@ MonoBehaviour:
   boss: {fileID: 1209712267}
   playerTurnText: {fileID: 1730190144}
   damageLog: {fileID: 671600379}
-  maxMove: 5
+  maxMove: 3
   gameManager: {fileID: 1046840896}
   actionBarGroup: {fileID: 1023253363}
   canvasUI: {fileID: 2071636054}
