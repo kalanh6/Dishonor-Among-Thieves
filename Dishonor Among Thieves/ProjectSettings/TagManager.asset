@@ -10,6 +10,7 @@ TagManager:
   - MainMenuButton
   - Leaderboard
   - Canvas
+  - GameManager
   layers:
   - Default
   - TransparentFX
