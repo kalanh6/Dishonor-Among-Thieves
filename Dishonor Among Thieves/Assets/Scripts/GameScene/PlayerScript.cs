@@ -314,6 +314,7 @@ public class PlayerScript : MonoBehaviour
                 if(playerManager.CheckAdjacentMath(row, column, boss.rows[i], boss.columns[i])){
                     Debug.Log($"Boss Hit at {boss.hp} health");
                     boss.hp -= 1;
+                    playerManager.CheckDeath(4);
                     playerManager.damageLog.text = "Player " + (playerManager.playerIndex + 1) + " attacked the Boss for 1 damage.";
                     Debug.Log($"Boss is now at {boss.hp} health");
                     return true;

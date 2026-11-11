@@ -168,7 +168,7 @@ public class PlayerManager : MonoBehaviour
         // change scene when boss dies
         if (boss.hp <= 0)
         {
-            gameManager.AddPoints(5, playerIndex);
+            //gameManager.AddPoints(5, playerIndex);
             gameManager.playerWon = true;
             gameManager.playerWhoWon = playerIndex;
             SceneManager.LoadScene("EndlessModeEnd");
@@ -273,6 +273,7 @@ public class PlayerManager : MonoBehaviour
                     player.hasBeenAttacked = true;
                     if(!isBoss){
                         damageLog.text = "Player " + (playerIndex + 1) + " attacked Player " + player.playerNumber + " for " + damage + "damage.";
+                        CheckDeath(i);
                     }
                     UpdateHealthBars();
                 }
@@ -361,6 +362,7 @@ public class PlayerManager : MonoBehaviour
                 case "left":
                     if(player.column - currentPlayerScript.column >= distance && player.row == currentPlayerScript.row){
                         player.health -= 2;
+                        CheckDeath(i);
                         Debug.Log($"Player {i+1} hit by special");
                         damageLog.text = "Player " + (playerIndex + 1) + " attacked Player " + (i+1) + " for " + 2 + " damage.";
                         returnBool = true;
@@ -369,6 +371,7 @@ public class PlayerManager : MonoBehaviour
                 case "right":
                     if(player.column - currentPlayerScript.column <= distance && player.row == currentPlayerScript.row){
                         player.health -= 2;
+                        CheckDeath(i);
                         Debug.Log($"Player {i+1} hit by special");
                         damageLog.text = "Player " + (playerIndex + 1) + " attacked Player " + (i+1) + " for " + 2 + " damage.";
                         returnBool = true;
@@ -377,6 +380,7 @@ public class PlayerManager : MonoBehaviour
                 case "up":
                     if(player.row - currentPlayerScript.row >= distance && player.column == currentPlayerScript.column){
                         player.health -= 2;
+                        CheckDeath(i);
                         Debug.Log($"Player {i+1} hit by special");
                         damageLog.text = "Player " + (playerIndex + 1) + " attacked Player " + (i+1) + " for " + 2 + " damage.";
                         returnBool = true;
@@ -385,6 +389,7 @@ public class PlayerManager : MonoBehaviour
                 case "down":
                     if(player.row - currentPlayerScript.row <= distance && player.column == currentPlayerScript.column){
                         player.health -= 2;
+                        CheckDeath(i);
                         Debug.Log($"Player {i+1} hit by special");
                         damageLog.text = "Player " + (playerIndex + 1) + " attacked Player " + (i+1) + " for " + 2 + " damage.";
                         returnBool = true;
@@ -402,6 +407,7 @@ public class PlayerManager : MonoBehaviour
                     case "left":
                         if(boss.columns[j] - currentPlayerScript.column >= distance && boss.rows[k] == currentPlayerScript.row){
                             boss.hp -= 2; 
+                            CheckDeath(4);
                             Debug.Log($"Boss hit by special");
                             returnBool = true;
                         }
@@ -409,6 +415,7 @@ public class PlayerManager : MonoBehaviour
                     case "right":
                         if(boss.columns[j] - currentPlayerScript.column <= distance && boss.rows[k] == currentPlayerScript.row){
                             boss.hp -= 2; 
+                            CheckDeath(4);
                             //TEST THIS
                             Debug.Log($"Boss hit by special");
                             returnBool = true;
@@ -417,13 +424,15 @@ public class PlayerManager : MonoBehaviour
                     case "up":
                         if(boss.rows[k] - currentPlayerScript.row >= distance && boss.columns[j] == currentPlayerScript.column){
                             boss.hp -= 2; 
+                            CheckDeath(4);
                             Debug.Log($"Boss hit by special");
                             returnBool = true;
                         }
                     break;
                     case "down":
                         if(boss.rows[k] - currentPlayerScript.row <= distance && boss.columns[j] == currentPlayerScript.column){
-                            boss.hp -= 2; 
+                            boss.hp -= 2;
+                            CheckDeath(4); 
                             Debug.Log($"Boss hit by special");
                             returnBool = true;
                         }
@@ -468,6 +477,7 @@ public class PlayerManager : MonoBehaviour
             {
                 damageLog.text = "Player " + (playerIndex + 1) + " attacked Player " + (i+1) + " for " + damage + " damage.";
                 player.health -= damage;
+                CheckDeath(i);
                 returnBool = true;
             }
         }
@@ -481,6 +491,7 @@ public class PlayerManager : MonoBehaviour
                 {
                     Debug.Log($"Boss Hit at {boss.hp} health");
                     boss.hp -= 1;
+                    CheckDeath(4);
                     damageLog.text = "Player " + (playerIndex + 1) + " attacked the Boss for 1 damage.";
                     Debug.Log($"Boss is now at {boss.hp} health");
                     returnBool = true;
@@ -608,6 +619,7 @@ public class PlayerManager : MonoBehaviour
                     {
                         if (CheckSquareBetween(player.row, sRow, currentPlayerScript.row))
                         {
+                            CheckDeath(i);
                             player.health -= damage;
                         }
                     }
@@ -618,6 +630,7 @@ public class PlayerManager : MonoBehaviour
                         if (CheckSquareBetween(player.row, currentPlayerScript.row, sRow))
                         {
                             player.health -= damage;
+                            CheckDeath(i);
                         }
                     }
                 }
@@ -638,6 +651,7 @@ public class PlayerManager : MonoBehaviour
                         if (CheckSquareBetween(player.column, sCol, currentPlayerScript.column))
                         {
                             player.health -= damage;
+                            CheckDeath(i);
                         }
                     }
 
@@ -647,6 +661,7 @@ public class PlayerManager : MonoBehaviour
                         if (CheckSquareBetween(player.column, currentPlayerScript.column, sCol))
                         {
                             player.health -= damage;
+                            CheckDeath(i);
                         }
                     }
                 }
@@ -666,6 +681,7 @@ public class PlayerManager : MonoBehaviour
                         if (CheckSquareBetween(boss.rows[i], sRow, currentPlayerScript.row))
                         {
                             boss.hp -= damage;
+                            CheckDeath(4);
                         }
                     }
 
@@ -675,6 +691,7 @@ public class PlayerManager : MonoBehaviour
                         if (CheckSquareBetween(boss.rows[i], currentPlayerScript.row, sRow))
                         {
                             boss.hp -= damage;
+                            CheckDeath(4);
                         }
                     }
                 }
@@ -692,6 +709,7 @@ public class PlayerManager : MonoBehaviour
                         if (CheckSquareBetween(boss.columns[i], sCol, currentPlayerScript.column))
                         {
                             boss.hp -= damage;
+                            CheckDeath(4);
                         }
                     }
 
@@ -701,6 +719,7 @@ public class PlayerManager : MonoBehaviour
                         if (CheckSquareBetween(boss.columns[i], currentPlayerScript.column, sCol))
                         {
                             boss.hp -= damage;
+                            CheckDeath(4);
                         }
                     }
                 }
@@ -726,6 +745,7 @@ public class PlayerManager : MonoBehaviour
             }
             Debug.Log($"Healing boss and attacking Player {i+1}");
             player.health -= 2;
+            CheckDeath(i);
             boss.hp += 1;
         }
         currentPlayerScript.health += 2;
@@ -832,10 +852,17 @@ public class PlayerManager : MonoBehaviour
             if (players[i].GetComponent<PlayerScript>().health <= 0)
             {
                 alive--;
+<<<<<<< Updated upstream
                 if (playerIndex != i)
                 {
                     gameManager.AddPoints(2, playerIndex);
                 }
+=======
+                // if (playerIndex != i)
+                // {
+                //     gameManager.AddPoints(5, playerIndex);
+                // }
+>>>>>>> Stashed changes
             }
 
         }
@@ -948,5 +975,21 @@ public class PlayerManager : MonoBehaviour
             return true;
         }
         return false;
+    }
+
+    public void CheckDeath(int playerHitIndex){
+        if(playerHitIndex == 4){
+            if(boss.hp <= 0){
+                Debug.Log($"Player {playerIndex} killed the Boss for 10 points");
+                gameManager.AddPoints(10, playerIndex);
+                return;
+            }
+        }
+        if(playerHitIndex != 4){
+            if(players[playerHitIndex].GetComponent<PlayerScript>().health <= 0){
+                Debug.Log($"Player {playerIndex} killed Player {playerHitIndex} for 5 points");
+                gameManager.AddPoints(5, playerIndex);
+            }
+        }
     }
 }
