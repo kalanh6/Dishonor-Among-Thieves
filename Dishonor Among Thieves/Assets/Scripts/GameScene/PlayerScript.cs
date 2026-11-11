@@ -394,6 +394,28 @@ public class PlayerScript : MonoBehaviour
         }
     }
 
+    public void HighlightBasic()
+    {
+        Ray ray = Camera.main.ScreenPointToRay(new Vector2(Mouse.current.position.x.ReadValue(), Mouse.current.position.y.ReadValue()));
+        RaycastHit hit;
+
+
+        if (Physics.Raycast(ray, out hit, 100f))
+        {
+            // mouse clicked on a square to move the player to
+            if (hit.collider.CompareTag("boardSquare"))
+            {
+                if (playerManager.CheckSquare(hit.collider.GetComponent<TileScript>().row, hit.collider.GetComponent<TileScript>().column, false))
+                {
+                    hit.collider.GetComponent<TileScript>().Hover(true);
+                }
+                else{
+                    hit.collider.GetComponent<TileScript>().Hover(false);
+                }
+            }
+        }
+    }
+
     public void HighlightAOE()
     {
         Ray ray = Camera.main.ScreenPointToRay(new Vector2(Mouse.current.position.x.ReadValue(), Mouse.current.position.y.ReadValue()));

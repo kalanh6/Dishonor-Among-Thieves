@@ -106,7 +106,7 @@ public class PlayerManager : MonoBehaviour
 
         if (currentPlayerScript.isAttacking)
         {
-            //currentPlayerScript.HighlightSelected();
+            currentPlayerScript.HighlightBasic();
 
             if (Mouse.current.leftButton.wasPressedThisFrame)
             {
@@ -786,7 +786,11 @@ public class PlayerManager : MonoBehaviour
             }
             return true;
         }
-
+        if(currentPlayerScript.isAttacking){
+            if(CheckAdjacentMath(currentPlayerScript.row, currentPlayerScript.column, row, column)){
+                return true;
+            }
+        }
         if(currentPlayerScript.isSpecialAttacking){
             Debug.Log("check square");
             if(currentPlayerScript.column == column && currentPlayerScript.row == row){
