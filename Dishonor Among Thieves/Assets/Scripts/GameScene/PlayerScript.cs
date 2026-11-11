@@ -378,6 +378,7 @@ public class PlayerScript : MonoBehaviour
                 if(playerManager.CheckAdjacentMath(row, column, boss.rows[i], boss.columns[i])){
                     Debug.Log($"Boss Hit at {boss.hp} health");
                     boss.hp -= 1;
+                    playerManager.CheckDeath(4);
                     playerManager.damageLog.text = "Player " + (playerManager.playerIndex + 1) + " attacked the Boss for 1 damage.";
                     Debug.Log($"Boss is now at {boss.hp} health");
                     return true;
@@ -436,6 +437,28 @@ public class PlayerScript : MonoBehaviour
 
     #region Highlights
     public void HighlightSelected()
+    {
+        Ray ray = Camera.main.ScreenPointToRay(new Vector2(Mouse.current.position.x.ReadValue(), Mouse.current.position.y.ReadValue()));
+        RaycastHit hit;
+
+
+        if (Physics.Raycast(ray, out hit, 100f))
+        {
+            // mouse clicked on a square to move the player to
+            if (hit.collider.CompareTag("boardSquare"))
+            {
+                if (playerManager.CheckSquare(hit.collider.GetComponent<TileScript>().row, hit.collider.GetComponent<TileScript>().column, false))
+                {
+                    hit.collider.GetComponent<TileScript>().Hover(true);
+                }
+                else{
+                    hit.collider.GetComponent<TileScript>().Hover(false);
+                }
+            }
+        }
+    }
+
+    public void HighlightBasic()
     {
         Ray ray = Camera.main.ScreenPointToRay(new Vector2(Mouse.current.position.x.ReadValue(), Mouse.current.position.y.ReadValue()));
         RaycastHit hit;
