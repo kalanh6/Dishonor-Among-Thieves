@@ -124,15 +124,17 @@ public class GameManager : MonoBehaviour
             myMainMenuButton = GameObject.FindGameObjectWithTag("MainMenuButton").GetComponent<Button>();
         }
         myRestartButton = GameObject.FindGameObjectWithTag("RestartButton").GetComponent<Button>();
-        
 
+        Debug.Log("Find text");
         if (myRestartButton != null)
         {
+            Debug.Log("restart");
             // 3. Hook up your custom method to the onClick event
             myRestartButton.onClick.AddListener(Restart);
         }
         if (myMainMenuButton != null)
         {
+            Debug.Log("Main Menu");
             // 3. Hook up your custom method to the onClick event
             myMainMenuButton.onClick.AddListener(BackToMainMenu);
         }

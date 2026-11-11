@@ -75,6 +75,9 @@ public class PlayerManager : MonoBehaviour
 
         //UpdateHealthBars();
         //OnClickPass();
+
+        gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+
     }
 
     // from turn man
@@ -831,7 +834,7 @@ public class PlayerManager : MonoBehaviour
                 alive--;
                 if (playerIndex != i)
                 {
-                    gameManager.AddPoints(5, playerIndex);
+                    gameManager.AddPoints(2, playerIndex);
                 }
             }
 
