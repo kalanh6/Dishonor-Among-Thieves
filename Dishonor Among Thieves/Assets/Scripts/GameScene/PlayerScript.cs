@@ -20,6 +20,9 @@ public class PlayerScript : MonoBehaviour
     [SerializeField]
     public int column;
 
+    private int previousRow;
+    private int previousColumn;
+
     [SerializeField]
     TileManager tileSet;
 
@@ -133,6 +136,10 @@ public class PlayerScript : MonoBehaviour
             // mouse clicked on a square to attack a player
             if (hit.collider.CompareTag("boardSquare"))
             {
+                int distanceRow = 0;
+                int distanceColumn = 0;
+                int checkRow = hit.collider.GetComponent<TileScript>().row;
+                int checkColumn = hit.collider.GetComponent<TileScript>().column;
                 // Check parameters (row of square clicked on, column of square clicked on, distance allowed, damage amount)
                 if (playerManager.CheckSpecialAttackTank(hit.collider.GetComponent<TileScript>().row, hit.collider.GetComponent<TileScript>().column, 5, 2))
                 {
@@ -147,8 +154,7 @@ public class PlayerScript : MonoBehaviour
                     }
                     hit.collider.GetComponent<TileScript>().Hover(false);
 
-                    int checkRow = hit.collider.GetComponent<TileScript>().row;
-                    int checkColumn = hit.collider.GetComponent<TileScript>().column;
+                    
 
                     if (!(playerManager.CheckSquare(hit.collider.GetComponent<TileScript>().row, hit.collider.GetComponent<TileScript>().column, true)))
                     {
@@ -157,14 +163,16 @@ public class PlayerScript : MonoBehaviour
                         //playerScript.currentSquare = hit.collider.gameObject;
                         transform.position = nextPosition;
 
+                        previousRow = row;
+                        previousColumn = column;
                         row = checkRow;
                         column = checkColumn;
                     }
                     else
                     {
                         Debug.Log("Im here moving away from player");
-                        int distanceRow = row - checkRow;
-                        int distanceColumn = column - checkColumn;
+                        distanceRow = row - checkRow;
+                        distanceColumn = column - checkColumn;
                         Debug.Log(distanceRow);
                         Debug.Log(distanceColumn);
 
@@ -173,7 +181,7 @@ public class PlayerScript : MonoBehaviour
                             nextPosition = hit.collider.gameObject.transform.position;
                             nextPosition.y += -0.6896f;
                             nextPosition.z = -4;
-                            
+
                             transform.position = nextPosition;
 
                             row = checkRow + 1;
@@ -184,7 +192,7 @@ public class PlayerScript : MonoBehaviour
                             nextPosition = hit.collider.gameObject.transform.position;
                             nextPosition.y += 0.6896f;
                             nextPosition.z = -4;
-                            
+
                             transform.position = nextPosition;
 
                             row = checkRow - 1;
@@ -195,7 +203,7 @@ public class PlayerScript : MonoBehaviour
                             nextPosition = hit.collider.gameObject.transform.position;
                             nextPosition.x += 0.6896f;
                             nextPosition.z = -4;
-                            
+
                             transform.position = nextPosition;
 
                             row = checkRow;
@@ -206,7 +214,7 @@ public class PlayerScript : MonoBehaviour
                             nextPosition = hit.collider.gameObject.transform.position;
                             nextPosition.y += -0.6896f;
                             nextPosition.z = -4;
-                            
+
                             transform.position = nextPosition;
 
                             row = checkRow;
@@ -222,6 +230,62 @@ public class PlayerScript : MonoBehaviour
                     hasAttacked = false;
                     Debug.Log("Didnt hit a player square");
                 }
+
+                int counter = 1;
+                while (counter < 3)
+                {
+                    distanceRow = previousRow - checkRow;
+                    distanceColumn = previousColumn - checkColumn;
+                    Debug.Log("Row " + row);
+                    Debug.Log("Column " + column);
+                    Vector3 nextPosition;
+                    if (distanceRow > 0)
+                    {
+                        nextPosition = hit.collider.gameObject.transform.position;
+                        nextPosition.y += -0.6896f;
+                        nextPosition.z = -4;
+
+                        transform.position = nextPosition;
+
+                        row += 1;
+
+                    }
+                    else if (distanceRow < 0)
+                    {
+                        nextPosition = hit.collider.gameObject.transform.position;
+                        nextPosition.y += 0.6896f;
+                        nextPosition.z = -4;
+
+                        transform.position = nextPosition;
+
+                        row -= 1;
+
+                    }
+                    else if (distanceColumn > 0)
+                    {
+                        nextPosition = hit.collider.gameObject.transform.position;
+                        nextPosition.x += -0.6896f;
+                        nextPosition.z = -4;
+
+                        transform.position = nextPosition;
+
+                        column += 1;
+                    }
+                    else if (distanceColumn < 0)
+                    {
+                        nextPosition = hit.collider.gameObject.transform.position;
+                        nextPosition.x += 0.6896f;
+                        nextPosition.z = -4;
+
+                        transform.position = nextPosition;
+
+
+                        column -= 1;
+                    }
+                    counter += 1;
+                }
+                Debug.Log("Row " + row);
+                Debug.Log("Column " + column);
             }
         }
 

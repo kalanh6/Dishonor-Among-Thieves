@@ -128,6 +128,7 @@ public class PlayerManager : MonoBehaviour
             switch (playerIndex)
             {
                 case 0:
+                case 2:
                     currentPlayerScript.HighlightSelected();
                     if (Mouse.current.leftButton.wasPressedThisFrame)
                     {
@@ -143,15 +144,15 @@ public class PlayerManager : MonoBehaviour
                         currentPlayerScript.AttackSpecialMage();
                     }
                     break;
-                case 2:
-                    currentPlayerScript.HighlightCharge();
-                    if (Mouse.current.leftButton.wasPressedThisFrame)
-                    {
-                        currentPlayerScript.AttackSpecialTank();
-                    }
-                    break;
+                //case 2:
+                //    currentPlayerScript.HighlightCharge();
+                //    if (Mouse.current.leftButton.wasPressedThisFrame)
+                //    {
+                //        currentPlayerScript.AttackSpecialTank();
+                //    }
+                //    break;
                 case 3:
-                currentPlayerScript.HighlightHeal();
+                    currentPlayerScript.HighlightHeal();
                     if (Mouse.current.leftButton.wasPressedThisFrame)
                     {
                         currentPlayerScript.AttackSpecialHealer();
