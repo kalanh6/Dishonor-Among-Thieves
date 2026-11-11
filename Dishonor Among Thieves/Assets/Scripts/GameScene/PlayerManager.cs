@@ -852,17 +852,10 @@ public class PlayerManager : MonoBehaviour
             if (players[i].GetComponent<PlayerScript>().health <= 0)
             {
                 alive--;
-<<<<<<< Updated upstream
-                if (playerIndex != i)
-                {
-                    gameManager.AddPoints(2, playerIndex);
-                }
-=======
                 // if (playerIndex != i)
                 // {
                 //     gameManager.AddPoints(5, playerIndex);
                 // }
->>>>>>> Stashed changes
             }
 
         }
