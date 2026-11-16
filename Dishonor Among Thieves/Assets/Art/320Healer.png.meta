@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 52c2376ac486d134daeeca5da51a5b65
+guid: 732899e70f2969c49b084fcf3800906c
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -6463644955030856507
-    second: 320Healer 1_0
+      213: 6814032818775105369
+    second: 320Healer_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,7 +100,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: 320Healer 1_0
+      name: 320Healer_0
       rect:
         serializedVersion: 2
         x: 1
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 5ccd325c8258c46a0800000000000000
-      internalID: -6463644955030856507
+      spriteID: 95f91f21fbe409e50800000000000000
+      internalID: 6814032818775105369
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      320Healer 1_0: -6463644955030856507
+      320Healer_0: 6814032818775105369
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
