@@ -335,6 +335,7 @@ public class PlayerScript : MonoBehaviour
                     if (CheckAdjacentBoss(/*hit.collider.GetComponent<TileScript>().row, hit.collider.GetComponent<TileScript>().column*/))
                     {
                         Debug.Log("AttackingBoss");
+                        playerManager.currentAnimator.SetTrigger("Basic");
                         isAttacking = false;
                         hasAttacked = true;
                     }
@@ -342,6 +343,7 @@ public class PlayerScript : MonoBehaviour
                 else if(playerManager.CheckAdjacentPlayer(row, column, 1, false)){
                     isAttacking = false;
                     hasAttacked = true;
+                    playerManager.currentAnimator.SetTrigger("Basic");
                 }
                 else
                     {

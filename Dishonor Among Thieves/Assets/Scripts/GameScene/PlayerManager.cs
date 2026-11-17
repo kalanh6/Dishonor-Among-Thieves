@@ -1,5 +1,7 @@
 //using System.Runtime.InteropServices.WindowsRuntime;
 using TMPro;
+using UnityEditor.Animations;
+
 //using Unity.VectorGraphics;
 //using Unity.VisualScripting;
 using UnityEngine;
@@ -59,14 +61,17 @@ public class PlayerManager : MonoBehaviour
     [SerializeField]
     Canvas canvasUI;
 
-    
+    //Animation variables
+    public Animator currentAnimator;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         playerCount = players.Length;
-        currentPlayerScript = players[currentPlayer].GetComponent<PlayerScript>();
+        currentPlayerScript = players[playerIndex].GetComponent<PlayerScript>();
+        currentAnimator = players[playerIndex].GetComponent<Animator>();
+        currentAnimator.SetBool("Idle", true);
 
         //from turn man
         MoveCamera();
@@ -442,7 +447,11 @@ public class PlayerManager : MonoBehaviour
                 }
             }
         }
-        currentPlayerScript.specialCooldown = 3;
+        if (returnBool)
+        {
+            currentPlayerScript.specialCooldown = 3;
+            currentAnimator.SetTrigger("Special");
+        }
         return returnBool;
     }
 
@@ -501,7 +510,11 @@ public class PlayerManager : MonoBehaviour
 
         //Show the players what took damage
         UpdateHealthBars();
-        currentPlayerScript.specialCooldown = 3;
+        if (returnBool)
+        {
+            currentPlayerScript.specialCooldown = 3;
+            currentAnimator.SetTrigger("Special");
+        }
         return returnBool;
     }
     public bool CheckSpecialAttackTank(int sRow, int sCol, int distanceAllowed, int damage)
@@ -729,6 +742,7 @@ public class PlayerManager : MonoBehaviour
         //Show the players what took damage
         UpdateHealthBars();
         currentPlayerScript.specialCooldown = 3;
+        currentAnimator.SetTrigger("Special");
         return true;
     }
 
@@ -751,6 +765,7 @@ public class PlayerManager : MonoBehaviour
         currentPlayerScript.health += 2;
         UpdateHealthBars();
         currentPlayerScript.specialCooldown = 3;
+        currentAnimator.SetTrigger("Special");
     }
 
     public bool CheckSquare(int row, int column, bool moving)
@@ -870,6 +885,8 @@ public class PlayerManager : MonoBehaviour
     {
         healthBars[playerIndex].handleRect.GetComponent<Image>().color = Color.grey;
 
+        currentAnimator.SetBool("Idle", false);
+
         if (playerIndex == 3)
         { //change to total Players instead of 4
             if(boss.adjacentAttack){
@@ -891,9 +908,17 @@ public class PlayerManager : MonoBehaviour
             playerIndex += 1;
         }
 
+        currentAnimator = players[playerIndex].GetComponent<Animator>();
+        currentAnimator.SetBool("Idle", true);
+
         if (players[playerIndex].GetComponent<PlayerScript>().health <= 0)
         {
             Vector3 moveBehind = new Vector3(players[playerIndex].transform.position.x, players[playerIndex].transform.position.y, 5);
+
+            //make them never hit again by anything
+            currentPlayerScript.row = -2;
+            currentPlayerScript.column = -2;
+
             players[playerIndex].transform.position = moveBehind;
             if (playersAlive > 0)
             {

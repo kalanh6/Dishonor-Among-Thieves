@@ -478,6 +478,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8502371513547438016, guid: 8a192377d7e0d114d8560172fca2ef0b, type: 3}
       insertIndex: -1
       addedObject: {fileID: 745119984}
+    - targetCorrespondingSourceObject: {fileID: 8502371513547438016, guid: 8a192377d7e0d114d8560172fca2ef0b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 745119985}
   m_SourcePrefab: {fileID: 100100000, guid: 8a192377d7e0d114d8560172fca2ef0b, type: 3}
 --- !u!1 &53408597
 GameObject:
@@ -1599,10 +1602,11 @@ MonoBehaviour:
   boss: {fileID: 1209712267}
   playerTurnText: {fileID: 1730190144}
   damageLog: {fileID: 671600379}
-  maxMove: 3
+  maxMove: 44
   gameManager: {fileID: 1046840896}
   actionBarGroup: {fileID: 1023253363}
   canvasUI: {fileID: 2071636054}
+  currentAnimator: {fileID: 0}
 --- !u!114 &237345563
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3932,6 +3936,28 @@ MonoBehaviour:
   isTargeting: 0
   hasMoved: 0
   playerManager: {fileID: 237345562}
+--- !u!95 &745119985
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 745119981}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e650b1cc329961a4ea61ff0c17a63dc4, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &782001911
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5667,6 +5693,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8502371513547438016, guid: 8a192377d7e0d114d8560172fca2ef0b, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1981158362}
+    - targetCorrespondingSourceObject: {fileID: 8502371513547438016, guid: 8a192377d7e0d114d8560172fca2ef0b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1981158363}
   m_SourcePrefab: {fileID: 100100000, guid: 8a192377d7e0d114d8560172fca2ef0b, type: 3}
 --- !u!1 &1109701145
 GameObject:
@@ -9857,6 +9886,28 @@ MonoBehaviour:
   isTargeting: 0
   hasMoved: 0
   playerManager: {fileID: 237345562}
+--- !u!95 &1981158363
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 19518729}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: aaf295124ddd4fd438cb54e01c88fcf0, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &2017196877
 PrefabInstance:
   m_ObjectHideFlags: 0
