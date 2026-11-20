@@ -167,7 +167,7 @@ public class PlayerScript : MonoBehaviour
                         previousColumn = column;
                         row = checkRow;
                         column = checkColumn;
-                    }
+                    }*/
                     else
                     {
                         Debug.Log("Im here moving away from player");

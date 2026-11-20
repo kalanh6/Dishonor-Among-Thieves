@@ -99,11 +99,12 @@ public class GameManager : MonoBehaviour
                 //    out localPoint
                 //);
 
+                //I forgot to call this -> buttons never found to press
+                FindTextInCurrentScene();
 
-                
-                
+
                 //taggedObjects[i].GetComponent<RectTransform>().position = localPoint;
-                
+
                 Debug.Log("Player " + i + " has " + points[i] + " points");
             }
         }
@@ -156,14 +157,17 @@ public class GameManager : MonoBehaviour
     public void PressStart()
     {
         SceneManager.LoadScene("Game");
+        Debug.Log("Change to game");
     }
     public void Restart()
     {
         SceneManager.LoadScene("Game");
+        Debug.Log("Change to game");
     }
     public void BackToMainMenu()
     {
         SceneManager.LoadScene("Main_Menu");
+        Debug.Log("Change to Main Menu");
     }
 
     public void AddPoints( int pointsAdded, int whichPlayer)

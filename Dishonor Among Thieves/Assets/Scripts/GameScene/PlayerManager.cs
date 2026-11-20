@@ -1,5 +1,6 @@
 //using System.Runtime.InteropServices.WindowsRuntime;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEditor.Animations;
 
 //using Unity.VectorGraphics;
@@ -200,10 +201,10 @@ public class PlayerManager : MonoBehaviour
             currentPlayerScript.AOEgroup.transform.position = new Vector3(-10, 0, -2f);
         }
         // turn off targeting if player hit the move button again before moving
-        else
-        {
-            currentPlayerScript.isTargeting = false;
-        }
+        //else
+        //{
+        //    currentPlayerScript.isTargeting = false;
+        //}
     }
 
     public void OnAttackClick()
@@ -222,10 +223,10 @@ public class PlayerManager : MonoBehaviour
             currentPlayerScript.AOEgroup.transform.position = new Vector3(-10, 0, -2f);
         }
         // turn off targeting if player hit the move button again before moving
-        else
-        {
-            currentPlayerScript.isAttacking = false;
-        }
+        //else
+        //{
+        //    currentPlayerScript.isAttacking = false;
+        //}
     }
 
     // will need to be fixed so clicking basic attack and special attack rgight after doesnt turn it off
@@ -241,11 +242,11 @@ public class PlayerManager : MonoBehaviour
             currentPlayerScript.isAttacking = false;
         }
         // turn off targeting if player hit the move button again before moving
-        else
-        {
-            currentPlayerScript.isSpecialAttacking = false;
-            currentPlayerScript.AOEgroup.transform.position = new Vector3(-10, 0, -2f);
-        }
+        //else
+        //{
+        //    currentPlayerScript.isSpecialAttacking = false;
+        //    currentPlayerScript.AOEgroup.transform.position = new Vector3(-10, 0, -2f);
+        //}
     }
     #endregion
 
@@ -293,6 +294,25 @@ public class PlayerManager : MonoBehaviour
     public bool CheckAdjacentMath(int aRow, int aCol, int bRow, int bCol){
         if(Mathf.Abs(aRow - bRow) <= 1){
             if(Mathf.Abs(aCol - bCol) <= 1){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public bool CheckCardinalMath(int aRow, int aCol, int bRow, int bCol)
+    {
+        if (Mathf.Abs(aRow - bRow) == 1)
+        {
+            if (Mathf.Abs(aCol - bCol) < 1)
+            {
+                return true;
+            }
+        }
+        if (Mathf.Abs(aCol - bCol) == 1)
+        {
+            if (Mathf.Abs(aRow - bRow) < 1)
+            {
                 return true;
             }
         }
@@ -482,7 +502,7 @@ public class PlayerManager : MonoBehaviour
             //}
 
             // hit a player
-            if (CheckAdjacentMath(sRow, sCol, player.row, player.column))
+            if (CheckCardinalMath(sRow, sCol, player.row, player.column))
             {
                 damageLog.text = "Player " + (playerIndex + 1) + " attacked Player " + (i+1) + " for " + damage + " damage.";
                 player.health -= damage;
@@ -496,7 +516,7 @@ public class PlayerManager : MonoBehaviour
         {
             for (int j = 0; j < boss.columns.Length; j++)
             {
-                if (CheckAdjacentMath(sRow, sCol, boss.rows[i], boss.columns[i]))
+                if (CheckCardinalMath(sRow, sCol, boss.rows[i], boss.columns[i]))
                 {
                     Debug.Log($"Boss Hit at {boss.hp} health");
                     boss.hp -= 1;
@@ -871,6 +891,13 @@ public class PlayerManager : MonoBehaviour
             if (players[i].GetComponent<PlayerScript>().health <= 0)
             {
                 alive--;
+
+                Vector3 moveBehind = new Vector3(players[i].transform.position.x, players[i].transform.position.y, 5);
+                players[i].transform.position = moveBehind;
+
+                //make them never hit again by anything
+                players[i].GetComponent<PlayerScript>().row = -2;
+                players[i].GetComponent<PlayerScript>().column = -2;
                 // if (playerIndex != i)
                 // {
                 //     gameManager.AddPoints(5, playerIndex);
@@ -913,13 +940,13 @@ public class PlayerManager : MonoBehaviour
 
         if (players[playerIndex].GetComponent<PlayerScript>().health <= 0)
         {
-            Vector3 moveBehind = new Vector3(players[playerIndex].transform.position.x, players[playerIndex].transform.position.y, 5);
+            //Vector3 moveBehind = new Vector3(players[playerIndex].transform.position.x, players[playerIndex].transform.position.y, 5);
+            //players[playerIndex].transform.position = moveBehind;
 
-            //make them never hit again by anything
-            currentPlayerScript.row = -2;
-            currentPlayerScript.column = -2;
+            ////make them never hit again by anything
+            //players[playerIndex].GetComponent<PlayerScript>().row = -2;
+            //players[playerIndex].GetComponent<PlayerScript>().column = -2;
 
-            players[playerIndex].transform.position = moveBehind;
             if (playersAlive > 0)
             {
                 OnClickPass();
@@ -937,6 +964,9 @@ public class PlayerManager : MonoBehaviour
         currentPlayerScript = players[playerIndex].GetComponent<PlayerScript>();
         players[playerIndex].GetComponent<PlayerScript>().hasMoved = false;
         players[playerIndex].GetComponent<PlayerScript>().hasAttacked = false;
+        players[playerIndex].GetComponent<PlayerScript>().isAttacking = false;
+        players[playerIndex].GetComponent<PlayerScript>().isSpecialAttacking = false;
+
         healthBars[playerIndex].handleRect.GetComponent<Image>().color = healthBars[playerIndex].fillRect.GetComponent<Image>().color;
         //Debug.Log($"Current player = {playerIndex}");
 
@@ -964,14 +994,14 @@ public class PlayerManager : MonoBehaviour
         //left side
         if (playerPosition.x < bossPosition.x)
         {
-            Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position, (2 * playerPosition + bossPosition) / 3.0f, 5f * Time.deltaTime);
+            Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position, (playerPosition + 2 * bossPosition) / 3.0f, 5f * Time.deltaTime);
 
             actionBarGroup.transform.position = new Vector3(canvasUI.transform.position.x - (width), actionBarGroup.transform.position.y, actionBarGroup.transform.position.z);
         }
         //right side
         else
         {
-            Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position, (2 * playerPosition + bossPosition) / 3.0f, 5f * Time.deltaTime);
+            Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position, (playerPosition + 2 * bossPosition) / 3.0f, 5f * Time.deltaTime);
 
             actionBarGroup.transform.position = new Vector3(canvasUI.transform.position.x + (width), actionBarGroup.transform.position.y, actionBarGroup.transform.position.z);
         }
