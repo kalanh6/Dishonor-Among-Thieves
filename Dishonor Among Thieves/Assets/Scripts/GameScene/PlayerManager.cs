@@ -940,12 +940,21 @@ public class PlayerManager : MonoBehaviour
 
         if (players[playerIndex].GetComponent<PlayerScript>().health <= 0)
         {
+<<<<<<< HEAD
             //Vector3 moveBehind = new Vector3(players[playerIndex].transform.position.x, players[playerIndex].transform.position.y, 5);
             //players[playerIndex].transform.position = moveBehind;
 
             ////make them never hit again by anything
             //players[playerIndex].GetComponent<PlayerScript>().row = -2;
             //players[playerIndex].GetComponent<PlayerScript>().column = -2;
+=======
+            Vector3 moveBehind = new Vector3(players[playerIndex].transform.position.x, players[playerIndex].transform.position.y, 5);
+            players[playerIndex].transform.position = moveBehind;
+            
+            //make them never hit again by anything
+            players[playerIndex].GetComponent<PlayerScript>().row = -2;
+            players[playerIndex].GetComponent<PlayerScript>().column = -2;
+>>>>>>> fef2ce846c9db09048067fec403c15bb81a72c0a
 
             if (playersAlive > 0)
             {
